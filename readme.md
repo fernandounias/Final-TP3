@@ -1,0 +1,5 @@
+Participantes:
+
+- Augusto
+- Ivan
+- Emanuel
