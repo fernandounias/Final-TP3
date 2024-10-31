@@ -55,6 +55,25 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
+
+    //Google Fonts
+    implementation(libs.androidx.ui.text.google.fonts)
+
+    //Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    //ViewModel
+    implementation(libs.androidx.lifecycle.common)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+
+    //Retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
+    //Firebase
+    implementation(libs.firebase.database)
+
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
