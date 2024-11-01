@@ -1,5 +1,6 @@
 package com.example.parcial.ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,6 +26,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
@@ -84,33 +86,38 @@ fun Tarjeta(
             .fillMaxWidth()
             .aspectRatio(1.6f),
         shape = RoundedCornerShape(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color(0xFF0FD08B)
-        ),
     ) {
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
+            modifier = Modifier.fillMaxSize()
         ) {
+            Image(
+                painter = painterResource(id = R.drawable.tarjeta_background),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.matchParentSize()
+            )
+
             Icon(
                 painter = painterResource(id = R.drawable.waynimovil),
                 contentDescription = null,
                 modifier = Modifier
                     .align(Alignment.TopEnd)
-                    .size(55.dp),
+                    .padding(16.dp)
+                    .padding(end = 10.dp)
+                    .size(60.dp),
                 tint = Color.White
             )
 
             Text(
                 text = numeroFormateado,
                 color = Color.White,
-                fontSize = 20.sp,
+                fontSize = 23.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = fontFamily,
                 modifier = Modifier
                     .align(Alignment.CenterStart)
                     .padding(top = 90.dp)
+                    .padding(start = 20.dp)
             )
 
             Row(
@@ -119,17 +126,19 @@ fun Tarjeta(
             ) {
                 Text(
                     text = fechaVencimiento,
-                    modifier = Modifier.padding(top = 10.dp),
+                    modifier = Modifier.padding(start = 20.dp)
+                        .padding(bottom = 10.dp),
                     color = Color.White,
-                    fontSize = 20.sp,
+                    fontSize = 23.sp,
                     fontWeight = FontWeight.Medium,
                     fontFamily = fontFamily
                 )
-                Spacer(modifier = Modifier.width(220.dp))
+                Spacer(modifier = Modifier.width(190.dp))
                 Icon(
                     painter = painterResource(id = R.drawable.mc_symbol_1),
                     contentDescription = null,
-                    modifier = Modifier.size(55.dp),
+                    modifier = Modifier.size(60.dp)
+                        .padding(bottom = 20.dp),
                     tint = Color.Unspecified
                 )
             }
