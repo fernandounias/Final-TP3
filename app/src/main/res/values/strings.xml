@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Parcial</string>
+    <!-- string on screen: Sign In -->
+    <string name="sign_f_title">Ingresá a tu cuenta:</string>
+    <string name="sign_f_label_u">DNI o E-mail</string>
+
+    <!-- string on screen: Inicio -->
+
+    <!-- string on screen: Mi cuenta -->
+
+    <!-- string on screen: Mi Tarjeta -->
+
+    <!-- string on screen: Pago de servicios -->
+
+    <!-- string on screen: box carga sube -->
+
+    <!-- string on screen: Confirmación carga sube -->
+
+    <!-- string on screen: Despliegue Hamburguesa -->
 </resources>
