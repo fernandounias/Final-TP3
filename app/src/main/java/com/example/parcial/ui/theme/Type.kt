@@ -36,7 +36,7 @@ val Typography = Typography(
     */
 )
 
-val fontName = GoogleFont("Manrope")
+/*val fontName = GoogleFont("Manrope")
 
 val provider = GoogleFont.Provider(
     providerAuthority = "com.google.android.gms.fonts",
@@ -46,4 +46,4 @@ val provider = GoogleFont.Provider(
 
 val fontFamily = FontFamily(
     Font(googleFont = fontName, fontProvider = provider)
-)
+)*/

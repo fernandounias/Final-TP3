@@ -1,5 +1,6 @@
 package com.example.parcial.ui.components
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -34,7 +35,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.parcial.R
-import com.example.parcial.ui.theme.fontFamily
+//import com.example.parcial.ui.theme.fontFamily
 
 @Composable
 fun TarjetaConBoton(
@@ -67,7 +68,7 @@ fun TarjetaConBoton(
                 text = if (mostrarDatos) "Ocultar datos" else "Mostrar datos",
                 color = Color(0xFF442E83),
                 fontWeight = FontWeight.Medium,
-                fontFamily = fontFamily
+                //fontFamily = fontFamily
             )
         }
     }
@@ -113,7 +114,7 @@ fun Tarjeta(
                 color = Color.White,
                 fontSize = 23.sp,
                 fontWeight = FontWeight.Bold,
-                fontFamily = fontFamily,
+                //fontFamily = fontFamily,
                 modifier = Modifier
                     .align(Alignment.CenterStart)
                     .padding(top = 90.dp)
@@ -131,7 +132,7 @@ fun Tarjeta(
                     color = Color.White,
                     fontSize = 23.sp,
                     fontWeight = FontWeight.Medium,
-                    fontFamily = fontFamily
+                    //fontFamily = fontFamily
                 )
                 Spacer(modifier = Modifier.width(190.dp))
                 Icon(
@@ -147,12 +148,16 @@ fun Tarjeta(
 }
 
 fun formatearNumeroTarjeta(numero: String): String {
-    return numero.chunked(4).joinToString(" ")
+    val cleanedNumero = numero.replace(" ", "")
+    val format = cleanedNumero.chunked(4).joinToString(" ")
+    return format
 }
 
 fun ocultarNumeroTarjeta(numero: String): String {
-    val grupos = numero.chunked(4)
-    return "${grupos[0]} **** **** ${grupos[3]}"
+    val cleanedNumero = numero.filter { it.isDigit() }
+    val grupos = cleanedNumero.chunked(4)
+    val format = "${grupos.getOrElse(0) { "" }} **** **** ${grupos.getOrElse(3) { "" }}"
+    return format
 }
 
 @Preview(showBackground = true)
