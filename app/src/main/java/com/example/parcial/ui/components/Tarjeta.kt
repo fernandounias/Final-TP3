@@ -53,7 +53,9 @@ fun TarjetaConBoton(
 
         TextButton(onClick = { mostrarDatos = !mostrarDatos }) {
             Icon(
-                painter = painterResource(id = R.drawable.wallet), // Icono de ojo o similar
+                painter = painterResource(
+                    id = if (mostrarDatos) R.drawable.hide_password_blue else R.drawable.show_password_white
+                ),
                 contentDescription = null,
                 modifier = Modifier.size(20.dp),
                 Color(0xFF442E83)
