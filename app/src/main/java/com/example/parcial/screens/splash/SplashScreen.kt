@@ -1,6 +1,5 @@
 package com.example.parcial.screens.splash
 
-import android.window.SplashScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -14,15 +13,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavHostController
 import com.example.parcial.R
 import kotlinx.coroutines.delay
 
-@Preview
+//@Preview
 @Composable
-fun SplashScreen(){
+fun SplashScreen(navController: NavHostController) {
+//fun SplashScreen() {
     Box(
         modifier = Modifier
             .background(Green800)
@@ -37,9 +35,9 @@ fun SplashScreen(){
 
         LaunchedEffect(Unit) {
             delay(1800) //1.8 s
-            //NavController.navigate(""){
-                //popUpTo("splash") { inclusive = true }
-            //}
+            navController.navigate("home"){
+                popUpTo("splash") { inclusive = true }
+            }
         }
     }
 }
