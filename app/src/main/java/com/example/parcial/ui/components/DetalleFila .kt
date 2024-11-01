@@ -20,14 +20,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.parcial.ui.theme.Green900
+import com.example.parcial.ui.theme.Red900
 
 @Composable
 fun DetalleFila (
     fecha: String, descripcion: String, monto: Double, autorizacion: String, modifier: Modifier
 ) {
 
-// @TODO AUGUSTO: Cambiar colores hardcodeados por colores de MaterialTheme y el font family.
-    val textColor = if (monto > 0) Color(0xFF00A067) else Color(0xFFF96440)
+// @TODO AUGUSTO: cambiar el font family.
+    val textColor = if (monto > 0) Green900 else Red900
     val formattedMonto = if (monto > 0) "+$%.2f".format(monto) else "$%.2f".format(monto)
 
     val customTextStyle = TextStyle(
