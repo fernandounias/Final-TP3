@@ -1,6 +1,8 @@
 package com.example.parcial.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -14,7 +16,12 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -28,37 +35,73 @@ import com.example.parcial.R
 import com.example.parcial.ui.theme.fontFamily
 
 @Composable
-fun Tarjeta() {
+fun TarjetaConBoton(
+    numeroTarjeta: String,
+    fechaVencimiento: String
+) {
+    var mostrarDatos by remember { mutableStateOf(false) }
 
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.padding(16.dp)
+    ) {
+        Tarjeta(
+            numeroTarjeta = numeroTarjeta,
+            fechaVencimiento = fechaVencimiento,
+            mostrarDatos = mostrarDatos
+        )
 
-    Card (
+        TextButton(onClick = { mostrarDatos = !mostrarDatos }) {
+            Icon(
+                painter = painterResource(id = R.drawable.wallet), // Icono de ojo o similar
+                contentDescription = null,
+                modifier = Modifier.size(20.dp),
+                Color(0xFF442E83)
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = if (mostrarDatos) "Ocultar datos" else "Mostrar datos",
+                color = Color(0xFF442E83),
+                fontWeight = FontWeight.Medium,
+                fontFamily = fontFamily
+            )
+        }
+    }
+}
+
+@Composable
+fun Tarjeta(
+    numeroTarjeta: String,
+    fechaVencimiento: String,
+    mostrarDatos: Boolean
+) {
+    val numeroFormateado = if (mostrarDatos) formatearNumeroTarjeta(numeroTarjeta) else ocultarNumeroTarjeta(numeroTarjeta)
+
+    Card(
         modifier = Modifier
-            .padding(16.dp)
             .fillMaxWidth()
             .aspectRatio(1.6f),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor =  Color(0xFF0FD08B),
+            containerColor = Color(0xFF0FD08B)
         ),
-    ){
-
-        Box (
+    ) {
+        Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(16.dp)
-        ){
+        ) {
             Icon(
                 painter = painterResource(id = R.drawable.waynimovil),
                 contentDescription = null,
                 modifier = Modifier
-                    .padding(end = 7.dp)
                     .align(Alignment.TopEnd)
                     .size(55.dp),
                 tint = Color.White
             )
 
             Text(
-                text = "4957 **** **** 5824",
+                text = numeroFormateado,
                 color = Color.White,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
@@ -71,18 +114,16 @@ fun Tarjeta() {
             Row(
                 modifier = Modifier.align(Alignment.BottomStart),
                 verticalAlignment = Alignment.CenterVertically
-            ){
+            ) {
                 Text(
-                    modifier = Modifier.padding(
-                        top = 15.dp,
-                    ),
-                    text = "05/23",
+                    text = fechaVencimiento,
+                    modifier = Modifier.padding(top = 10.dp),
                     color = Color.White,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Medium,
                     fontFamily = fontFamily
                 )
-                Spacer(modifier = Modifier.width(220.dp)) // Aumenta el espaciado entre el texto y el ícono
+                Spacer(modifier = Modifier.width(220.dp))
                 Icon(
                     painter = painterResource(id = R.drawable.mc_symbol_1),
                     contentDescription = null,
@@ -94,8 +135,17 @@ fun Tarjeta() {
     }
 }
 
+fun formatearNumeroTarjeta(numero: String): String {
+    return numero.chunked(4).joinToString(" ")
+}
+
+fun ocultarNumeroTarjeta(numero: String): String {
+    val grupos = numero.chunked(4)
+    return "${grupos[0]} **** **** ${grupos[3]}"
+}
+
 @Preview(showBackground = true)
 @Composable
-fun TarjetaPreview() {
-    Tarjeta()
+fun TarjetaConBotonPreview() {
+    TarjetaConBoton("1234567890123456", "12/23")
 }
