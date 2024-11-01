@@ -14,3 +14,4 @@ val Green800 = Color(0xFF0FD08B) // Verde color principal
 val Purple900 = Color(0xFF442E83) // Violeta color botones
 val Red900 = Color(0xFFF96440) // Naranja color alerta & movimientos negativos
 val DarkPurple = Color(0xFF2A1846) // Violeta color titulo Movimientos
+val Green900 = Color(0xFF00A067) // Verde color saldo
