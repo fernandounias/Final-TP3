@@ -3,9 +3,16 @@
     <!-- string on screen: Sign In -->
     <string name="sign_f_title">Ingresá a tu cuenta:</string>
     <string name="sign_f_label_u">DNI o E-mail</string>
-
+    <string name="sign_f_label_p">Contraseña</string>
+    <string name="sign_reset_p">Olvidé mi contraseña</string>
+    <string name="sign_remember">Recordar datos de ingreso</string>
+    <string name="sign_in_btn">Ingresar</string>
     <!-- string on screen: Inicio -->
-
+    <string name="start_last">Ultimo acceso: Mar 01, 2020 4:55 PM</string>
+    <string name="start_show">Mostrar datos</string>
+    <string name="start_balance">SALDO DISPONIBLE</string>
+    <string name="start_card_alert">La cuota de tu préstamo está próxima a vencer.</string>
+    <string name="start_card_alert_link">Ver préstamo</string>
     <!-- string on screen: Mi cuenta -->
 
     <!-- string on screen: Mi Tarjeta -->
