@@ -1,20 +1,85 @@
 <resources>
     <string name="app_name">Parcial</string>
+
     <!-- string on screen: Sign In -->
     <string name="sign_f_title">Ingresá a tu cuenta:</string>
     <string name="sign_f_label_u">DNI o E-mail</string>
+    <string name="sign_f_label_p">Contraseña</string>
+    <string name="sign_reset_p">Olvidé mi contraseña</string>
+    <string name="sign_remember">Recordar datos de ingreso</string>
+    <string name="sign_in_btn">Ingresar</string>
 
     <!-- string on screen: Inicio -->
+    <string name="start_title">👋 Hola </string> <!-- agregar nombre del usuario dinamicamente--> <!-- usar en burguer screen tmb-->
+    <string name="start_last">Ultimo acceso: Mar 01, 2020 4:55 PM</string>
+    <string name="start_show">Mostrar datos</string>
+    <string name="start_balance">SALDO DISPONIBLE</string>
+    <string name="start_card_alert">La cuota de tu préstamo está próxima a vencer.</string>
+    <string name="start_card_alert_link">Ver préstamo</string>
+        <!-- para facilitar botones -->
+        <string name="start_btn_add1"> CARGAR </string>
+        <string name="start_btn_add2"> DINERO </string>
+
+        <string name="start_btn_subtrack1"> EXRAER </string>
+        <string name="start_btn_subtrack2"> DINERO </string>
+
+        <string name="start_btn_loan1"> SEGUIR </string>
+        <string name="start_btn_loan2"> MI PRÉSTAMO </string>
+
+        <string name="start_btn_charge1"> RECARGA </string>
+        <string name="start_btn_charge2"> SUBE </string>
+
+        <string name="start_btn_phone1"> RECARGA </string>
+        <string name="start_btn_phone2"> CELULAR </string>
+
+        <string name="start_btn_pay1"> PAGAR </string>
+        <string name="start_btn_pay2"> SERVICIO </string>
 
     <!-- string on screen: Mi cuenta -->
+    <string name="account_title">Mi Cuenta</string>
+    <string name="acc_balance">SALDO DISPONIBLE</string>
+    <string name="acc_id">CVU:</string>
+    <string name="acc_id_copy">Copiar</string>
+        <!-- botton adicional -->
+        <string name="acc_btn_transfer1"> TRANSFERIR </string>
+        <string name="acc_btn_transfer2"> DINERO </string>
+    <string name="account_movements">MOVIMIENTOS</string>
 
     <!-- string on screen: Mi Tarjeta -->
+    <string name="card_title">Mi Tarjeta</string>
+    <string name="card_virtual">TARJETA VIRTUAL</string>
+    <string name="card_show">Mostrar datos</string>
+    <string name="card_help_info">💡 ¿Sabías que poder pedir una tarjeta Mastercard física para utilizar directamente en los negocios que vos elijas?</string>
+    <string name="card_physical">TARJETA FÍSICA</string>
+    <string name="card_btn_ask_new">Quiero mi tarjeta física</string>
+    <string name="card_btn_inform_new">Ya tengo mi tarjeta física</string>
+    <string name="card_btn_inform_info">Activa tu tarjeta para comenzar a usarla</string>
 
     <!-- string on screen: Pago de servicios -->
+    <string name="services_title">Pago de servicios</string>
+    <string name="services_btn_charge"> RECARGA SUBE</string>
+    <string name="services_btn_phone"> RECARGA CELULAR</string>
+    <string name="services_btn_pay"> PAGO DE SERVICIOS</string>
+    <string name="services_btn_tv"> DIRECT TV PREPAGO</string>
 
     <!-- string on screen: box carga sube -->
-
-    <!-- string on screen: Confirmación carga sube -->
+    <string name="charge_sube_title">Cargar Sube</string>
+    <string name="charge_advice_title">Verificá que la información sea correcta:</string>
+    <string name="charge_sube_n">Tarjeta Nº: </string>
+    <string name="charge_sube_btn">Continuar</string>
+    <string name="charge_title_success">Tu operación se ha realizado con éxito</string>
+    <string name="charge_end_btn">Finalizar</string>
 
     <!-- string on screen: Despliegue Hamburguesa -->
+    <string name="burgermenu_title">Mi perfil</string>
+    <string name="burgermenu_data">Mis datos</string>
+    <string name="burgermenu_id">Mi CVU</string>
+    <string name="burgermenu_settings">Configuración</string>
+    <string name="burgermenu_help">Ayuda</string>
+    <string name="burgermenu_terms">Términos y condiciones</string>
+    <string name="burgermenu_sign_out">Cerrar sesión</string>
+
+    <string name="burgermenu_dark">Dark Mode</string>
+    <string name="burgermenu_dark_es">Modo Noche</string>
+
 </resources>
