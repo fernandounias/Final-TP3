@@ -15,3 +15,7 @@
 .cxx
 local.properties
 .idea/other.xml
+.idea/runConfigurations.xml
+.idea/misc.xml
+.idea/gradle.xml
+.idea/compiler.xml
