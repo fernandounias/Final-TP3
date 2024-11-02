@@ -61,7 +61,7 @@ fun BotonConIcono(
 }
 
 @Composable
-fun GridDeBotones() {
+fun GridDeBotonesInicio() {
     Column {
         Row(horizontalArrangement = Arrangement.SpaceEvenly) {
             BotonConIcono(
@@ -100,8 +100,37 @@ fun GridDeBotones() {
     }
 }
 
+@Composable
+fun GridDeBotonesMiCuenta() {
+    Column {
+        Row(horizontalArrangement = Arrangement.SpaceEvenly) {
+            BotonConIcono(
+                iconoResId = R.drawable.cargar_dinero,
+                texto = stringResource(R.string.start_btn_add),
+                shape = RoundedCornerShape(topStart = 16.dp, bottomStart = 16.dp)
+            )
+            BotonConIcono(
+                iconoResId = R.drawable.extraer_dinero,
+                texto = stringResource(R.string.start_btn_subtrack),
+                shape = RoundedCornerShape(0.dp)
+            )
+            BotonConIcono(
+                iconoResId = R.drawable.prestamos,
+                texto = stringResource(R.string.acc_btn_transfer),
+                shape = RoundedCornerShape(topEnd = 16.dp, bottomEnd = 16.dp)
+            )
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
-fun GridDeBotonesPreview() {
-    GridDeBotones()
+fun GridDeBotonesInicioPreview() {
+    GridDeBotonesInicio()
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GridDeBotonesMiCuentaPreview() {
+    GridDeBotonesMiCuenta()
 }

@@ -35,8 +35,7 @@
     <string name="acc_id">CVU:</string>
     <string name="acc_id_copy">Copiar</string>
         <!-- botton adicional -->
-        <string name="acc_btn_transfer1"> TRANSFERIR </string>
-        <string name="acc_btn_transfer2"> DINERO </string>
+        <string name="acc_btn_transfer"> TRANSFERIR DINERO</string>
     <string name="account_movements">MOVIMIENTOS</string>
 
     <!-- string on screen: Mi Tarjeta -->
