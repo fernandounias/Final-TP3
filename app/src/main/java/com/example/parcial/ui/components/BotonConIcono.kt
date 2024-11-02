@@ -115,7 +115,7 @@ fun GridDeBotonesMiCuenta() {
                 shape = RoundedCornerShape(0.dp)
             )
             BotonConIcono(
-                iconoResId = R.drawable.prestamos,
+                iconoResId = R.drawable.transferencia,
                 texto = stringResource(R.string.acc_btn_transfer),
                 shape = RoundedCornerShape(topEnd = 16.dp, bottomEnd = 16.dp)
             )
