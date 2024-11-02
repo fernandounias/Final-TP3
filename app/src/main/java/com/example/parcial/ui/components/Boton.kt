@@ -143,7 +143,7 @@ enum class BtnIconPosition {
     Left, Right, None
 }
 
-// Vista previa que muestra el borde de foco
+
 @Preview(showBackground = true)
 @Composable
 fun BotonPreview() {
