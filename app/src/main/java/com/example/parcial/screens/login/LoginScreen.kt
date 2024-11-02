@@ -34,9 +34,7 @@ import com.example.parcial.R
 @Composable
 fun LoginScreen() {
 //fun LoginScreen(navController: NavHostController) {
-
     var showPopup by remember { mutableStateOf(false) }
-
     Box(
         modifier = Modifier
             .background(Green800)
