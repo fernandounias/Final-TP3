@@ -11,5 +11,5 @@ sealed class RootScreen(val route: String) {
 
 sealed class LeafScreen(val route: String) {
     object Sube : RootScreen("sube")
-    object subeSucces : RootScreen("subeSucces")
+    object SubeSucces : RootScreen("subeSucces")
 }
