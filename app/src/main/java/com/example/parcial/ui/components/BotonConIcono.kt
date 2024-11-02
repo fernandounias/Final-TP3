@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -65,34 +66,34 @@ fun GridDeBotones() {
         Row(horizontalArrangement = Arrangement.SpaceEvenly) {
             BotonConIcono(
                 iconoResId = R.drawable.cargar_dinero,
-                texto = "CARGAR DINERO",
+                texto = stringResource(R.string.start_btn_add),
                 shape = RoundedCornerShape(topStart = 16.dp)
             )
             BotonConIcono(
                 iconoResId = R.drawable.extraer_dinero,
-                texto = "EXTRAER DINERO",
+                texto = stringResource(R.string.start_btn_subtrack),
                 shape = RoundedCornerShape(0.dp)
             )
             BotonConIcono(
                 iconoResId = R.drawable.prestamos,
-                texto = "SEGUIR MI PRÉSTAMO",
+                texto = stringResource(R.string.start_btn_loan),
                 shape = RoundedCornerShape(topEnd = 16.dp)
             )
         }
         Row(horizontalArrangement = Arrangement.SpaceEvenly) {
             BotonConIcono(
                 iconoResId = R.drawable.recarga_sube,
-                texto = "RECARGA SUBE",
+                texto = stringResource(R.string.start_btn_charge),
                 shape = RoundedCornerShape(bottomStart = 16.dp)
             )
             BotonConIcono(
                 iconoResId = R.drawable.recarga_celu,
-                texto = "RECARGA CELULAR",
+                texto = stringResource(R.string.start_btn_phone),
                 shape = RoundedCornerShape(0.dp)
             )
             BotonConIcono(
                 iconoResId = R.drawable.pago_servicio,
-                texto = "PAGAR SERVICIO",
+                texto = stringResource(R.string.start_btn_pay),
                 shape = RoundedCornerShape(bottomEnd = 16.dp)
             )
         }
