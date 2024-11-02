@@ -17,23 +17,17 @@
     <string name="start_card_alert">La cuota de tu préstamo está próxima a vencer.</string>
     <string name="start_card_alert_link">Ver préstamo</string>
         <!-- para facilitar botones -->
-        <string name="start_btn_add1"> CARGAR </string>
-        <string name="start_btn_add2"> DINERO </string>
+        <string name="start_btn_add"> CARGAR DINERO </string>
 
-        <string name="start_btn_subtrack1"> EXRAER </string>
-        <string name="start_btn_subtrack2"> DINERO </string>
+        <string name="start_btn_subtrack"> EXRAER DINERO</string>
 
-        <string name="start_btn_loan1"> SEGUIR </string>
-        <string name="start_btn_loan2"> MI PRÉSTAMO </string>
+        <string name="start_btn_loan"> SEGUIR MI PRÉSTAMO</string>
 
-        <string name="start_btn_charge1"> RECARGA </string>
-        <string name="start_btn_charge2"> SUBE </string>
+        <string name="start_btn_charge"> RECARGA SUBE</string>
 
-        <string name="start_btn_phone1"> RECARGA </string>
-        <string name="start_btn_phone2"> CELULAR </string>
+        <string name="start_btn_phone"> RECARGA CELULAR</string>
 
-        <string name="start_btn_pay1"> PAGAR </string>
-        <string name="start_btn_pay2"> SERVICIO </string>
+        <string name="start_btn_pay"> PAGAR SERVICIO</string>
 
     <!-- string on screen: Mi cuenta -->
     <string name="account_title">Mi Cuenta</string>
@@ -41,8 +35,7 @@
     <string name="acc_id">CVU:</string>
     <string name="acc_id_copy">Copiar</string>
         <!-- botton adicional -->
-        <string name="acc_btn_transfer1"> TRANSFERIR </string>
-        <string name="acc_btn_transfer2"> DINERO </string>
+        <string name="acc_btn_transfer"> TRANSFERIR DINERO</string>
     <string name="account_movements">MOVIMIENTOS</string>
 
     <!-- string on screen: Mi Tarjeta -->
