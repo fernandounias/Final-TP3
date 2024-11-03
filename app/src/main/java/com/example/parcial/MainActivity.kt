@@ -25,6 +25,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.parcial.navigation.RootScreen
 import androidx.navigation.NavController
+import com.example.parcial.shared.BottomNavBar
 
 class MainActivity : ComponentActivity() {
 
@@ -46,11 +47,30 @@ class MainActivity : ComponentActivity() {
                 MainNavActions(navController, scope)
             }
 
-            MainNavGraph(
-                startDestination = RootScreen.Splash.route,
-                navController = navController,
-                navigationActions = navigationActions
-            )
+//            MainNavGraph(
+//                startDestination = RootScreen.Splash.route,
+//                navController = navController,
+//                navigationActions = navigationActions
+//            )
+
+            Scaffold(
+                bottomBar = {
+                    BottomNavBar(
+                        navController = navController,
+                        navigationActions = navigationActions,
+                        selectedItem = navController.currentDestination?.route ?: "Home" // Default selection
+                    )
+                }
+            ){ innerPadding ->
+                MainNavGraph(
+                    startDestination = RootScreen.Splash.route,
+                    navController = navController,
+                    navigationActions = navigationActions,
+                    modifier = Modifier.padding(innerPadding)
+                )
+            }
+
+
         }
     }
 }

@@ -8,15 +8,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import com.example.parcial.MainNavActions
 import com.example.parcial.shared.BottomNavBar
 
+@Preview
 @Composable
-fun AccountScreen(
-    navController: NavHostController,
-    navigationActions: MainNavActions
-) {
+fun AccountScreen() {
     //this is for testing
     Box(
         modifier = Modifier
@@ -28,6 +27,5 @@ fun AccountScreen(
             text = "Account SCREEN!",
             modifier = Modifier.background(Color.Cyan)
         )
-        BottomNavBar(navController, navigationActions)
     }
 }

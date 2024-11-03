@@ -13,9 +13,9 @@ import androidx.navigation.NavHostController
 import com.example.parcial.MainNavActions
 import com.example.parcial.shared.BottomNavBar
 
-//@Preview
+@Preview
 @Composable
-fun ServicesScreen(navController: NavHostController, navigationActions: MainNavActions) {
+fun ServicesScreen() {
     //this is for testing
     Box(
         modifier = Modifier
@@ -27,7 +27,7 @@ fun ServicesScreen(navController: NavHostController, navigationActions: MainNavA
             text = "Services SCREEN!",
             modifier = Modifier.background(Color.White)
         )
-        BottomNavBar(navController, navigationActions)
+//        BottomNavBar(navController, navigationActions)
     }
 
 }

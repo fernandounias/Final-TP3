@@ -1,54 +1,68 @@
 package com.example.parcial.shared
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import com.example.parcial.MainNavActions
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Button
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-
-//import androidx.compose.material3.BottomNavigation
-//import androidx.compose.material3.BottomNavigationItem
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
+import com.example.parcial.R
 
 //@Preview
 @Composable
 fun BottomNavBar(
     navController: NavHostController,
-    navigationActions: MainNavActions
+    navigationActions: MainNavActions,
+    selectedItem: String
 ){
-    Box(
-        modifier = Modifier
-//            .align(Alignment.BottomCenter)
-            .fillMaxWidth()
-            .height(200.dp)
-    ){
-        Row{
-            Button(onClick = navigationActions.navigateToHome) {
-                    Text("home")
-            }
-            Button(onClick = navigationActions.navigateToLogin) {
-                Text("Login")
-            }
-            Button(onClick = navigationActions.navigateToCard) {
-                Text("T")
-            }
-            Button(onClick = navigationActions.navigateToAccount) {
-                Text("C")
-            }
-            Button(onClick = navigationActions.navigateToServices) {
-                Text("S")
-            }
+    val items = listOf(
+        BottomNavItem.Home,
+        BottomNavItem.Account,
+        BottomNavItem.Card,
+        BottomNavItem.Services,
+        BottomNavItem.Menu
+    )
+    NavigationBar( containerColor = Color.White){
+
+        items.forEach {item ->
+            val icon = if (selectedItem == item.label) item.selectedIcon else item.unselectedIcon
+
+            NavigationBarItem(
+                icon = {
+                    Icon(
+                        painter = painterResource(id = icon),
+                        contentDescription = item.label
+                    ) },
+                label = { Text(item.label) },
+                selected = selectedItem == item.label,
+                onClick = {
+                    when (item) {
+                        is BottomNavItem.Home -> navigationActions.navigateToHome()
+                        is BottomNavItem.Account -> navigationActions.navigateToAccount()
+                        is BottomNavItem.Card -> navigationActions.navigateToCard()
+                        is BottomNavItem.Services -> navigationActions.navigateToServices()
+                        is BottomNavItem.Menu -> navigationActions.openDrawer()
+                    }
+                },
+                colors = NavigationBarItemDefaults.colors(
+                    selectedIconColor = MaterialTheme.colorScheme.primary,
+                    unselectedIconColor = MaterialTheme.colorScheme.onBackground
+                )
+            )
         }
 
     }
+}
 
+sealed class BottomNavItem(val label: String, val unselectedIcon: Int, val selectedIcon: Int) {
+    object Home : BottomNavItem("Home", R.drawable.home, R.drawable.home_selected)
+    object Account : BottomNavItem("Account", R.drawable.movimientos, R.drawable.movimientos_selected)
+    object Card : BottomNavItem("Card", R.drawable.tarjeta_credito, R.drawable.tarjeta_credito_selected)
+    object Services : BottomNavItem("Services", R.drawable.wallet, R.drawable.wallet_selected)
+    object Menu : BottomNavItem("Menu", R.drawable.menu, R.drawable.menu_selected)
 }

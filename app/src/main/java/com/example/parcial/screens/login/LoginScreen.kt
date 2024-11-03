@@ -31,10 +31,9 @@ import com.example.parcial.R
 import com.example.parcial.MainNavActions
 import com.example.parcial.shared.BottomNavBar
 
-//@Preview
+@Preview
 @Composable
-//fun LoginScreen() {
-fun LoginScreen(navController: NavHostController, navigationActions: MainNavActions) {
+fun LoginScreen() {
     var showPopup by remember { mutableStateOf(false) }
     Box(
         modifier = Modifier
@@ -72,7 +71,6 @@ fun LoginScreen(navController: NavHostController, navigationActions: MainNavActi
                         .align(Alignment.TopEnd)
                         .padding(0.5.dp)
                 ) { Text("X") }
-                BottomNavBar(navController, navigationActions)
             }
 //        }
     }

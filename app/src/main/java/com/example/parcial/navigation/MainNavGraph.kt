@@ -32,11 +32,11 @@ fun MainNavGraph(
         modifier = modifier
     ){
         addSplashRoute(navController, navigationActions)
-        addLoginRoute(navController, navigationActions)
-        addHomeRoute(navController, navigationActions)
-        addAccountRoute(navController, navigationActions)
-        addCardRoute(navController, navigationActions)
-        addServicesRoutes(navController, navigationActions)
+        addLoginRoute()
+        addHomeRoute()
+        addAccountRoute()
+        addCardRoute()
+        addServicesRoutes()
     }
 
 }
@@ -49,54 +49,39 @@ fun NavGraphBuilder.addSplashRoute(
     }
 }
 
-fun NavGraphBuilder.addLoginRoute(
-    navController: NavHostController,
-    navigationActions: MainNavActions
-) {
+fun NavGraphBuilder.addLoginRoute() {
     composable(RootScreen.Login.route) {
-        LoginScreen(navController, navigationActions)
+        LoginScreen()
     }
 }
 
-fun NavGraphBuilder.addHomeRoute(
-    navController: NavHostController,
-    navigationActions: MainNavActions
-) {
+fun NavGraphBuilder.addHomeRoute() {
     composable(RootScreen.Home.route) {
-        HomeScreen(navController, navigationActions)
+        HomeScreen()
     }
 }
 
-fun NavGraphBuilder.addAccountRoute(
-    navController: NavHostController,
-    navigationActions: MainNavActions
-) {
+fun NavGraphBuilder.addAccountRoute() {
     composable(RootScreen.Account.route) {
-        AccountScreen(navController, navigationActions)
+        AccountScreen()
     }
 }
-fun NavGraphBuilder.addCardRoute(
-    navController: NavHostController,
-    navigationActions: MainNavActions
-) {
+fun NavGraphBuilder.addCardRoute() {
     composable(RootScreen.Card.route) {
-        CardScreen(navController, navigationActions)
+        CardScreen()
     }
 }
 
-fun NavGraphBuilder.addServicesRoutes(
-    navController: NavHostController,
-    navigationActions: MainNavActions
-) {
+fun NavGraphBuilder.addServicesRoutes() {
     navigation(
         route = RootScreen.Services.route,
         startDestination = LeafScreen.Services.route
     ) {
         composable(LeafScreen.Services.route) {
-            ServicesScreen(navController, navigationActions)
+            ServicesScreen()
         }
         composable(LeafScreen.Sube.route) {
-            ServicesSubeScreen(navController, navigationActions)
+            ServicesSubeScreen()
         }
 //        composable(LeafScreen.SubeSucces.route) {
 //            ServicesSubeSuccesScreen(navController, navigationActions)

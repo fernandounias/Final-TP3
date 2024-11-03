@@ -12,10 +12,7 @@ import androidx.navigation.NavHostController
 import com.example.parcial.MainNavActions
 
 @Composable
-fun ServicesSubeScreen(
-    navController: NavHostController,
-    navigationActions: MainNavActions
-) {
+fun ServicesSubeScreen() {
     //this is for testing
     Box(
         modifier = Modifier
