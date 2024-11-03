@@ -5,16 +5,25 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -26,7 +35,9 @@ import com.example.parcial.R
 
 @Composable
 fun BotonClick(
-    texto: String
+    texto: String,
+    mostrarSwitch: Boolean = false,
+    onSwitchChanged: (Boolean) -> Unit = {}
 ) {
 
     val manropeBold = FontFamily(
@@ -41,10 +52,12 @@ fun BotonClick(
         )
     )
 
+    var isSwitchChecked by remember { mutableStateOf(false) }
+
     Row(
         modifier = Modifier
             .width(336.dp)
-            .height(70.dp)
+            .height(if (mostrarSwitch) 90.dp else 70.dp)
             .padding(top = 16.dp, end = 12.dp, start = 12.dp, bottom = 16.dp)
             .border(
                 width = 1.dp,
@@ -61,20 +74,39 @@ fun BotonClick(
                 .padding(start = 12.dp)
 
         )
-        Image(
-            painter = painterResource(id = R.drawable.flecha_boton),
-            contentDescription = "Icono del botón",
-            modifier = Modifier
-                .width(32.dp)
-                .height(30.dp)
-                .padding(end = 12.dp)
-        )
+        if (mostrarSwitch) {
+            Switch(
+                checked = isSwitchChecked,
+                onCheckedChange = {
+                    isSwitchChecked = it
+                    onSwitchChanged(it)
+                },
+                colors = SwitchDefaults.colors(
+                    checkedThumbColor = colorResource(id = R.color.green_800)
+                ),
+                modifier = Modifier.padding(end = 12.dp)
+            )
+        } else {
+            Image(
+                painter = painterResource(id = R.drawable.flecha_boton),
+                contentDescription = "Icono del botón",
+                modifier = Modifier
+                    .width(32.dp)
+                    .height(30.dp)
+                    .padding(end = 12.dp)
+            )
+        }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
 fun BotonClickPreview() {
-    BotonClick("Mis datos")
+    Column {
+        BotonClick("Mis datos", mostrarSwitch = false) // Con imagen
+        Spacer(modifier = Modifier.height(16.dp))
+        BotonClick("Dark Mode", mostrarSwitch = true) // Con Switch
+    }
 }
+
 
