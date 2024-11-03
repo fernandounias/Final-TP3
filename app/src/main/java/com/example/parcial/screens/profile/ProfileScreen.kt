@@ -3,9 +3,7 @@ package com.example.parcial.screens.profile
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
@@ -18,13 +16,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.example.parcial.R
-import com.example.parcial.ui.components.GridBotonesClick
+import com.example.parcial.ui.components.GridBotonesClickProfile
 import com.example.parcial.ui.theme.BackgroundScreens
 import com.example.parcial.ui.theme.DarkPurple
-import com.example.parcial.ui.theme.Purple40
-import com.example.parcial.ui.theme.Purple900
 import kotlinx.coroutines.delay
 
 @Composable
@@ -77,7 +72,7 @@ fun ProfileScreen() {
             )
 
             Spacer(modifier = Modifier.height(24.dp))
-            GridBotonesClick()
+            GridBotonesClickProfile()
         }
     }
 }

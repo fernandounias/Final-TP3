@@ -96,9 +96,38 @@ fun BotonClick(
         }
     }
 }
+
+@Preview
+@Composable
+fun GridBotonesClickTarjeta(){
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .border(
+                width = 1.dp,
+                color = Color(0xFFE0E0E0),
+                shape = RoundedCornerShape(10.dp)
+            )
+            .background(Color.White, shape = RoundedCornerShape(10.dp))
+    ) {
+        BotonClick("Quiero mi tarjeta fisica", mostrarSwitch = true)
+        HorizontalDivider(
+            thickness = 2.dp,
+            color = Color(0xFFE0E0E0)
+        )
+
+        BotonClick("Ya tengo mi tarjeta fisica", mostrarSwitch = true)
+        Text(
+            text = "Activa tu tarjeta para comnezar a usarla",
+            fontSize = 20.sp,
+            color = DarkPurple //cambiar
+        )
+    }
+}
 @Preview(showBackground = true)
 @Composable
-fun GridBotonesClick() {
+fun GridBotonesClickProfile() {
     val opciones = listOf(
         "Mis datos",
         "Mi CVU",
