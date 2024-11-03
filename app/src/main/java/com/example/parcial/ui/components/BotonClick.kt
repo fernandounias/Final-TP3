@@ -25,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -98,8 +99,22 @@ fun BotonClick(
         }
     }
 }
-
 @Preview(showBackground = true)
+@Composable
+fun GridBotonesClick() {
+    Column {
+        BotonClick("Mis datos", mostrarSwitch = false)
+        BotonClick("Mi CVU", mostrarSwitch = false)
+        BotonClick("Configuración", mostrarSwitch = false)
+        BotonClick("Ayuda", mostrarSwitch = false)
+        BotonClick("Terminos y condiciones", mostrarSwitch = false)
+        BotonClick("Cerrar sesión", mostrarSwitch = false)
+        Spacer(modifier = Modifier.height(16.dp))
+        BotonClick("Dark Mode", mostrarSwitch = true)
+        }
+}
+
+
 @Composable
 fun BotonClickPreview() {
     Column {
