@@ -15,11 +15,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.parcial.R
+import com.example.parcial.ui.theme.DarkPurple
 import com.example.parcial.ui.theme.Green900
 import com.example.parcial.ui.theme.Red900
 
@@ -31,6 +35,9 @@ fun DetalleFila (
 // @TODO AUGUSTO: cambiar el font family.
     val textColor = if (monto > 0) Green900 else Red900
     val formattedMonto = if (monto > 0) "+$%.2f".format(monto) else "$%.2f".format(monto)
+    val manropeBold = FontFamily(
+        Font(R.font.manrope_bold)
+    )
 
     val customTextStyle = TextStyle(
         fontFamily = FontFamily.SansSerif,
@@ -53,17 +60,21 @@ fun DetalleFila (
             .padding(top = 8.dp, end = 12.dp, bottom = 8.dp, start = 12.dp),
     ) {
         Text(
-            text = fecha, style = customTextStyle, color = Color.Black
+            text = fecha, style = customTextStyle, color = DarkPurple, fontFamily = manropeBold
         )
         Spacer(modifier = Modifier.weight(0.05f))
         Column {
             Text(
                 text = descripcion,
                 style = customTextStyle,
+                color = DarkPurple,
+                fontFamily = manropeBold
             )
             Text(
                 text = autorizacion,
                 style = customTextStyle,
+                color = DarkPurple,
+                fontFamily = manropeBold
             )
         }
         Spacer(modifier = Modifier.weight(0.2f))
@@ -71,6 +82,19 @@ fun DetalleFila (
             text = formattedMonto,
             style = customTextStyle,
             color = textColor,
+            fontFamily = manropeBold
         )
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun DetalleFilaPreview() {
+    DetalleFila(
+        fecha = "19-03-20",
+        descripcion = "Transferencia",
+        monto = 20000.00,
+        autorizacion = "Aut. 399954",
+        modifier = Modifier.padding(8.dp)
+    )
 }

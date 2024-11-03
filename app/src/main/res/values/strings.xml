@@ -13,6 +13,7 @@
     <string name="start_title">👋 Hola </string> <!-- agregar nombre del usuario dinamicamente--> <!-- usar en burguer screen tmb-->
     <string name="start_last">Ultimo acceso: Mar 01, 2020 4:55 PM</string>
     <string name="start_show">Mostrar datos</string>
+    <string name="start_hide">Ocultar datos</string>
     <string name="start_balance">SALDO DISPONIBLE</string>
     <string name="start_card_alert">La cuota de tu préstamo está próxima a vencer.</string>
     <string name="start_card_alert_link">Ver préstamo</string>

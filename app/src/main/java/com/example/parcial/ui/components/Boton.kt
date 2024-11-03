@@ -27,6 +27,8 @@ import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,6 +51,9 @@ fun Boton(
     val isPressed by interactionSource.collectIsPressedAsState()
     var isFocused by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
+    val manropeBold = FontFamily(
+        Font(R.font.manrope_bold)
+    )
 
     val icon = painterResource(id = R.drawable.arrow_btn)
 
@@ -117,6 +122,7 @@ fun Boton(
                 // Texto del btn
                 Text(
                     text = text,
+                    fontFamily = manropeBold,
                     color = ButtonContentColor,
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Center,

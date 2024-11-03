@@ -29,12 +29,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.parcial.R
+import com.example.parcial.ui.theme.Purple900
+
 //import com.example.parcial.ui.theme.fontFamily
 
 @Composable
@@ -43,6 +48,9 @@ fun TarjetaConBoton(
     fechaVencimiento: String
 ) {
     var mostrarDatos by remember { mutableStateOf(false) }
+    val manropeBold = FontFamily(
+        Font(R.font.manrope_bold)
+    )
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -61,14 +69,14 @@ fun TarjetaConBoton(
                 ),
                 contentDescription = null,
                 modifier = Modifier.size(20.dp),
-                Color(0xFF442E83)
+                tint = Purple900
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
-                text = if (mostrarDatos) "Ocultar datos" else "Mostrar datos",
-                color = Color(0xFF442E83),
+                text = if (mostrarDatos) stringResource(id = R.string.start_hide) else stringResource(id = R.string.start_show),
+                color = Purple900,
                 fontWeight = FontWeight.Medium,
-                //fontFamily = fontFamily
+                fontFamily = manropeBold
             )
         }
     }
@@ -81,7 +89,9 @@ fun Tarjeta(
     mostrarDatos: Boolean
 ) {
     val numeroFormateado = if (mostrarDatos) formatearNumeroTarjeta(numeroTarjeta) else ocultarNumeroTarjeta(numeroTarjeta)
-
+    val manropeBold = FontFamily(
+        Font(R.font.manrope_bold)
+    )
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -113,8 +123,7 @@ fun Tarjeta(
                 text = numeroFormateado,
                 color = Color.White,
                 fontSize = 23.sp,
-                fontWeight = FontWeight.Bold,
-                //fontFamily = fontFamily,
+                fontFamily = manropeBold,
                 modifier = Modifier
                     .align(Alignment.CenterStart)
                     .padding(top = 90.dp)
@@ -132,7 +141,7 @@ fun Tarjeta(
                     color = Color.White,
                     fontSize = 23.sp,
                     fontWeight = FontWeight.Medium,
-                    //fontFamily = fontFamily
+                    fontFamily = manropeBold
                 )
                 Spacer(modifier = Modifier.width(190.dp))
                 Icon(

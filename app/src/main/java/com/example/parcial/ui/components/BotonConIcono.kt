@@ -20,6 +20,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,8 +33,11 @@ import com.example.parcial.R
 fun BotonConIcono(
     iconoResId: Int,
     texto: String,
-    shape: RoundedCornerShape // Forma personalizada para los bordes
+    shape: RoundedCornerShape
 ) {
+    val manropeBold = FontFamily(
+        Font(R.font.manrope_bold)
+    )
     Column(
         modifier = Modifier
             .background(Color.White, shape = shape)
@@ -53,7 +58,7 @@ fun BotonConIcono(
         Text(
             text = texto,
             fontSize = 16.sp,
-            fontWeight = FontWeight.Bold,
+            fontFamily = manropeBold,
             color = colorResource(R.color.purple_dark),
             textAlign = TextAlign.Center
         )
