@@ -26,31 +26,40 @@ import androidx.navigation.NavHostController
 import com.example.parcial.ui.theme.Green800
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.parcial.MainNavActions
 import com.example.parcial.model.users.User
 import com.example.parcial.screens.user.UserViewModel
+import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.infraestructure.users.UserImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+@Preview
 @Composable
-fun HomeScreen(navController: NavHostController) {
+fun HomeScreen() {
     Box(
         modifier = Modifier
             .background(Green800)
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-//        Text(
-//            text = "HOME SCREEN!",
-//            modifier = Modifier.background(Color.White)
-//        )
+        Column {
+        Text(
+            text = "HOME SCREEN!",
+            modifier = Modifier.background(Color.White)
+        )
         Hola()
+//        BottomNavBar(navController, navigationActions)
+
+        }
     }
 
 //    Scaffold(
 //        //bottomBar = { BottomNavigationBar(navController) },
+//        BottomNavBar(navController, navigationActions)
 //        //drawerContent = { DrawerContent(navController) }
 //    ) {
 //        // Main content of the Home screen

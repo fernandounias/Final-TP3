@@ -18,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,25 +28,22 @@ import androidx.navigation.NavHostController
 import com.example.parcial.ui.theme.Green800
 import androidx.compose.ui.unit.dp
 import com.example.parcial.R
+import com.example.parcial.MainNavActions
+import com.example.parcial.shared.BottomNavBar
 
 @Preview
 @Composable
 fun LoginScreen() {
-//fun LoginScreen(navController: NavHostController) {
     var showPopup by remember { mutableStateOf(false) }
     Box(
         modifier = Modifier
             .background(Green800)
-//            .background(Color.Gray)
             .fillMaxSize()
     ){
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .fillMaxHeight(0.5f),
-                //para que quede con la mitad de arriba
-//                .background(Color.Gray),
-//                .background(Green800),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ){
