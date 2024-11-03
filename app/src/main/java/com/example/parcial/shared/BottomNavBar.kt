@@ -1,5 +1,6 @@
 package com.example.parcial.shared
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import com.example.parcial.MainNavActions
@@ -31,14 +32,15 @@ fun BottomNavBar(
 
         items.forEach {item ->
             val icon = if (selectedItem == item.label) item.selectedIcon else item.unselectedIcon
+            val isSelected = selectedItem == item.label
 
             NavigationBarItem(
                 icon = {
                     Icon(
                         painter = painterResource(id = icon),
-                        contentDescription = item.label
+                        contentDescription = item.label,
+                        tint = Color.Unspecified
                     ) },
-                label = { Text(item.label) },
                 selected = selectedItem == item.label,
                 onClick = {
                     when (item) {
@@ -50,8 +52,9 @@ fun BottomNavBar(
                     }
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.primary,
-                    unselectedIconColor = MaterialTheme.colorScheme.onBackground
+                    selectedIconColor = Color.Transparent,
+                    unselectedIconColor = Color.Transparent,
+                    indicatorColor = Color.Transparent
                 )
             )
         }

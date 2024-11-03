@@ -25,7 +25,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.parcial.navigation.RootScreen
 import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.parcial.shared.BottomNavBar
+import com.example.parcial.shared.BottomNavItem
 
 class MainActivity : ComponentActivity() {
 
@@ -55,10 +57,18 @@ class MainActivity : ComponentActivity() {
 
             Scaffold(
                 bottomBar = {
+                    val currentDestination = navController.currentBackStackEntryAsState().value?.destination
+                    val selectedItem = when (currentDestination?.route) {
+                        RootScreen.Home.route -> BottomNavItem.Home.label
+                        RootScreen.Account.route -> BottomNavItem.Account.label
+                        RootScreen.Card.route -> BottomNavItem.Card.label
+                        RootScreen.Services.route -> BottomNavItem.Services.label
+                        else -> BottomNavItem.Home.label
+                    }
                     BottomNavBar(
                         navController = navController,
                         navigationActions = navigationActions,
-                        selectedItem = navController.currentDestination?.route ?: "Home" // Default selection
+                        selectedItem = selectedItem
                     )
                 }
             ){ innerPadding ->
