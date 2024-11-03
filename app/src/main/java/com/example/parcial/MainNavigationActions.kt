@@ -12,23 +12,7 @@ class MainNavActions(
     scope: CoroutineScope,
     drawerState: DrawerState
 ) {
-    /// Drawer Actions
-    val openDrawer: () -> Unit = {
-        scope.launch {
-            drawerState.open()
-        }
-    }
-
-    val closeDrawer: () -> Unit = {
-        scope.launch {
-            drawerState.close()
-        }
-    }
-
-    /// navigation actions:
-
-    // mover acá la splashscreen navigation
-
+//TODO mover acá la splashscreen navigation
     val navigateToLogin: () -> Unit = {
         navController.navigate(RootScreen.Login.route){
             scope.launch {
@@ -60,6 +44,13 @@ class MainNavActions(
     }
     val navigateToServices: () -> Unit = {
         navController.navigate(LeafScreen.Services.route){
+            scope.launch {
+                drawerState.close()
+            }
+        }
+    }
+    val navigateToProfile: () -> Unit = {
+        navController.navigate(RootScreen.Profile.route){
             scope.launch {
                 drawerState.close()
             }

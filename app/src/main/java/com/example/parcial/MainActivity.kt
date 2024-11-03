@@ -5,7 +5,6 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.DrawerState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,13 +14,9 @@ import com.example.parcial.ui.theme.ParcialTheme
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.parcial.navigation.MainNavGraph
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.rememberDrawerState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.parcial.navigation.RootScreen
@@ -29,8 +24,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.parcial.navigation.LeafScreen
 import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.BottomNavItem
-import com.example.parcial.shared.AppDrawer
-import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
@@ -46,7 +39,6 @@ class MainActivity : ComponentActivity() {
             //val viewModel: MainActivityViewModel = MainActivityViewModel()
             val navController = rememberNavController()
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-            var isDarkMode by remember { mutableStateOf(false) }
             val scope = rememberCoroutineScope()
             val navigationActions = remember(navController) {
                 MainNavActions(navController, scope, drawerState)
@@ -58,22 +50,7 @@ class MainActivity : ComponentActivity() {
                navigationActions = navigationActions
             )
 */
-
-            if (drawerState.isOpen || drawerState.isAnimationRunning) {
-                ModalNavigationDrawer(
-                    drawerState = drawerState,
-                    drawerContent = {
-                        AppDrawer(
-                            onDismiss = { scope.launch { drawerState.close() } },
-                            onOptionClick = { }
-                        )
-                    }
-                ) {
-                    ScaffoldContent(navController, navigationActions, drawerState)
-                }
-            }else{
-                ScaffoldContent(navController, navigationActions, drawerState)
-            }
+            ScaffoldContent(navController, navigationActions)
         }
     }
 }
@@ -97,10 +74,8 @@ fun GreetingPreview() {
 @Composable
 fun ScaffoldContent(
     navController: NavHostController,
-    navigationActions: MainNavActions,
-    drawerState: DrawerState
+    navigationActions: MainNavActions
 ) {
-    val scope = rememberCoroutineScope()
     Scaffold(
         bottomBar = {
             val currentDestination =
@@ -110,6 +85,7 @@ fun ScaffoldContent(
                 RootScreen.Account.route -> BottomNavItem.Account.label
                 RootScreen.Card.route -> BottomNavItem.Card.label
                 LeafScreen.Services.route -> BottomNavItem.Services.label
+                RootScreen.Profile.route -> BottomNavItem.Menu.label
                 else -> BottomNavItem.Home.label
             }
             BottomNavBar(

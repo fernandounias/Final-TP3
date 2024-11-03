@@ -14,6 +14,7 @@ import com.example.parcial.screens.account.AccountScreen
 import com.example.parcial.screens.card.CardScreen
 import com.example.parcial.screens.home.HomeScreen
 import com.example.parcial.screens.login.LoginScreen
+import com.example.parcial.screens.profile.ProfileScreen
 import com.example.parcial.screens.services.ServicesScreen
 import com.example.parcial.screens.services.ServicesSubeScreen
 import com.example.parcial.screens.splash.SplashScreen
@@ -37,6 +38,7 @@ fun MainNavGraph(
         addAccountRoute()
         addCardRoute()
         addServicesRoutes()
+        addPerfilRoute()
     }
 
 }
@@ -71,7 +73,11 @@ fun NavGraphBuilder.addCardRoute() {
         CardScreen()
     }
 }
-
+fun NavGraphBuilder.addPerfilRoute(){
+    composable(RootScreen.Profile.route){
+        ProfileScreen()
+    }
+}
 fun NavGraphBuilder.addServicesRoutes() {
     navigation(
         route = RootScreen.Services.route,

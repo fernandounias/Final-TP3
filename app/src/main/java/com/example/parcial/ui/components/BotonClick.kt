@@ -25,13 +25,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.parcial.R
+import com.example.parcial.ui.theme.ButtonDisabled
 
 
 @Composable
@@ -83,9 +83,11 @@ fun BotonClick(
                     onSwitchChanged(it)
                 },
                 colors = SwitchDefaults.colors(
-                    checkedThumbColor = colorResource(id = R.color.green_800)
+                    checkedThumbColor = colorResource(id = R.color.green_800),
+                    checkedTrackColor = colorResource(id = R.color.purple_200)
                 ),
                 modifier = Modifier.padding(end = 12.dp)
+
             )
         } else {
             Image(

@@ -110,7 +110,7 @@ fun BottomNavBar(
                             is BottomNavItem.Account -> navigationActions.navigateToAccount()
                             is BottomNavItem.Card -> navigationActions.navigateToCard()
                             is BottomNavItem.Services -> navigationActions.navigateToServices()
-                            is BottomNavItem.Menu -> navigationActions.openDrawer()
+                            is BottomNavItem.Menu -> navigationActions.navigateToProfile()
                         }
                     },
                     colors = NavigationBarItemDefaults.colors(
