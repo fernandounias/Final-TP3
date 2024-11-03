@@ -17,6 +17,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:label=""
             android:theme="@style/Theme.Parcial.Splash">
             <!-- android:theme="@style/Theme.Parcial"> -->
             <intent-filter>

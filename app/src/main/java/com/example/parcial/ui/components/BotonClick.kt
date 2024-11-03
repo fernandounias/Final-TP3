@@ -3,15 +3,12 @@ package com.example.parcial.ui.components
 import androidx.compose.material3.Typography
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -31,7 +28,10 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.parcial.R
-import com.example.parcial.ui.theme.ButtonDisabled
+import com.example.parcial.ui.theme.BackgroundScreens
+import com.example.parcial.ui.theme.DarkPurple
+import com.example.parcial.ui.theme.Purple40
+import com.example.parcial.ui.theme.Purple900
 
 
 @Composable
@@ -40,7 +40,6 @@ fun BotonClick(
     mostrarSwitch: Boolean = false,
     onSwitchChanged: (Boolean) -> Unit = {}
 ) {
-
     val manropeBold = FontFamily(
         Font(R.font.manrope_bold)
     )
@@ -49,7 +48,8 @@ fun BotonClick(
         bodyLarge = TextStyle(
             fontFamily = manropeBold,
             fontSize = 16.sp,
-            lineHeight = 19.6.sp
+            lineHeight = 19.sp,
+            color = Color(0xFF333333)
         )
     )
 
@@ -57,23 +57,18 @@ fun BotonClick(
 
     Row(
         modifier = Modifier
-            .width(336.dp)
-            .height(if (mostrarSwitch) 90.dp else 70.dp)
-            .padding(top = 16.dp, end = 12.dp, start = 12.dp, bottom = 16.dp)
-            .border(
-                width = 1.dp,
-                color = Color.Gray,
-                shape = RoundedCornerShape(5.dp)
-            ),
+            .fillMaxWidth()
+            .padding(vertical = 4.dp)
+            .background(Color.White)
+            .padding(horizontal = 16.dp, vertical = 10.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
             text = texto,
             style = typography.bodyLarge,
-            modifier = Modifier
-                .padding(start = 12.dp)
-
+            fontSize = 20.sp,
+            color = DarkPurple
         )
         if (mostrarSwitch) {
             Switch(
@@ -94,9 +89,9 @@ fun BotonClick(
                 painter = painterResource(id = R.drawable.flecha_boton),
                 contentDescription = "Icono del botón",
                 modifier = Modifier
-                    .width(32.dp)
+                    .width(30.dp)
                     .height(30.dp)
-                    .padding(end = 12.dp)
+                    .padding(end = 3.dp)
             )
         }
     }
@@ -104,16 +99,50 @@ fun BotonClick(
 @Preview(showBackground = true)
 @Composable
 fun GridBotonesClick() {
-    Column {
-        BotonClick("Mis datos", mostrarSwitch = false)
-        BotonClick("Mi CVU", mostrarSwitch = false)
-        BotonClick("Configuración", mostrarSwitch = false)
-        BotonClick("Ayuda", mostrarSwitch = false)
-        BotonClick("Terminos y condiciones", mostrarSwitch = false)
-        BotonClick("Cerrar sesión", mostrarSwitch = false)
-        Spacer(modifier = Modifier.height(16.dp))
-        BotonClick("Dark Mode", mostrarSwitch = true)
+    val opciones = listOf(
+        "Mis datos",
+        "Mi CVU",
+        "Configuración",
+        "Ayuda",
+        "Términos y condiciones",
+        "Cerrar sesión"
+    )
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .border(
+                width = 1.dp,
+                color = Color(0xFFE0E0E0),
+                shape = RoundedCornerShape(10.dp)
+            )
+            .background(Color.White, shape = RoundedCornerShape(10.dp))
+    ) {
+
+        opciones.forEachIndexed { index, texto ->
+            BotonClick(texto = texto, mostrarSwitch = false)
+            if (index < opciones.size - 1) {
+                HorizontalDivider(
+                    thickness = 2.dp,
+                    color = Color(0xFFE0E0E0)
+                )
+            }
         }
+    }
+    Spacer(modifier = Modifier.height(65.dp))
+    Column (
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)
+            .border(
+                width = 1.dp,
+                color = Color(0xFFE0E0E0),
+                shape = RoundedCornerShape(10.dp)
+            )
+            .background(Color.White, shape = RoundedCornerShape(10.dp))
+        ){
+        BotonClick("Dark Mode", mostrarSwitch = true)
+    }
 }
 
 
