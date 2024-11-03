@@ -75,6 +75,7 @@ fun TarjetaConBoton(
             Text(
                 text = if (mostrarDatos) stringResource(id = R.string.start_hide) else stringResource(id = R.string.start_show),
                 color = Purple900,
+                fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 fontFamily = manropeBold
             )

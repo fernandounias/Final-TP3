@@ -111,17 +111,19 @@ fun GridBotonesClickTarjeta(){
             )
             .background(Color.White, shape = RoundedCornerShape(10.dp))
     ) {
-        BotonClick("Quiero mi tarjeta fisica", mostrarSwitch = true)
+        BotonClick("Quiero mi tarjeta fisica", mostrarSwitch = false)
         HorizontalDivider(
             thickness = 2.dp,
             color = Color(0xFFE0E0E0)
         )
 
-        BotonClick("Ya tengo mi tarjeta fisica", mostrarSwitch = true)
+        BotonClick("Ya tengo mi tarjeta fisica", mostrarSwitch = false)
         Text(
             text = "Activa tu tarjeta para comnezar a usarla",
-            fontSize = 20.sp,
-            color = DarkPurple //cambiar
+            fontSize = 15.sp,
+            color = DarkPurple, //cambiar
+            modifier = Modifier.padding(horizontal = 16.dp)
+
         )
     }
 }

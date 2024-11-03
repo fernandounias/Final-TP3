@@ -25,3 +25,4 @@ val ButtonDisabled = Color(0xFFC1B5D0) // BtnDisabled (gris claro)
 val ButtonContentColor = Color.White
 
 val BackgroundScreens = Color(0xFFF8F8F6) // Fondo Screens
+val LightGray = Color(0xFFD1D1D7) // Gris claro
