@@ -1,15 +1,17 @@
 package com.example.parcial.navigation
 
 sealed class RootScreen(val route: String) {
-    object SingIn: RootScreen("singIn_root")
+    object Splash : RootScreen("splash")
+    object Login: RootScreen("login_root")
     object Home : RootScreen("home_root")
-    object MiCuenta : RootScreen("miCuenta_root")
-    object MiTarjeta : RootScreen("miTarjeta_root")
-    object Servicios : RootScreen("servicios_root")
-    object Perfil : RootScreen("perfil_root")
+    object Account : RootScreen("account_root")
+    object Card : RootScreen("card_root")
+    object Services : RootScreen("services_root")
+    object Profile : RootScreen("perfil_root")
 }
 
 sealed class LeafScreen(val route: String) {
-    object Sube : RootScreen("sube")
-    object SubeSucces : RootScreen("subeSucces")
+    object Services : LeafScreen("services")
+    object Sube : LeafScreen("services_sube")
+    object SubeSucces : LeafScreen("services_subeSucces")
 }

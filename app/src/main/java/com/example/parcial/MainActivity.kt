@@ -13,27 +13,44 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.parcial.ui.theme.ParcialTheme
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.parcial.navigation.NavGraph
+import com.example.parcial.navigation.MainNavGraph
+import com.example.parcial.MainNavActions
 import com.example.parcial.screens.splash.SplashScreen
+import androidx.activity.viewModels
+import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.parcial.navigation.RootScreen
+import androidx.navigation.NavController
 
 class MainActivity : ComponentActivity() {
+
+//    private val viewModel: MainActivityViewModel by viewModels { MainActivityViewModel.Factory }
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        //para usar la splash screen nativa
+        // para usar la splash screen nativa
         val splashScreen = installSplashScreen()
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NavGraph()
 
-//            ParcialTheme {
-//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    Greeting(
-//                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
-//                }
-//            }
+//            val viewModel: MainActivityViewModel = MainActivityViewModel()
+
+            val navController = rememberNavController()
+            val scope = rememberCoroutineScope()
+            val navigationActions = remember(navController) {
+                MainNavActions(navController, scope)
+            }
+
+            MainNavGraph(
+                startDestination = RootScreen.Splash.route,
+                navController = navController,
+                navigationActions = navigationActions
+            )
         }
     }
 }

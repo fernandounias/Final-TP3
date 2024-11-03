@@ -1,4 +1,4 @@
-package com.example.parcial.screens.home
+package com.example.parcial.screens.card
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -11,23 +11,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavHostController
 import com.example.parcial.MainNavActions
 import com.example.parcial.shared.BottomNavBar
-import com.example.parcial.ui.theme.Green800
 
 @Composable
-fun HomeScreen(navController: NavHostController, navigationActions: MainNavActions) {
-
+fun CardScreen(
+    navController: NavHostController,
+    navigationActions: MainNavActions
+) {
     //this is for testing
     Box(
         modifier = Modifier
-            .background(Green800)
+            .background(Color.White)
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Text(
-            text = "HOME SCREEN!",
-            modifier = Modifier.background(Color.White)
+            text = "Card SCREEN!",
+            modifier = Modifier.background(Color.Green)
         )
         BottomNavBar(navController, navigationActions)
     }
-
 }
