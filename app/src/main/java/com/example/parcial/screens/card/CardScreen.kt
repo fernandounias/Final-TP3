@@ -12,6 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import com.example.parcial.MainNavActions
 import com.example.parcial.shared.BottomNavBar
+import com.example.parcial.ui.theme.BackgroundScreens
 
 @Preview
 @Composable
@@ -19,7 +20,7 @@ fun CardScreen() {
     //this is for testing
     Box(
         modifier = Modifier
-            .background(Color.White)
+            .background(BackgroundScreens)
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {

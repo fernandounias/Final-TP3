@@ -34,6 +34,7 @@ import com.example.parcial.model.users.User
 import com.example.parcial.screens.user.UserViewModel
 import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.infraestructure.users.UserImpl
+import com.example.parcial.ui.theme.BackgroundScreens
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -42,7 +43,7 @@ import kotlinx.coroutines.withContext
 fun HomeScreen() {
     Box(
         modifier = Modifier
-            .background(Green800)
+            .background(BackgroundScreens)
             .fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {

@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import com.example.parcial.R
 import com.example.parcial.MainNavActions
 import com.example.parcial.shared.BottomNavBar
+import com.example.parcial.ui.theme.BackgroundScreens
 
 @Preview
 @Composable
@@ -62,7 +63,7 @@ fun LoginScreen() {
                     .align(Alignment.BottomCenter)
 //                    .padding(16.dp)
                     .height(500.dp)
-                    .background(Color.White, shape = RoundedCornerShape(16.dp))
+                    .background(BackgroundScreens, shape = RoundedCornerShape(16.dp))
             ){
                 Text("login popup box!", modifier = Modifier.align(Alignment.Center))
                 Button(

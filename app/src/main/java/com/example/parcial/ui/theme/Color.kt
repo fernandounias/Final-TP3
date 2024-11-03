@@ -1,6 +1,7 @@
 package com.example.parcial.ui.theme
 
 import androidx.compose.ui.graphics.Color
+import com.google.firebase.annotations.concurrent.Background
 
 val Purple80 = Color(0xFFD0BCFF)
 val PurpleGrey80 = Color(0xFFCCC2DC)
@@ -22,3 +23,5 @@ val ButtonHover = Color(0xFF00D563) // BtnHover (verde claro)
 val ButtonPressed = Color(0xFF00B350) // BtnPressed (verde oscuro)
 val ButtonDisabled = Color(0xFFC1B5D0) // BtnDisabled (gris claro)
 val ButtonContentColor = Color.White
+
+val BackgroundScreens = Color(0xFFF8F8F6) // Fondo Screens
