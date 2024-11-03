@@ -37,6 +37,7 @@ import com.example.parcial.ui.theme.Purple900
 @Composable
 fun BotonClick(
     texto: String,
+    subtitulo: String? = null,
     mostrarSwitch: Boolean = false,
     onSwitchChanged: (Boolean) -> Unit = {}
 ) {
@@ -64,12 +65,24 @@ fun BotonClick(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(
-            text = texto,
-            style = typography.bodyLarge,
-            fontSize = 20.sp,
-            color = DarkPurple
-        )
+        Column(modifier = Modifier.weight(1f)) {
+            Text(
+                text = texto,
+                style = typography.bodyLarge,
+                fontSize = 20.sp,
+                color = DarkPurple
+            )
+            subtitulo?.let {
+                Spacer(modifier = Modifier.height(2.dp))
+                Text(
+                    text = it,
+                    style = TextStyle(
+                        fontSize = 18.sp,
+                        color = Color.Gray
+                    )
+                )
+            }
+        }
         if (mostrarSwitch) {
             Switch(
                 checked = isSwitchChecked,
@@ -117,14 +130,8 @@ fun GridBotonesClickTarjeta(){
             color = Color(0xFFE0E0E0)
         )
 
-        BotonClick("Ya tengo mi tarjeta fisica", mostrarSwitch = false)
-        Text(
-            text = "Activa tu tarjeta para comnezar a usarla",
-            fontSize = 15.sp,
-            color = DarkPurple, //cambiar
-            modifier = Modifier.padding(horizontal = 16.dp)
+        BotonClick("Ya tengo mi tarjeta fisica",subtitulo = "Activa tu tarjeta para comenzar a usarla", mostrarSwitch = false)
 
-        )
     }
 }
 @Preview(showBackground = true)
