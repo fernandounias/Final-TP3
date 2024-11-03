@@ -1,5 +1,6 @@
 package com.example.parcial.screens.home
 
+import VisualizadorSaldo
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -34,6 +35,9 @@ import com.example.parcial.model.users.User
 import com.example.parcial.screens.user.UserViewModel
 import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.infraestructure.users.UserImpl
+import com.example.parcial.ui.components.BotonConIcono
+import com.example.parcial.ui.components.GridDeBotonesInicio
+import com.example.parcial.ui.components.Tarjeta
 import com.example.parcial.ui.theme.BackgroundScreens
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -41,62 +45,47 @@ import kotlinx.coroutines.withContext
 @Preview
 @Composable
 fun HomeScreen() {
-    Box(
-        modifier = Modifier
-            .background(BackgroundScreens)
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Column {
-        Text(
-            text = "HOME SCREEN!",
-            modifier = Modifier.background(Color.White)
-        )
-        Hola()
-//        BottomNavBar(navController, navigationActions)
 
-        }
-    }
+        Column(modifier = Modifier
+            .padding(horizontal = 24.dp, vertical = 1.dp),
+            verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
 
-//    Scaffold(
-//        //bottomBar = { BottomNavigationBar(navController) },
-//        BottomNavBar(navController, navigationActions)
-//        //drawerContent = { DrawerContent(navController) }
-//    ) {
-//        // Main content of the Home screen
-//    }
-}
+            Tarjeta(
+                numeroTarjeta = "4957 **** ***** 5824",
+                fechaVencimiento = "05/23",
+                mostrarDatos = true
+            )
 
-@Composable
-fun Hola(){
-    var miEstado by remember { mutableStateOf("Hola") }
-Log.d("hola",miEstado)
+            Spacer(modifier = Modifier.padding(8.dp))
+            VisualizadorSaldo(
+                texto = "SALDO DISPONIBLE",
+                saldo = 1322.78,
+                textoSize = 36,
+                saldoSize = 12
+            )
+            Spacer(modifier = Modifier.padding(8.dp))
 
-    Column {
+            GridDeBotonesInicio()
+
+        }}
+//@Composable
+//fun SimpleUserTest() {
+//    var user by remember { mutableStateOf<User?>(null) }
 //
-        SimpleUserTest()
-    }
+//    LaunchedEffect(Unit) {
+//        val userImpl = UserImpl()
+//        user = withContext(Dispatchers.IO) {
+//            userImpl.getUser(7)
+//        }
+//    }
+//
+//    if (user == null) {
+//        Text(text = "Loading...")
+//    } else {
+//        Text(text = "User: ${user?.username}", fontSize = 24.sp)
+//        Text(text = "User: ${user?.name?.firstName}", fontSize = 24.sp)
+//        Text(text = "User: ${user?.name?.lastName}", fontSize = 24.sp)
+//
+//
+//    }
 
-
-}
-@Composable
-fun SimpleUserTest() {
-    var user by remember { mutableStateOf<User?>(null) }
-
-    LaunchedEffect(Unit) {
-        val userImpl = UserImpl()
-        user = withContext(Dispatchers.IO) {
-            userImpl.getUser(7)
-        }
-    }
-
-    if (user == null) {
-        Text(text = "Loading...")
-    } else {
-        Text(text = "User: ${user?.username}", fontSize = 24.sp)
-        Text(text = "User: ${user?.name?.firstName}", fontSize = 24.sp)
-        Text(text = "User: ${user?.name?.lastName}", fontSize = 24.sp)
-
-
-    }
-}
