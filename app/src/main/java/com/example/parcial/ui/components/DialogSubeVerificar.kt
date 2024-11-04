@@ -164,10 +164,11 @@ fun DialogSubeVerificar(
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(160.dp))
+                Spacer(modifier = Modifier.height(150.dp))
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .padding(vertical = 14.dp),
                     horizontalArrangement = Arrangement.End
                 ) {
                     Boton(
