@@ -2,13 +2,15 @@ package com.example.parcial.ui.components
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.unit.sp
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Divider
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Switch
 import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
@@ -21,17 +23,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.parcial.R
-import com.example.parcial.ui.theme.BackgroundScreens
 import com.example.parcial.ui.theme.DarkPurple
-import com.example.parcial.ui.theme.Purple40
-import com.example.parcial.ui.theme.Purple900
+import com.example.parcial.ui.theme.Warning
 
 
 @Composable
@@ -39,7 +39,8 @@ fun BotonClick(
     texto: String,
     subtitulo: String? = null,
     mostrarSwitch: Boolean = false,
-    onSwitchChanged: (Boolean) -> Unit = {}
+    onSwitchChanged: (Boolean) -> Unit = {},
+    isWarning: Boolean= false
 ) {
     val manropeBold = FontFamily(
         Font(R.font.manrope_bold)
@@ -60,7 +61,10 @@ fun BotonClick(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp)
-            .background(Color.White)
+            .background(
+                if (!isWarning) Color.White else Warning,
+                shape = RoundedCornerShape(if (!isWarning) 0.dp else 10.dp)
+            )
             .padding(horizontal = 16.dp, vertical = 10.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
@@ -69,16 +73,17 @@ fun BotonClick(
             Text(
                 text = texto,
                 style = typography.bodyLarge,
-                fontSize = 20.sp,
-                color = DarkPurple
+                fontSize = if (!isWarning) 20.sp else 12.sp,
+                color = if (!isWarning) DarkPurple else Color.White
             )
             subtitulo?.let {
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = it,
                     style = TextStyle(
-                        fontSize = 18.sp,
-                        color = Color.Gray
+                        fontSize = if (!isWarning) 20.sp else 12.sp,
+                        color = if (!isWarning) DarkPurple else Color.White,
+                        textDecoration = if (!isWarning) TextDecoration.None else TextDecoration.Underline
                     )
                 )
             }
@@ -98,14 +103,23 @@ fun BotonClick(
 
             )
         } else {
-            Image(
-                painter = painterResource(id = R.drawable.flecha_boton),
-                contentDescription = "Icono del botón",
+            Box(
                 modifier = Modifier
-                    .width(30.dp)
-                    .height(30.dp)
-                    .padding(end = 3.dp)
-            )
+                    .size(30.dp)
+                    .background(
+                        color = if (isWarning) Warning else colorResource(id = R.color.green_800),
+                        shape = CircleShape
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
+                    contentDescription = "Icono del botón",
+                    modifier = Modifier
+                        .size(16.dp),
+                    tint = Color.White
+                )
+            }
         }
     }
 }

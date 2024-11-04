@@ -17,7 +17,7 @@ val Purple900 = Color(0xFF442E83) // Violeta color botones
 val Red900 = Color(0xFFF96440) // Naranja color alerta & movimientos negativos
 val DarkPurple = Color(0xFF2A1846) // Violeta color titulo Movimientos
 val Green900 = Color(0xFF00A067) // Verde color saldo
-
+val Warning = Color(0xFFF96440)
 val ButtonFocus = Color(0xFF3A2B6F) // BtnFocus
 val ButtonHover = Color(0xFF00D563) // BtnHover (verde claro)
 val ButtonPressed = Color(0xFF00B350) // BtnPressed (verde oscuro)

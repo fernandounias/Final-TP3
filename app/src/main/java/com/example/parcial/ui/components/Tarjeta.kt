@@ -45,16 +45,15 @@ import com.example.parcial.ui.theme.Purple900
 @Composable
 fun TarjetaConBoton(
     numeroTarjeta: String,
-    fechaVencimiento: String
+    fechaVencimiento: String,
+    modifier: Modifier = Modifier
 ) {
     var mostrarDatos by remember { mutableStateOf(false) }
-    val manropeBold = FontFamily(
-        Font(R.font.manrope_bold)
-    )
+    val manropeBold = FontFamily(Font(R.font.manrope_bold))
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.padding(16.dp)
+        modifier = modifier
     ) {
         Tarjeta(
             numeroTarjeta = numeroTarjeta,

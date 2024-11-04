@@ -57,7 +57,11 @@ fun CardScreen() {
                 .padding(top = 16.dp, start = 8.dp)
                 .align(Alignment.Start)
         )
-        TarjetaConBoton("1234567890123456", "12/23")
+        TarjetaConBoton(
+            "1234567890123456",
+            "12/23",
+            modifier = Modifier.padding(12.dp)
+        )
 
         HorizontalDivider(
             modifier = Modifier
