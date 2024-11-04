@@ -8,6 +8,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -54,38 +57,26 @@ fun ServicesScreen(
 @Preview
 @Composable
 fun BotonServiciosGrid() {
-    Column(
+    val items = listOf(
+        Pair("RECARGA SUBE", R.drawable.recarga_sube_icon_big),
+        Pair("RECARGA CELULAR", R.drawable.recarga_celu_icon_big),
+        Pair("PAGO DE SERVICIOS", R.drawable.pago_servicio_icon_big),
+        Pair("DIRECT TV PREPAGO", R.drawable.direct_tv_icon_big)
+    )
+
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
         modifier = Modifier
             .fillMaxSize()
             .padding(8.dp),
-        verticalArrangement = Arrangement.Top
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
+        items(items) { (title, icon) ->
             BotonServicios(
-                title = "RECARGA SUBE",
-                image = painterResource(id = R.drawable.recarga_sube_icon_big),
-                onClick = { /*TODO*/ },
-
-            )
-            BotonServicios(
-                title = "RECARGA CELULAR",
-                image = painterResource(id = R.drawable.recarga_celu_icon_big),
-            )
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ){
-            BotonServicios(
-                title = "PAGO DE SERVICIOS",
-                image = painterResource(id = R.drawable.pago_servicio_icon_big)
-            )
-            BotonServicios(
-                title = "DIRECT TV PREPAGO",
-                image = painterResource(id = R.drawable.direct_tv_icon_big)
+                title = title,
+                image = painterResource(id = icon),
+                onClick = { /* TODO */ }
             )
         }
     }
