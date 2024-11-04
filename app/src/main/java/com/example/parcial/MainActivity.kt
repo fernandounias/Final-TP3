@@ -66,21 +66,6 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ParcialTheme {
-        Greeting("Android")
-    }
-}
-@Composable
 fun ScaffoldContent(
     navController: NavHostController,
     navigationActions: MainNavActions
@@ -89,19 +74,21 @@ fun ScaffoldContent(
         bottomBar = {
             val currentDestination =
                 navController.currentBackStackEntryAsState().value?.destination
-            val selectedItem = when (currentDestination?.route) {
-                RootScreen.Home.route -> BottomNavItem.Home.label
-                RootScreen.Account.route -> BottomNavItem.Account.label
-                RootScreen.Card.route -> BottomNavItem.Card.label
-                LeafScreen.Services.route -> BottomNavItem.Services.label
-                RootScreen.Profile.route -> BottomNavItem.Menu.label
-                else -> BottomNavItem.Home.label
+            if (currentDestination?.route != RootScreen.Splash.route) {
+                val selectedItem = when (currentDestination?.route) {
+                    RootScreen.Home.route -> BottomNavItem.Home.label
+                    RootScreen.Account.route -> BottomNavItem.Account.label
+                    RootScreen.Card.route -> BottomNavItem.Card.label
+                    LeafScreen.Services.route -> BottomNavItem.Services.label
+                    RootScreen.Profile.route -> BottomNavItem.Menu.label
+                    else -> BottomNavItem.Home.label
+                }
+                BottomNavBar(
+                    navController = navController,
+                    navigationActions = navigationActions,
+                    selectedItem = selectedItem
+                )
             }
-            BottomNavBar(
-                navController = navController,
-                navigationActions = navigationActions,
-                selectedItem = selectedItem
-            )
         }
     ) { innerPadding ->
         MainNavGraph(
