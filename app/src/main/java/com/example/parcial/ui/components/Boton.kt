@@ -32,6 +32,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.example.parcial.ui.theme.ButtonContentColor
 import com.example.parcial.ui.theme.ButtonDisabled
 import com.example.parcial.ui.theme.ButtonHover
@@ -43,7 +44,7 @@ fun Boton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    isEnabled: Boolean = true,
+    isEnabled: Boolean = true,//TODO ajustar
     iconPosition: BtnIconPosition = BtnIconPosition.None
 ) {
     val interactionSource = remember { MutableInteractionSource() }
@@ -87,7 +88,7 @@ fun Boton(
             onClick = onClick,
             modifier = modifier
                 .fillMaxSize()
-                .padding(2.dp),
+                .padding(horizontal = 12.dp),
 
             enabled = isEnabled,
             shape = RoundedCornerShape(24.dp),
@@ -111,7 +112,6 @@ fun Boton(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween // Forzar iconos en los extremos
             ) {
-                // Icono en la left
                 if (iconPosition == BtnIconPosition.Left) {
                     Image(
                         painter = icon,
@@ -119,24 +119,22 @@ fun Boton(
                         modifier = Modifier.align(Alignment.CenterVertically)
                     )
                 }
-                // Texto del btn
                 Text(
                     text = text,
                     fontFamily = manropeBold,
                     color = ButtonContentColor,
                     style = MaterialTheme.typography.bodyLarge,
+                    fontSize = 14.sp,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.weight(1f)
                 )
-
-                // Icono en la Right
                 if (iconPosition == BtnIconPosition.Right) {
                     Image(
                         painter = icon,
                         contentDescription = null,
                         modifier = Modifier
                             .align(Alignment.CenterVertically)
-                            .graphicsLayer { scaleX = -1f } // Reflejar la imagen horizontalmente para apuntar a la derecha
+                            .graphicsLayer { scaleX = -1f }
                     )
                 }
             }
