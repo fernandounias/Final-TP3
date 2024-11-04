@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -30,14 +31,15 @@ fun ProfileScreen() {
         delay(200)
         isVisible = true
     }
+
     AnimatedVisibility(
         visible = isVisible,
         enter = slideInHorizontally(
             initialOffsetX = { -it },
             animationSpec = tween(durationMillis = 200)
-    )
+        )
     ) {
-        Column(
+        LazyColumn( // Cambié a LazyColumn para permitir desplazamiento
             modifier = Modifier
                 .fillMaxSize()
                 .background(BackgroundScreens)
@@ -45,34 +47,40 @@ fun ProfileScreen() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text(
-                text = "Mi Perfil",
-                style = MaterialTheme.typography.titleSmall,
-                fontSize = 22.sp,
-                color = DarkPurple,
-                modifier = Modifier.padding(bottom = 22.dp)
-            )
-            Icon(
-                painter = painterResource(id = R.drawable.profile_img),
-                tint = Color.Unspecified,
-                contentDescription = "Profile Image",
-                modifier = Modifier
-                    .size(140.dp)
-                    .background(Color.Gray, shape = CircleShape)
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "👋 Hola Mariana Belén",
-                style = MaterialTheme.typography.titleSmall,
-                color = DarkPurple,
-                fontSize = 22.sp,
-                modifier = Modifier
-                    .align(Alignment.CenterHorizontally)
-                    .padding(10.dp)
-            )
-
-            Spacer(modifier = Modifier.height(24.dp))
-            GridBotonesClickProfile()
+            item {
+                Text(
+                    text = "Mi Perfil",
+                    style = MaterialTheme.typography.titleSmall,
+                    fontSize = 22.sp,
+                    color = DarkPurple,
+                    modifier = Modifier.padding(bottom = 22.dp)
+                )
+            }
+            item {
+                Icon(
+                    painter = painterResource(id = R.drawable.profile_img),
+                    tint = Color.Unspecified,
+                    contentDescription = "Profile Image",
+                    modifier = Modifier
+                        .size(140.dp)
+                        .background(Color.Gray, shape = CircleShape)
+                )
+            }
+            item { Spacer(modifier = Modifier.height(8.dp)) }
+            item {
+                Text(
+                    text = "👋 Hola Mariana Belén",
+                    style = MaterialTheme.typography.titleSmall,
+                    color = DarkPurple,
+                    fontSize = 22.sp,
+                    modifier = Modifier
+                        .padding(10.dp)
+                )
+            }
+            item { Spacer(modifier = Modifier.height(24.dp)) }
+            item {
+                GridBotonesClickProfile() // Asegúrate de que este contenido también permita scroll si es necesario
+            }
         }
     }
 }
