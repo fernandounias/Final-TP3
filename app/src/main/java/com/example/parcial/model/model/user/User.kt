@@ -1,4 +1,4 @@
-package com.example.parcial.model.users
+package com.example.parcial.model.model.user
 
 
 data class User (

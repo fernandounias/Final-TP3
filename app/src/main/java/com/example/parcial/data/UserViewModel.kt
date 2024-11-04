@@ -2,8 +2,8 @@ package com.example.parcial.screens.user
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.parcial.model.users.IUser
-import com.example.parcial.model.users.User
+import com.example.parcial.model.model.user.IUser
+import com.example.parcial.model.model.user.User
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

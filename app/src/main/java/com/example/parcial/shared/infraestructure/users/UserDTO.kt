@@ -1,4 +1,4 @@
-import com.example.parcial.model.users.Name
+import com.example.parcial.model.model.user.Name
 import com.google.gson.annotations.SerializedName
 
 data class UserDTO(
