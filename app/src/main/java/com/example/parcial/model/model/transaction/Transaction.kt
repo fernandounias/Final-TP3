@@ -1,11 +1,11 @@
 package com.example.parcial.model.model.transaction
 
-data class Transaction (
-    val transactionId: String,
-    val amount: Number,
+data class Transaction(
+    val amount: Double,
+    val currency: String,
     val date: String,
     val description: String,
+    val transactionId: String,
     val type: String,
-    val currency: String,
     val userId: Int
 )

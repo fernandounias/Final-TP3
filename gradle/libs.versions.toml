@@ -22,6 +22,7 @@ lifecycleRuntimeCompose = "2.8.7"
 xfirebaseFirestore = " 24.11.8"
 runtimeLivedata = "1.7.5"
 firebaseVertexai = "16.0.1"
+firebaseFirestoreKtx = "25.1.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -52,6 +53,7 @@ androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lif
 xfirebase-firestore = { module = "com.google.firebase: firebase-firestore", version.ref = "xfirebaseFirestore" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 firebase-vertexai = { group = "com.google.firebase", name = "firebase-vertexai", version.ref = "firebaseVertexai" }
+firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
