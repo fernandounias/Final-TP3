@@ -18,29 +18,29 @@ import com.example.parcial.screens.profile.ProfileScreen
 import com.example.parcial.screens.services.ServicesScreen
 import com.example.parcial.screens.services.ServicesSubeScreen
 import com.example.parcial.screens.splash.SplashScreen
+import com.example.parcial.screens.user.UserViewModel
 
 @Composable
 fun MainNavGraph(
-    modifier: Modifier = Modifier,
+    startDestination: String,
     navController: NavHostController,
-//    viewModel: MainActivityViewModel,
-    startDestination: String = RootScreen.Splash.route,
-    navigationActions: MainNavActions
+    navigationActions: MainNavActions,
+    userViewModel: UserViewModel, // Recibe UserViewModel
+    modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier
-    ){
+    ) {
         addSplashRoute(navController, navigationActions)
         addLoginRoute()
-        addHomeRoute()
+        addHomeRoute(userViewModel = userViewModel)
         addAccountRoute()
         addCardRoute()
         addServicesRoutes()
         addPerfilRoute()
     }
-
 }
 fun NavGraphBuilder.addSplashRoute(
     navController: NavHostController,
@@ -57,9 +57,9 @@ fun NavGraphBuilder.addLoginRoute() {
     }
 }
 
-fun NavGraphBuilder.addHomeRoute() {
+fun NavGraphBuilder.addHomeRoute(userViewModel: UserViewModel) {
     composable(RootScreen.Home.route) {
-        HomeScreen()
+        HomeScreen(userViewModel = userViewModel)
     }
 }
 

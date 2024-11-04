@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -33,34 +34,30 @@ import androidx.navigation.compose.rememberNavController
 import com.example.parcial.navigation.RootScreen
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.parcial.navigation.LeafScreen
+import com.example.parcial.screens.user.UserViewModel
 import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.BottomNavItem
 
 class MainActivity : ComponentActivity() {
 
-//    private val viewModel: MainActivityViewModel by viewModels { MainActivityViewModel.Factory }
+    // Crea UserViewModel con datos hardcodeados
+    private val userViewModel: UserViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // para usar la splash screen nativa
-        val splashScreen = installSplashScreen()
-
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            //val viewModel: MainActivityViewModel = MainActivityViewModel()
             val navController = rememberNavController()
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             val scope = rememberCoroutineScope()
             val navigationActions = remember(navController) {
                 MainNavActions(navController, scope, drawerState)
             }
-/*           MainNavGraph(
-               startDestination = RootScreen.Splash.route,
-               navController = navController,
-               navigationActions = navigationActions
+
+            ScaffoldContent(
+                navController = navController,
+                navigationActions = navigationActions,
+                userViewModel = userViewModel // Pasa el UserViewModel a ScaffoldContent
             )
-*/
-            ScaffoldContent(navController, navigationActions)
         }
     }
 }
@@ -83,7 +80,8 @@ fun GreetingPreview() {
 @Composable
 fun ScaffoldContent(
     navController: NavHostController,
-    navigationActions: MainNavActions
+    navigationActions: MainNavActions,
+    userViewModel: UserViewModel // Recibe el UserViewModel como parámetro
 ) {
     Scaffold(
         bottomBar = {
@@ -108,6 +106,7 @@ fun ScaffoldContent(
             startDestination = RootScreen.Splash.route,
             navController = navController,
             navigationActions = navigationActions,
+            userViewModel = userViewModel, // Pasa UserViewModel a MainNavGraph
             modifier = Modifier.padding(innerPadding)
         )
     }
