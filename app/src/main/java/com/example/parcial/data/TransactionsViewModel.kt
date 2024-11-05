@@ -59,8 +59,16 @@ class TransactionsViewModel : ViewModel() {
     }
 
     private fun mapToTransaction(transactionData: Map<String, Any>): Transaction {
+        val amount = when (val amountValue = transactionData["amount"]) {
+            is Long -> amountValue.toDouble()
+            is Int -> amountValue.toDouble()
+            is Double -> amountValue
+            is Number -> amountValue.toDouble()
+            else -> 0.0
+        }
+
         return Transaction(
-            amount = transactionData["amount"] as? Double ?: 0.0,
+            amount = amount,
             currency = transactionData["currency"] as? String ?: "",
             date = transactionData["date"] as? String ?: "",
             description = transactionData["description"] as? String ?: "",
