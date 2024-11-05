@@ -1,5 +1,6 @@
 package com.example.parcial.navigation
 
+import androidx.compose.material3.DrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
@@ -14,13 +15,15 @@ import com.example.parcial.screens.login.LoginScreen
 import com.example.parcial.screens.profile.ProfileScreen
 import com.example.parcial.screens.services.ServicesScreen
 import com.example.parcial.screens.splash.SplashScreen
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun MainNavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController,
 //    viewModel: MainActivityViewModel,
-    startDestination: String = RootScreen.Splash.route
+    startDestination: String = RootScreen.Splash.route,
+    navigationActions: MainNavActions
 ) {
     NavHost(
         navController = navController,
@@ -28,7 +31,7 @@ fun MainNavGraph(
         modifier = modifier
     ){
         addSplashRoute(navController)
-        addLoginRoute()
+        addLoginRoute(navigationActions)
         addHomeRoute()
         addAccountRoute()
         addCardRoute()
@@ -45,8 +48,11 @@ fun NavGraphBuilder.addSplashRoute(
     }
 }
 
-fun NavGraphBuilder.addLoginRoute() {
+fun NavGraphBuilder.addLoginRoute(
+    navigationActions: MainNavActions,
+) {
     composable(RootScreen.Login.route) {
+//        LoginScreen(navigationActions)
         LoginScreen()
     }
 }
@@ -73,7 +79,7 @@ fun NavGraphBuilder.addPerfilRoute(){
     }
 }
 fun NavGraphBuilder.addServicesRoutes() {
-        composable(LeafScreen.Services.route) {
-            ServicesScreen()
-        }
+    composable(LeafScreen.Services.route) {
+        ServicesScreen()
+    }
 }

@@ -63,7 +63,7 @@ fun ScaffoldContent(
         bottomBar = {
             val currentDestination =
                 navController.currentBackStackEntryAsState().value?.destination
-            if (currentDestination?.route != RootScreen.Splash.route) {
+            if (currentDestination?.route != RootScreen.Splash.route && currentDestination?.route != RootScreen.Login.route) {
                 val selectedItem = when (currentDestination?.route) {
                     RootScreen.Home.route -> BottomNavItem.Home.label
                     RootScreen.Account.route -> BottomNavItem.Account.label
@@ -83,7 +83,8 @@ fun ScaffoldContent(
         MainNavGraph(
             startDestination = RootScreen.Splash.route,
             navController = navController,
-            modifier = Modifier.padding(innerPadding)
+            modifier = Modifier.padding(innerPadding),
+            navigationActions = navigationActions
         )
     }
 }

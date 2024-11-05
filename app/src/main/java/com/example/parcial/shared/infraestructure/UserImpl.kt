@@ -14,7 +14,8 @@ class UserImpl: IUser {
         .baseUrl("https://fakestoreapi.com/")
         .build()
 
-    private val api = retrofit.create(UsersApi::class.java)
+    private val api = retrofit.create(UserServices::class.java)
+
     override suspend fun getUser(userId: Int): User? {
         val response = api.getUser(userId)
 Log.d("UserImpl", "getUser: $response")
@@ -34,5 +35,4 @@ Log.d("UserImpl", "getUser: $response")
         TODO("Not yet implemented")
        // val response = api.addUser()
     }
-
 }
