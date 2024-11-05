@@ -52,8 +52,7 @@ fun NavGraphBuilder.addLoginRoute(
     navigationActions: MainNavActions,
 ) {
     composable(RootScreen.Login.route) {
-//        LoginScreen(navigationActions)
-        LoginScreen()
+        LoginScreen(navigationActions)
     }
 }
 

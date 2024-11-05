@@ -59,11 +59,9 @@ import com.example.parcial.R
 import com.example.parcial.ui.components.ClickableLink
 import com.example.parcial.ui.theme.BackgroundScreens
 
-@Preview
+//@Preview
 @Composable
-//fun LoginScreen(navigationActions : MainNavActions) {
-fun LoginScreen() {
-//fun LoginScreen(navController : NavHostController) {
+fun LoginScreen(navigationActions : MainNavActions) {
 //fun LoginScreen(viewModel: LoginViewModel) {
 //    var showPopup by remember { mutableStateOf(false) }
     var isVisible by remember { mutableStateOf(true) }
@@ -90,10 +88,10 @@ fun LoginScreen() {
             )
         }
 
-//        LoginBox(isVisible, navigationActions)
+        LoginBox(isVisible, navigationActions)
 //        LoginBox(false, onLoginClick(viewModel.login(username, password)))
 //        LoginBox(isVisible, viewModel)
-        LoginBox(isVisible)
+//        LoginBox(isVisible)
         // WIP
     }
 }
@@ -103,7 +101,7 @@ fun LoginBox(
     isVisible: Boolean,
 //    viewModel: LoginViewModel
 //    onLoginClick: (String, String) -> Unit
-//    navigationActions : MainNavActions
+    navigationActions : MainNavActions
 ) {
     val username = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
@@ -190,13 +188,19 @@ fun LoginBox(
                             onValueChange = { password.value = it },
                             label = { Text(stringResource(id = R.string.sign_f_label_p)) },
                             colors = TextFieldDefaults.colors(
-                                focusedContainerColor = Color.White,
-                                unfocusedContainerColor = Color.White,
+//                                focusedContainerColor = Color.White,
+//                                unfocusedContainerColor = Color.White,
                                 cursorColor = Color.Black,
                                 focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent
+                                unfocusedIndicatorColor = Color.Transparent,
+                                //
+                                focusedTextColor = Color.Black,
+                                unfocusedTextColor = Color.Black,
+                                focusedLabelColor = Color.Gray,
+                                unfocusedLabelColor = Color.Black
                             ),
                             shape = RoundedCornerShape(8.dp),
+                            textStyle = TextStyle(color = Color.Black, fontSize = 16.sp),
                             visualTransformation = PasswordVisualTransformation()
                         )
                     }
@@ -225,7 +229,7 @@ fun LoginBox(
                         modifier = Modifier
                             .fillMaxWidth(),
                         onClick = {
-//                            navigationActions.navigateToHome()
+                            navigationActions.navigateToHome()
 //                            onLoginClick(username.value, password.value)
 //                            viewModel.login(username.value, password.value)
                         }) {
