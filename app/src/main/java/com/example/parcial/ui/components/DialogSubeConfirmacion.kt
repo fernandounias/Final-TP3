@@ -111,7 +111,7 @@ fun DialogSubeConfirmacion(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(16.dp),
+                        .padding(vertical = 18.dp),
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Boton(

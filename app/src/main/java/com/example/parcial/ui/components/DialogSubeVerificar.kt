@@ -18,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -164,10 +165,11 @@ fun DialogSubeVerificar(
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(160.dp))
+                Spacer(modifier = Modifier.height(50.dp))
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth(),
+                        .fillMaxWidth()
+                        .padding(vertical = 14.dp),
                     horizontalArrangement = Arrangement.End
                 ) {
                     Boton(
@@ -180,4 +182,16 @@ fun DialogSubeVerificar(
             }
         }
     }
+}
+
+@Preview
+@Composable
+fun DialogSubeVerificarPreview() {
+    DialogSubeVerificar(
+        title = "Cargar Sube",
+        cardNumber = "6061 3580 2384 9041",
+        amount = 200,
+        onDismiss = {},
+        onConfirm = {}
+    )
 }
