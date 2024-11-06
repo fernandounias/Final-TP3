@@ -31,6 +31,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.parcial.R
+import com.example.parcial.ui.theme.ButtonDisabled
 import com.example.parcial.ui.theme.DarkPurple
 import com.example.parcial.ui.theme.Warning
 
@@ -98,7 +99,7 @@ fun BotonClick(
                 },
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = colorResource(id = R.color.green_800),
-                    checkedTrackColor = colorResource(id = R.color.purple_200)
+                    checkedTrackColor = ButtonDisabled
                 ),
                 modifier = Modifier.padding(end = 12.dp)
 
