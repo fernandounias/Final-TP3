@@ -36,7 +36,7 @@ fun MainNavGraph(
         addAccountRoute()
         addCardRoute()
         addServicesRoutes()
-        addPerfilRoute()
+        addPerfilRoute(navController)
     }
 
 }
@@ -72,9 +72,11 @@ fun NavGraphBuilder.addCardRoute() {
         CardScreen()
     }
 }
-fun NavGraphBuilder.addPerfilRoute(){
-    composable(RootScreen.Profile.route){
-        ProfileScreen()
+fun NavGraphBuilder.addPerfilRoute(navController: NavHostController) {
+    composable(RootScreen.Profile.route) {
+        ProfileScreen(
+            onCloseProfile = { navController.popBackStack() }
+        )
     }
 }
 fun NavGraphBuilder.addServicesRoutes() {
