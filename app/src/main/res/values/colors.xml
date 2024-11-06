@@ -13,5 +13,6 @@
     <color name="red_900">#F96440</color>
     <color name="purple_dark">#2A1846</color>
     <color name="gray_100">#F8F8F6</color>
+    <color name= "light_gray">#D3D3D3</color>
 
 </resources>

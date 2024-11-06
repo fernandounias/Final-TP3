@@ -34,7 +34,6 @@ import com.example.parcial.ui.components.GridDeBotonesMiCuenta
 import com.example.parcial.ui.components.TransactionsSection
 import com.example.parcial.ui.theme.BackgroundScreens
 
-
 @Composable
 fun AccountScreen() {
     val accountViewModel: AccountViewModel = viewModel()
@@ -70,7 +69,7 @@ fun AccountScreen() {
             modifier = Modifier
                 .border(
                     width = 1.dp,
-                    color = Color.LightGray,
+                    color = colorResource(id = R.color.light_gray),
                     shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
                 )
                 .padding(16.dp)
@@ -124,7 +123,7 @@ fun AccountScreen() {
                     fontFamily = manropeBold,
                     color = colorResource(id = R.color.purple_dark),
                     modifier = Modifier
-                        .height(20.dp)
+                        .height(25.dp)
                         .padding(end = 5.dp),
                     fontSize = 16.sp
                 )
