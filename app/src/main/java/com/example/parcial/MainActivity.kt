@@ -21,6 +21,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.parcial.navigation.LeafScreen
 import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.BottomNavItem
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
 
@@ -29,6 +30,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // para usar la splash screen nativa
         val splashScreen = installSplashScreen()
+        FirebaseApp.initializeApp(this)
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

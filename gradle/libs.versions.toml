@@ -21,6 +21,7 @@ coreSplashscreen = "1.0.1"
 lifecycleRuntimeCompose = "2.8.7"
 xfirebaseFirestore = " 24.11.8"
 animationAndroid = "1.7.2"
+runtimeLivedata = "1.7.5"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -50,6 +51,7 @@ androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscree
 androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycleRuntimeCompose" }
 xfirebase-firestore = { module = "com.google.firebase: firebase-firestore", version.ref = "xfirebaseFirestore" }
 androidx-animation-android = { group = "androidx.compose.animation", name = "animation-android", version.ref = "animationAndroid" }
+androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

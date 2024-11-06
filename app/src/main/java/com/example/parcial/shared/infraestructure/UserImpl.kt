@@ -1,9 +1,9 @@
 package com.example.parcial.shared.infraestructure.users
 
 import android.util.Log
-import com.example.parcial.model.users.IUser
-import com.example.parcial.model.users.Name
-import com.example.parcial.model.users.User
+import com.example.parcial.model.model.user.IUser
+import com.example.parcial.model.model.user.Name
+import com.example.parcial.model.model.user.User
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
