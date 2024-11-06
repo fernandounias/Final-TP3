@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,13 +28,19 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.parcial.R
 import com.example.parcial.ui.components.GridDeBotonesMiCuenta
+import com.example.parcial.ui.components.TransactionsSection
 import com.example.parcial.ui.theme.BackgroundScreens
 
 
 @Composable
 fun AccountScreen() {
+    val accountViewModel: AccountViewModel = viewModel()
+    val transactions = accountViewModel.transactions.observeAsState()
+    val cvu = accountViewModel.cvu.observeAsState().value ?: "Cargando..."
+
     val manropeBold = FontFamily(
         Font(R.font.manrope_bold)
     )
@@ -101,7 +108,7 @@ fun AccountScreen() {
                             append(stringResource(id = R.string.acc_id))
                         }
                         withStyle(style = SpanStyle(fontFamily = manropeBold)) {
-                            append(" 0000654326538129540653")
+                            append(" $cvu")
                         }
                     },
                     modifier = Modifier
@@ -133,7 +140,6 @@ fun AccountScreen() {
     ){
         GridDeBotonesMiCuenta()
     }
-
-
+    TransactionsSection(transactions)
     }
 }
