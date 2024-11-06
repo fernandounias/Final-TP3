@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -41,7 +42,7 @@ fun CardScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Mi Tarjeta",
+            text = stringResource(id = R.string.card_title),
             fontFamily = manropeBold,
             color = colorResource(id = R.color.purple_dark),
             fontSize = 18.sp,
@@ -49,7 +50,7 @@ fun CardScreen() {
                 .padding(top = 16.dp)
         )
         Text(
-            text = "TARJETA VIRTUAL",
+            text = stringResource(id = R.string.card_virtual),
             fontFamily = manropeBold,
             fontSize = 13.sp,
             color = colorResource(id = R.color.purple_dark),
@@ -77,7 +78,7 @@ fun CardScreen() {
                 .padding(start = 8.dp)
         ) {
             Text(
-                text = "💡 ¿Sabías que podés pedir una tarjeta Mastercard física para utilizar directamente en los negocios que vos elijas?",
+                text = stringResource(id = R.string.card_help_info),
                 fontSize = 16.sp,
                 fontFamily = manropeRegular,
                 fontWeight = FontWeight.W500,
@@ -86,7 +87,7 @@ fun CardScreen() {
                     .padding(end = 10.dp)
             )
             Text(
-                text = "TARJETA FÍSICA",
+                text = stringResource(id = R.string.card_physical),
                 fontFamily = manropeBold,
                 fontSize = 13.sp,
                 color = colorResource(id = R.color.purple_dark),

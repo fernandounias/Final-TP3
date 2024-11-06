@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -138,13 +139,18 @@ fun GridBotonesClickTarjeta(){
             )
             .background(Color.White, shape = RoundedCornerShape(10.dp))
     ) {
-        BotonClick("Quiero mi tarjeta fisica", mostrarSwitch = false)
+        BotonClick(
+            stringResource(id = R.string.card_btn_ask_new),
+            mostrarSwitch = false)
         HorizontalDivider(
             thickness = 2.dp,
             color = Color(0xFFE0E0E0)
         )
 
-        BotonClick("Ya tengo mi tarjeta fisica",subtitulo = "Activa tu tarjeta para comenzar a usarla", mostrarSwitch = false)
+        BotonClick(
+            stringResource(id = R.string.card_btn_inform_new),
+            subtitulo = stringResource(id = R.string.card_btn_inform_info),
+            mostrarSwitch = false)
 
     }
 }
@@ -152,12 +158,12 @@ fun GridBotonesClickTarjeta(){
 @Composable
 fun GridBotonesClickProfile() {
     val opciones = listOf(
-        "Mis datos",
-        "Mi CVU",
-        "Configuración",
-        "Ayuda",
-        "Términos y condiciones",
-        "Cerrar sesión"
+        stringResource(id = R.string.burgermenu_data),
+        stringResource(id = R.string.burgermenu_id),
+        stringResource(id = R.string.burgermenu_settings),
+        stringResource(id = R.string.burgermenu_help),
+        stringResource(id = R.string.burgermenu_terms),
+        stringResource(id = R.string.burgermenu_sign_out)
     )
     Column(
         modifier = Modifier
@@ -193,7 +199,7 @@ fun GridBotonesClickProfile() {
             )
             .background(Color.White, shape = RoundedCornerShape(10.dp))
         ){
-        BotonClick("Dark Mode", mostrarSwitch = true)
+        BotonClick(stringResource(id = R.string.burgermenu_dark), mostrarSwitch = true)
     }
 }
 

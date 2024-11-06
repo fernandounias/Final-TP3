@@ -1,14 +1,12 @@
 package com.example.parcial.navigation
 
+import androidx.compose.material3.DrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navigation
 import com.example.parcial.MainNavActions
 import com.example.parcial.screens.account.AccountScreen
 import com.example.parcial.screens.card.CardScreen
@@ -16,8 +14,8 @@ import com.example.parcial.screens.home.HomeScreen
 import com.example.parcial.screens.login.LoginScreen
 import com.example.parcial.screens.profile.ProfileScreen
 import com.example.parcial.screens.services.ServicesScreen
-import com.example.parcial.screens.services.ServicesSubeScreen
 import com.example.parcial.screens.splash.SplashScreen
+import kotlinx.coroutines.CoroutineScope
 
 @Composable
 fun MainNavGraph(
@@ -32,8 +30,8 @@ fun MainNavGraph(
         startDestination = startDestination,
         modifier = modifier
     ){
-        addSplashRoute(navController, navigationActions)
-        addLoginRoute()
+        addSplashRoute(navController)
+        addLoginRoute(navigationActions)
         addHomeRoute()
         addAccountRoute()
         addCardRoute()
@@ -43,17 +41,18 @@ fun MainNavGraph(
 
 }
 fun NavGraphBuilder.addSplashRoute(
-    navController: NavHostController,
-    navigationActions: MainNavActions
+    navController: NavHostController
 ) {
     composable(RootScreen.Splash.route) {
         SplashScreen(navController)
     }
 }
 
-fun NavGraphBuilder.addLoginRoute() {
+fun NavGraphBuilder.addLoginRoute(
+    navigationActions: MainNavActions,
+) {
     composable(RootScreen.Login.route) {
-        LoginScreen()
+        LoginScreen(navigationActions)
     }
 }
 
@@ -79,19 +78,7 @@ fun NavGraphBuilder.addPerfilRoute(){
     }
 }
 fun NavGraphBuilder.addServicesRoutes() {
-    navigation(
-        route = RootScreen.Services.route,
-        startDestination = LeafScreen.Services.route
-    ) {
-        composable(LeafScreen.Services.route) {
-            ServicesScreen()
-        }
-        composable(LeafScreen.Sube.route) {
-            ServicesSubeScreen()
-        }
-//        composable(LeafScreen.SubeSucces.route) {
-//            ServicesSubeSuccesScreen(navController, navigationActions)
-//        }
-
+    composable(LeafScreen.Services.route) {
+        ServicesScreen()
     }
 }

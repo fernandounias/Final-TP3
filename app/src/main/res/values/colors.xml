@@ -12,5 +12,6 @@
     <color name="purple_900">#442E83</color>
     <color name="red_900">#F96440</color>
     <color name="purple_dark">#2A1846</color>
+    <color name="gray_100">#F8F8F6</color>
 
 </resources>

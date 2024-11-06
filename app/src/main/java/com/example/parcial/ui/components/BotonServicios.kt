@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
@@ -62,7 +63,8 @@ fun BotonServicios(
             verticalArrangement = Arrangement.Center
         ) {
             Box(
-                modifier = Modifier.size(110.dp),
+                modifier = Modifier
+                    .size(110.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
@@ -94,19 +96,19 @@ fun BotonServicios(
 @Composable
 fun BotonServiciosPreview(){
     BotonServicios(
-        title = "RECARGA SUBE",
+        title = stringResource(id = R.string.services_btn_charge),
         image = painterResource(id = R.drawable.recarga_sube_icon_big)
     )
     BotonServicios(
-        title = "RECARGA CELULAR",
+        title = stringResource(id = R.string.services_btn_phone),
         image = painterResource(id = R.drawable.recarga_celu_icon_big),
     )
     BotonServicios(
-        title = "PAGO DE SERVICIOS",
+        title = stringResource(id = R.string.services_btn_pay),
         image = painterResource(id = R.drawable.pago_servicio_icon_big)
     )
     BotonServicios(
-        title = "DIRECT TV PREPAGO",
+        title = stringResource(id = R.string.services_btn_tv),
         image = painterResource(id = R.drawable.direct_tv_icon_big)
     )
 }

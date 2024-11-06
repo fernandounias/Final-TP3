@@ -31,7 +31,6 @@ import androidx.navigation.NavHostController
 import com.example.parcial.MainNavActions
 import com.example.parcial.R
 
-//@Preview
 @Composable
 fun BottomNavBar(
     navController: NavHostController,
@@ -74,7 +73,8 @@ fun BottomNavBar(
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.Top,
-                                modifier = Modifier.fillMaxHeight()
+                                modifier = Modifier
+                                    .fillMaxHeight()
                             ) {
                                 // Línea verde superior
                                 if (isSelected) {
@@ -91,13 +91,16 @@ fun BottomNavBar(
                                             .height(3.dp)
                                     )
                                 }
-                                Spacer(modifier = Modifier.weight(1f))
+                                Spacer(modifier = Modifier
+                                    .weight(1f))
+//                                    .padding(top = 8.dp))
                                 Icon(
                                     painter = painterResource(id = icon),
                                     contentDescription = item.label,
                                     tint = Color.Unspecified,
                                     modifier = Modifier
                                         .size(28.dp)
+                                        .padding(top = 6.dp)
                                 )
                                 Spacer(modifier = Modifier.weight(1f))
                             }
