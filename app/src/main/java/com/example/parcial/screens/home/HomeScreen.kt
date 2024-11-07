@@ -100,24 +100,4 @@ val manropeRegular = FontFamily(
     Font(R.font.manrope_regular)
 )
 
-//@Composable
-//fun SimpleUserTest() {
-//    var user by remember { mutableStateOf<User?>(null) }
-//
-//    LaunchedEffect(Unit) {
-//        val userImpl = UserImpl()
-//        user = withContext(Dispatchers.IO) {
-//            userImpl.getUser(7)
-//        }
-//    }
-//
-//    if (user == null) {
-//        Text(text = "Loading...")
-//    } else {
-//        Text(text = "User: ${user?.username}", fontSize = 24.sp)
-//        Text(text = "User: ${user?.name?.firstName}", fontSize = 24.sp)
-//        Text(text = "User: ${user?.name?.lastName}", fontSize = 24.sp)
-//
-//
-//    }
 

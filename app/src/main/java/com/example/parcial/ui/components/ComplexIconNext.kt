@@ -17,7 +17,6 @@ fun ComplexIconNext() {
     Box(
         modifier = Modifier.size(25.dp)
     ) {
-        //el background para el icono de next
         Image(
             painter = painterResource(id = R.drawable.icon_button_next_bkg),
             contentDescription = "background next",

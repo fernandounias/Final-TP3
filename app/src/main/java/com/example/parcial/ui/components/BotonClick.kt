@@ -205,13 +205,4 @@ fun GridBotonesClickProfile() {
 }
 
 
-@Composable
-fun BotonClickPreview() {
-    Column {
-        BotonClick("Mis datos", mostrarSwitch = false) // Con imagen
-        Spacer(modifier = Modifier.height(16.dp))
-        BotonClick("Dark Mode", mostrarSwitch = true) // Con Switch
-    }
-}
-
 

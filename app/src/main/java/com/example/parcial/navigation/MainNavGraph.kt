@@ -22,7 +22,6 @@ import kotlinx.coroutines.CoroutineScope
 fun MainNavGraph(
     modifier: Modifier = Modifier,
     navController: NavHostController,
-//    viewModel: MainActivityViewModel,
     startDestination: String = RootScreen.Splash.route,
     navigationActions: MainNavActions,
 ) {

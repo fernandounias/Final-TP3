@@ -40,7 +40,6 @@ import androidx.compose.ui.unit.sp
 import com.example.parcial.R
 import com.example.parcial.ui.theme.Purple900
 
-//import com.example.parcial.ui.theme.fontFamily
 
 @Composable
 fun TarjetaConBoton(

@@ -76,7 +76,6 @@ fun BottomNavBar(
                                 modifier = Modifier
                                     .fillMaxHeight()
                             ) {
-                                // Línea verde superior
                                 if (isSelected) {
                                     Box(
                                         modifier = Modifier
@@ -93,7 +92,6 @@ fun BottomNavBar(
                                 }
                                 Spacer(modifier = Modifier
                                     .weight(1f))
-//                                    .padding(top = 8.dp))
                                 Icon(
                                     painter = painterResource(id = icon),
                                     contentDescription = item.label,

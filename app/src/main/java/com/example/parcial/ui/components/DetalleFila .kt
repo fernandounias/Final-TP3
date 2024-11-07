@@ -33,7 +33,6 @@ fun DetalleFila (
     fecha: String, descripcion: String, monto: Double, autorizacion: String, type: String, modifier: Modifier
 ) {
 
-// @TODO AUGUSTO: cambiar el font family.
     val textColor = if (type == "credit") Green900 else Red900
     val formattedMonto = if (type == "credit") "+$%.2f".format(monto) else "-$%.2f".format(monto)
     val manropeBold = FontFamily(

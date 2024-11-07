@@ -18,7 +18,6 @@ import com.example.parcial.R
 import com.example.parcial.MainNavActions
 import kotlinx.coroutines.delay
 
-//@Preview
 @Composable
 fun SplashScreen(navController: NavHostController) {
     Box(
@@ -34,8 +33,7 @@ fun SplashScreen(navController: NavHostController) {
         )
 
         LaunchedEffect(Unit) {
-            delay(1800) //1.8 s
-//            navController.navigate("home_root"){
+            delay(1800)
             navController.navigate("login_root"){
                 popUpTo("splash") { inclusive = true }
             }

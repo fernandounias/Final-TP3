@@ -9,7 +9,6 @@ object RetrofitModule {
 
     private const val BASE_URL = "https://fakestoreapi.com/"
 
-    // singleton
     private val retrofit: Retrofit by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
@@ -20,8 +19,5 @@ object RetrofitModule {
     val authServices: AuthServices by lazy {
         retrofit.create(AuthServices::class.java)
     }
-
-//    val api: AuthServices
-//    val repository by lazy { AuthRepository(api) }
 
 }

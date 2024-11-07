@@ -29,8 +29,6 @@ fun VisualizadorSaldo(
     textoSize: Int = 32,
     saldoSize: Int = 12,
 ) {
-    //@TODO AUGUSTO: CAMBIAR FONTFAMILY
-
     val symbols = DecimalFormatSymbols(Locale.getDefault()).apply {
         decimalSeparator = ','
         groupingSeparator = '.'

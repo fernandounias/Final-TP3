@@ -86,9 +86,9 @@ class TransactionsCvuViewModel : ViewModel() {
                 .document("Nyonb8R1oO8bAViJTTi1")
                 .get()
                 .await()
-            Log.d("ACAAAAAAAAAAAAAAAA bank account data -> ", "Document Snapshot: $documentSnapshot")
+            Log.d("bank account data -> ", "Document Snapshot: $documentSnapshot")
             _cvu.value = documentSnapshot.get("cvu") as? String ?: ""
-            Log.d("ACAAAAAAAAAAAAAAAA bank account data -> ","cvu: ${_cvu.value}")
+            Log.d("bank account data -> ","cvu: ${_cvu.value}")
         } catch (e: FirebaseFirestoreException) {
             Log.e("TransactionsList", "Error al obtener documentos:", e)
         } catch (e: Exception) {

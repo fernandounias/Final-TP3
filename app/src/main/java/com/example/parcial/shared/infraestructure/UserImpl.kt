@@ -18,7 +18,6 @@ class UserImpl: IUser {
 
     override suspend fun getUser(userId: Int): User? {
         val response = api.getUser(userId)
-Log.d("UserImpl", "getUser: $response")
         return if (response.isSuccessful) {
             val result = response.body()?.toModel()
             if (result != null) {

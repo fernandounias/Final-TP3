@@ -30,23 +30,20 @@ import androidx.activity.viewModels
 
 class MainActivity : ComponentActivity() {
 
-//    private val viewModel: MainActivityViewModel by viewModels { MainActivityViewModel.Factory }
 
     private lateinit var authRepository: AuthRepository
 
     private val loginViewModel: LoginViewModel by viewModels {
-        LoginViewModelFactory(RetrofitModule.authServices)  // Use authServices here
+        LoginViewModelFactory(RetrofitModule.authServices)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        // para usar la splash screen nativa
         val splashScreen = installSplashScreen()
         FirebaseApp.initializeApp(this)
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            //val viewModel: MainActivityViewModel = MainActivityViewModel()
             val navController = rememberNavController()
             val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
             val scope = rememberCoroutineScope()

@@ -64,7 +64,7 @@ fun Boton(
         isHovered -> ButtonHover
         else -> Purple900
     }
-    // Color focused
+
     val focusBorderColor = Color(56, 45, 113, 50)
     Box(
         modifier = Modifier
@@ -73,7 +73,7 @@ fun Boton(
             .focusRequester(focusRequester)
             .hoverable(interactionSource = interactionSource)
             .onFocusEvent { focusState ->
-                isFocused = focusState.isFocused // Capturamos el evento de focus
+                isFocused = focusState.isFocused
             }
             .then(
                 if (isFocused) Modifier.border(
@@ -110,7 +110,7 @@ fun Boton(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween // Forzar iconos en los extremos
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 if (iconPosition == BtnIconPosition.Left) {
                     Image(
@@ -142,7 +142,6 @@ fun Boton(
     }
 }
 
-// Enum para la posición del icono
 enum class BtnIconPosition {
     Left, Right, None
 }
@@ -154,7 +153,7 @@ fun BotonPreview() {
     val focusRequester = remember { FocusRequester() }
 
     LaunchedEffect(Unit) {
-        focusRequester.requestFocus() // Forzar foco para la vista previa
+        focusRequester.requestFocus()
     }
     Column(
         modifier = Modifier
@@ -162,7 +161,6 @@ fun BotonPreview() {
             .padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        // Botón con ícono a la izquierda
         Boton(
             text = "With Icon Left",
             onClick = {},
@@ -170,7 +168,6 @@ fun BotonPreview() {
             iconPosition = BtnIconPosition.Left
         )
 
-        // Botón con ícono a la derecha
         Boton(
             text = "With Icon Right",
             onClick = {},
@@ -178,14 +175,13 @@ fun BotonPreview() {
             iconPosition = BtnIconPosition.Right
         )
 
-        // Botón sin ícono
         Boton(
             text = "No Icon",
             onClick = {},
             isEnabled = false,
             iconPosition = BtnIconPosition.None
         )
-        // Botón con foco forzado en la vista previa
+
         Boton(
             text = "Button with Focus",
             onClick = {},
