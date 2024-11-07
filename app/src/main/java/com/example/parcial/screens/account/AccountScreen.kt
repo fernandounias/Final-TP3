@@ -72,6 +72,7 @@ fun AccountScreen() {
                     color = colorResource(id = R.color.light_gray),
                     shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
                 )
+                .background(Color.White)
                 .padding(16.dp)
                 .fillMaxWidth(0.93f)
                 .height(153.dp),
