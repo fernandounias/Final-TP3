@@ -15,6 +15,7 @@ import com.example.parcial.screens.login.LoginScreen
 import com.example.parcial.screens.profile.ProfileScreen
 import com.example.parcial.screens.services.ServicesScreen
 import com.example.parcial.screens.splash.SplashScreen
+import com.example.parcial.shared.infraestructure.Auth.AuthRepository
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
@@ -23,7 +24,7 @@ fun MainNavGraph(
     navController: NavHostController,
 //    viewModel: MainActivityViewModel,
     startDestination: String = RootScreen.Splash.route,
-    navigationActions: MainNavActions
+    navigationActions: MainNavActions,
 ) {
     NavHost(
         navController = navController,

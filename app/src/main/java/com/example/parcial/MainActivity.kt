@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -22,16 +23,28 @@ import androidx.navigation.compose.rememberNavController
 import com.example.parcial.navigation.RootScreen
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.parcial.navigation.LeafScreen
+import com.example.parcial.screens.login.LoginViewModel
+import com.example.parcial.screens.login.LoginViewModelFactory
 import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.BottomNavItem
+import com.example.parcial.shared.infraestructure.Auth.AuthRepository
+import com.example.parcial.shared.infraestructure.Auth.AuthServices
+import com.example.parcial.shared.infraestructure.RetrofitModule
 
 class MainActivity : ComponentActivity() {
 
 //    private val viewModel: MainActivityViewModel by viewModels { MainActivityViewModel.Factory }
 
+    private lateinit var authRepository: AuthRepository
+
+    private val loginViewModel: LoginViewModel by viewModels {
+        LoginViewModelFactory(RetrofitModule.authServices)  // Use authServices here
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // para usar la splash screen nativa
         val splashScreen = installSplashScreen()
+        authRepository = AuthRepository(RetrofitModule.authServices)
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -49,7 +62,7 @@ class MainActivity : ComponentActivity() {
                navigationActions = navigationActions
             )
 */
-            ScaffoldContent(navController, navigationActions)
+            ScaffoldContent(navController, navigationActions, authRepository)
         }
     }
 }
@@ -57,7 +70,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ScaffoldContent(
     navController: NavHostController,
-    navigationActions: MainNavActions
+    navigationActions: MainNavActions,
+    authRepository: AuthRepository
 ) {
     Scaffold(
         bottomBar = {

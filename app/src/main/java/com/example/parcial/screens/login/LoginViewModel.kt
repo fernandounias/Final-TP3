@@ -1,5 +1,6 @@
 package com.example.parcial.screens.login
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.parcial.shared.infraestructure.Auth.AuthRepository
@@ -21,6 +22,9 @@ class LoginViewModel(private val repository: AuthRepository) : ViewModel() {
     fun login(username: String, password: String) {
         viewModelScope.launch {
 
+            Log.d("LoginViewModel", "Login called with username: $username")
+            Log.d("LoginViewModel", "Login called with password: $password")
+
             val loginDTO = LoginDTO(username, password)
             val credentials = loginDTO.toLoginRequest()
                 /// explicación de como funcióna en ingles para no traducir los terminos DTO & Separation of Concerns
@@ -38,6 +42,7 @@ class LoginViewModel(private val repository: AuthRepository) : ViewModel() {
                 } else {
                     _loginResult.value = "Login failed"
                 }
+                Log.d("LoginViewModel", "Login result: ${_loginResult.value}")
             } catch (e: Exception) {
                 _loginResult.value = "Login error: ${e.message}"
             }

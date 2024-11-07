@@ -1,5 +1,7 @@
 package com.example.parcial.screens.login
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -30,11 +32,15 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -44,6 +50,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -54,19 +61,31 @@ import androidx.navigation.NavHostController
 import com.example.parcial.ui.theme.Green800
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.parcial.MainNavActions
 import com.example.parcial.R
+import com.example.parcial.shared.infraestructure.Auth.AuthRepository
+import com.example.parcial.shared.infraestructure.RetrofitModule
 import com.example.parcial.ui.components.ClickableLink
 import com.example.parcial.ui.theme.BackgroundScreens
+import kotlinx.coroutines.delay
 
 //@Preview
 @Composable
-fun LoginScreen(navigationActions : MainNavActions) {
-//fun LoginScreen(viewModel: LoginViewModel) {
+fun LoginScreen(
+    navigationActions : MainNavActions,
+) {
+
 //    var showPopup by remember { mutableStateOf(false) }
     var isVisible by remember { mutableStateOf(true) }
 
+    val authServices = RetrofitModule.authServices
+
+    val factory = LoginViewModelFactory(authServices)
+    val loginViewModel: LoginViewModel = viewModel(factory = factory)
+
     LaunchedEffect(Unit) {
+        delay(3000)
         isVisible = true
     }
     Box(
@@ -88,7 +107,8 @@ fun LoginScreen(navigationActions : MainNavActions) {
             )
         }
 
-        LoginBox(isVisible, navigationActions)
+        LoginBox(isVisible, navigationActions, loginViewModel)
+//        LoginBox(isVisible, navigationActions)
 //        LoginBox(false, onLoginClick(viewModel.login(username, password)))
 //        LoginBox(isVisible, viewModel)
 //        LoginBox(isVisible)
@@ -99,17 +119,49 @@ fun LoginScreen(navigationActions : MainNavActions) {
 @Composable
 fun LoginBox(
     isVisible: Boolean,
-//    viewModel: LoginViewModel
-//    onLoginClick: (String, String) -> Unit
-    navigationActions : MainNavActions
+    navigationActions : MainNavActions,
+    loginViewModel: LoginViewModel
 ) {
     val username = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val rememberMe = remember {mutableStateOf(false)}
+    val loginResult by loginViewModel.loginResult.collectAsState()
+    val snackbarHostState = remember { SnackbarHostState() }
+    var snackbarMessage by remember { mutableStateOf<String?>(null) }
+
+    LaunchedEffect(loginResult) {
+        Log.d("LoginBox", "is called")
+        loginResult?.let { result ->
+            val snackbarResult = snackbarHostState.showSnackbar(result)
+            if (snackbarResult == SnackbarResult.Dismissed) {
+                Log.d("snackbarR", "called: ${SnackbarResult.entries}")
+            }
+            if (result.contains("successful")) {
+                snackbarHostState.showSnackbar("Login successful!")
+                delay(2000) // Wait before navigating
+                navigationActions.navigateToHome()
+            } else if (result.contains("failed") || result.contains("error")) {
+                snackbarHostState.showSnackbar(result)
+            }
+        }
+    }
+//    loginResult?.let { result ->
+//        if (result.contains("successful")) {
+//            LaunchedEffect(Unit) {
+//                snackbarHostState.showSnackbar(result)
+//                delay(2000)
+//                // Waits 2 seconds before navigating
+//                navigationActions.navigateToHome()
+//            }
+//        }
+//    }
+
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
+        SnackbarHost(hostState = snackbarHostState)
+
         AnimatedVisibility(
             visible = isVisible,
             enter = slideInVertically(initialOffsetY = { it / 2 }) + fadeIn(),
@@ -145,7 +197,7 @@ fun LoginBox(
                     Spacer(modifier = Modifier.height(18.dp))
                     Column(
                         horizontalAlignment = Alignment.CenterHorizontally,
-//                    verticalArrangement = Arrangement.Center,
+//                        verticalArrangement = Arrangement.Center,
 //                        verticalArrangement = Arrangement.spacedBy(20.dp),
                         modifier = Modifier
 //                            .fillMaxSize()
@@ -158,20 +210,19 @@ fun LoginBox(
                                     shape = RoundedCornerShape(3.dp)
                                 )
                                 .fillMaxWidth(),
-                                value = username.value,
+                            value = username.value,
+                            singleLine = true,
                             onValueChange = { username.value = it },
                             label = { Text(stringResource(id = R.string.sign_f_label_u)) },
+                            textStyle = TextStyle(color = Color.Black, fontSize = 16.sp),
                             colors = TextFieldDefaults.colors(
+                                focusedTextColor = Color.Black,
+                                unfocusedTextColor = Color.Black,
                                 focusedContainerColor = Color.White,
                                 unfocusedContainerColor = Color.White,
                                 cursorColor = Color.Black,
                                 focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent,
-                                //
-                                focusedTextColor = Color.Black,
-                                unfocusedTextColor = Color.Gray,
-                                focusedLabelColor = Color.Gray,
-                                unfocusedLabelColor = Color.Black
+                                unfocusedIndicatorColor = Color.Transparent
                             ),
                             shape = RoundedCornerShape(8.dp),
                         )
@@ -183,24 +234,22 @@ fun LoginBox(
                                     BorderStroke(1.dp, Color.LightGray),
                                     shape = RoundedCornerShape(3.dp)
                                 )
+                                .background(Color.White, shape = RoundedCornerShape(8.dp))
                                 .fillMaxWidth(),
                             value = password.value,
                             onValueChange = { password.value = it },
                             label = { Text(stringResource(id = R.string.sign_f_label_p)) },
+                            textStyle = TextStyle(color = Color.Black, fontSize = 16.sp),
                             colors = TextFieldDefaults.colors(
-//                                focusedContainerColor = Color.White,
-//                                unfocusedContainerColor = Color.White,
-                                cursorColor = Color.Black,
-                                focusedIndicatorColor = Color.Transparent,
-                                unfocusedIndicatorColor = Color.Transparent,
-                                //
                                 focusedTextColor = Color.Black,
                                 unfocusedTextColor = Color.Black,
-                                focusedLabelColor = Color.Gray,
-                                unfocusedLabelColor = Color.Black
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                cursorColor = Color.Black,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent
                             ),
                             shape = RoundedCornerShape(8.dp),
-                            textStyle = TextStyle(color = Color.Black, fontSize = 16.sp),
                             visualTransformation = PasswordVisualTransformation()
                         )
                     }
@@ -225,16 +274,33 @@ fun LoginBox(
                         )
                     }
                     Spacer(modifier = Modifier.height(16.dp))
+                    loginResult?.let {
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(
+                            text = it,
+                            color = if (it.contains("successful")) Color.Green else Color.Red,
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.SemiBold
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(16.dp))
                     Button(
                         modifier = Modifier
                             .fillMaxWidth(),
                         onClick = {
-                            navigationActions.navigateToHome()
+                            if (username.value.isNotBlank() && password.value.isNotBlank()) {
+                                loginViewModel.login(username.value, password.value)
+//                            navigationActions.navigateToHome()
+                            } else {
+                                snackbarMessage = "Por favor complete los campos"
+                                Log.d("inputBtn", "pressed")
+                            }
 //                            onLoginClick(username.value, password.value)
 //                            viewModel.login(username.value, password.value)
                         }) {
                         Text(stringResource(id = R.string.sign_in_btn))
                     }
+
                     /*
                         //Show login result message
                         // modify show a snackbar message
@@ -249,77 +315,6 @@ fun LoginBox(
     }
 }
 
-fun onLoginClick(username: String, passowrd : String) {
 
-}
-
-//@Preview
-@Composable
-fun RoundCheckbox(
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit
-){
-    var isFocused by remember { mutableStateOf(false) }
-//    var checked = true
-//    fun onCheckedChange(checked: Boolean){}
-
-    Box(
-        modifier = Modifier
-            .focusable()
-            .onFocusChanged { focusState -> isFocused = focusState.isFocused }
-            .clickable { onCheckedChange(!checked) }
-            .size(30.dp) // Size of the round checkbox
-            .background(
-                if (checked) Color.Transparent else Color.White,
-                shape = CircleShape
-            )
-            .border(
-                 2.dp,
-                when {
-                    checked -> Color.Transparent
-                    isFocused -> Color.Transparent
-                    else -> Color.Gray
-                     },
-                shape = CircleShape
-            ),
-//            .clip(CircleShape), // Makes the box round
-//            .background(if (checked) Color(0xFF00D563) else Color.Gray), // Checked color
-        contentAlignment = Alignment.Center,
-    ){
-        if (checked) {
-            FocusableCheckedIcon(iconFocus = R.drawable.checkbox_checked, iconChecked = R.drawable.checkbox_unchecked, null)
-        }
-    }
-}
-
-@Composable
-fun FocusableCheckedIcon(iconFocus: Int, iconChecked: Int, iconDefault: Int? ) {
-    var isChecked by remember { mutableStateOf(false) }
-    var isFocused by remember { mutableStateOf(false) }
-
-    Box(
-        modifier = Modifier
-            .focusable()
-            .onFocusChanged { focusState ->
-                isFocused = focusState.isFocused
-            }
-            .clickable { isChecked = !isChecked } // Toggle checked state
-    ) {
-        val iconId = when {
-            isChecked && isFocused -> iconChecked
-            isChecked -> iconChecked
-            isFocused -> iconChecked
-            else -> null // Default icon
-        }
-
-        iconId?.let {
-            Icon(
-                painter = painterResource(id = it),
-                contentDescription = null,
-                tint = Color.White
-            )
-        }
-    }
-}
 
 fun showT (){}
