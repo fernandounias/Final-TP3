@@ -10,6 +10,6 @@ data class UserDTO(
 )
 
 data class NameDTO(
-    @SerializedName("firstname")  val firstName: String,
-    @SerializedName("lastname")  val lastName: String
+    @SerializedName("firstname") val firstName: String,
+    @SerializedName("lastname") val lastName: String
 )

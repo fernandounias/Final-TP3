@@ -15,7 +15,7 @@ class AccountViewModel(
     val cvu: LiveData<String> = transactionsViewModel.cvu
 
     init {
-        viewModelScope.launch{
+        viewModelScope.launch {
         }
     }
 }

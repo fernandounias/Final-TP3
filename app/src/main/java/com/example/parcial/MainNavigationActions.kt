@@ -20,28 +20,28 @@ class MainNavActions(
         }
     }
     val navigateToAccount: () -> Unit = {
-        navController.navigate(RootScreen.Account.route){
+        navController.navigate(RootScreen.Account.route) {
             scope.launch {
                 drawerState.close()
             }
         }
     }
     val navigateToCard: () -> Unit = {
-        navController.navigate(RootScreen.Card.route){
+        navController.navigate(RootScreen.Card.route) {
             scope.launch {
                 drawerState.close()
             }
         }
     }
     val navigateToServices: () -> Unit = {
-        navController.navigate(LeafScreen.Services.route){
+        navController.navigate(LeafScreen.Services.route) {
             scope.launch {
                 drawerState.close()
             }
         }
     }
     val navigateToProfile: () -> Unit = {
-        navController.navigate(RootScreen.Profile.route){
+        navController.navigate(RootScreen.Profile.route) {
             scope.launch {
                 drawerState.close()
             }

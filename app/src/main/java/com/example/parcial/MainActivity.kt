@@ -4,29 +4,29 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.example.parcial.navigation.MainNavGraph
 import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import com.example.parcial.navigation.RootScreen
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 import com.example.parcial.navigation.LeafScreen
+import com.example.parcial.navigation.MainNavGraph
+import com.example.parcial.navigation.RootScreen
 import com.example.parcial.screens.login.LoginViewModel
+import com.example.parcial.screens.login.LoginViewModelFactory
 import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.BottomNavItem
 import com.example.parcial.shared.infraestructure.Auth.AuthRepository
-import com.google.firebase.FirebaseApp
-import com.example.parcial.screens.login.LoginViewModelFactory
 import com.example.parcial.shared.infraestructure.RetrofitModule
-import androidx.activity.viewModels
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
 

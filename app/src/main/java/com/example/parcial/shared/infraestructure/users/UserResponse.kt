@@ -1,4 +1,3 @@
-
 import com.example.parcial.model.model.user.Name
 import com.example.parcial.model.model.user.User
 import com.google.gson.annotations.SerializedName
@@ -12,7 +11,7 @@ data class UserResponse(
     @SerializedName("password") val password: String,
     @SerializedName("name") val name: NameResponse,
 
-) {
+    ) {
     fun toModel() = User(
         id,
         email,
@@ -20,7 +19,7 @@ data class UserResponse(
         password,
         name = name.toName(),
 
-    )
+        )
 }
 
 

@@ -1,19 +1,16 @@
 package com.example.parcial.shared
 
-import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -22,9 +19,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -36,7 +31,7 @@ fun BottomNavBar(
     navController: NavHostController,
     navigationActions: MainNavActions,
     selectedItem: String
-){
+) {
     val items = listOf(
         BottomNavItem.Home,
         BottomNavItem.Account,
@@ -90,8 +85,10 @@ fun BottomNavBar(
                                             .height(3.dp)
                                     )
                                 }
-                                Spacer(modifier = Modifier
-                                    .weight(1f))
+                                Spacer(
+                                    modifier = Modifier
+                                        .weight(1f)
+                                )
                                 Icon(
                                     painter = painterResource(id = icon),
                                     contentDescription = item.label,
@@ -127,8 +124,12 @@ fun BottomNavBar(
 
 sealed class BottomNavItem(val label: String, val unselectedIcon: Int, val selectedIcon: Int) {
     object Home : BottomNavItem("Home", R.drawable.home, R.drawable.home_selected)
-    object Account : BottomNavItem("Account", R.drawable.movimientos, R.drawable.movimientos_selected)
-    object Card : BottomNavItem("Card", R.drawable.tarjeta_credito, R.drawable.tarjeta_credito_selected)
+    object Account :
+        BottomNavItem("Account", R.drawable.movimientos, R.drawable.movimientos_selected)
+
+    object Card :
+        BottomNavItem("Card", R.drawable.tarjeta_credito, R.drawable.tarjeta_credito_selected)
+
     object Services : BottomNavItem("Services", R.drawable.wallet, R.drawable.wallet_selected)
     object Menu : BottomNavItem("Menu", R.drawable.menu, R.drawable.menu_selected)
 }

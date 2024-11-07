@@ -132,13 +132,14 @@ fun AccountScreen() {
         }
 
         Spacer(modifier = Modifier.padding(10.dp))
-    Column (
-        modifier = Modifier
-            .padding(12.dp),
-        verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
-    ){
-        GridDeBotonesMiCuenta()
-    }
-    TransactionsSection(transactions)
+        Column(
+            modifier = Modifier
+                .padding(12.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            GridDeBotonesMiCuenta()
+        }
+        TransactionsSection(transactions)
     }
 }

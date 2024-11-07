@@ -1,9 +1,8 @@
 package com.example.parcial.shared.infraestructure
 
+import com.example.parcial.shared.infraestructure.Auth.AuthServices
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.example.parcial.shared.infraestructure.Auth.AuthRepository
-import com.example.parcial.shared.infraestructure.Auth.AuthServices
 
 object RetrofitModule {
 
