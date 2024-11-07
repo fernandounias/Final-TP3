@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.Parcial.Splash" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="windowSplashScreenBackground">@color/green_800</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_splash_round</item>
-        <item name="windowSplashScreenAnimationDuration">200</item>
+    <style name="Theme.Parcial" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/black</item>
+        <item name="android:colorAccent">@color/green_800</item>
+        <item name="android:colorBackground">@color/white</item>
     </style>
 
     <!-- Splash screen theme -->
