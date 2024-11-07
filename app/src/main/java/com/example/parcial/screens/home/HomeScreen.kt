@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,55 +29,66 @@ import com.example.parcial.ui.theme.DarkPurple
 @Composable
 fun HomeScreen() {
 
-    Column(
+    LazyColumn(
         modifier = Modifier
             .padding(16.dp),
-        verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(bottom = 20.dp),
-            horizontalAlignment = Alignment.Start
-        ) {
-            Text(
-                text = "\uD83D\uDC4B Hola Mariana",
-                fontSize = 18.sp,
-                fontFamily = manropeBold,
-                color = DarkPurple
-            )
-            Text(
-                text = "Último acceso: Mar 01, 2020 4:55 PM",
-                fontSize = 14.sp,
-                fontFamily = manropeRegular,
-                color = DarkPurple
+        item {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 20.dp),
+                horizontalAlignment = Alignment.Start
+            ) {
+                Text(
+                    text = "\uD83D\uDC4B Hola Mariana",
+                    fontSize = 18.sp,
+                    fontFamily = manropeBold,
+                    color = DarkPurple
+                )
+                Text(
+                    text = "Último acceso: Mar 01, 2020 4:55 PM",
+                    fontSize = 14.sp,
+                    fontFamily = manropeRegular,
+                    color = DarkPurple
+                )
+            }
+        }
+        item {
+            TarjetaConBoton(
+                numeroTarjeta = "1234567890123456",
+                fechaVencimiento = "05/23",
             )
         }
-        TarjetaConBoton(
-            numeroTarjeta = "1234567890123456",
-            fechaVencimiento = "05/23",
-        )
 
-        Spacer(modifier = Modifier.padding(4.dp))
+        item { Spacer(modifier = Modifier.padding(4.dp)) }
 
-        VisualizadorSaldo(
-            texto = stringResource(id = R.string.start_balance),
-            saldo = 1322.78,
-            textoSize = 36,
-            saldoSize = 12
-        )
+        item {
+            VisualizadorSaldo(
+                texto = stringResource(id = R.string.start_balance),
+                saldo = 1322.78,
+                textoSize = 45,
+                saldoSize = 12
+            )
+        }
 
-        Spacer(modifier = Modifier.padding(4.dp))
+        item { Spacer(modifier = Modifier.padding(4.dp)) }
 
-        BotonClick(
-            texto = stringResource(id = R.string.start_card_alert), subtitulo = stringResource(
-                id = R.string.start_card_alert_link
-            ), isWarning = true
-        )
+        item {
+            BotonClick(
+                texto = stringResource(id = R.string.start_card_alert),
+                subtitulo = stringResource(id = R.string.start_card_alert_link),
+                isWarning = true
+            )
+        }
 
-        Spacer(modifier = Modifier.padding(4.dp))
+        item { Spacer(modifier = Modifier.padding(4.dp)) }
 
-        GridDeBotonesInicio()
+        item {
+            GridDeBotonesInicio()
+        }
     }
 }
 

@@ -98,13 +98,14 @@ fun DialogSubeVerificar(
                             MaterialTheme.typography.titleLarge.copy(
                                 fontSize = 16.sp,
                                 fontFamily = FontFamily(
-                                    Font(R.font.manrope_bold)
+                                    Font(R.font.manrope_extrabold)
                                 ),
                                 color = DarkPurple
                             )),
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
-                        .padding(horizontal = 20.dp)
+                        .padding(horizontal = 20.dp),
+                    textAlign = TextAlign.Center,
                 )
                 Spacer(modifier = Modifier.height(40.dp))
                 Card(

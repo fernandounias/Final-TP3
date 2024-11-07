@@ -89,7 +89,7 @@ fun DialogSubeConfirmacion(
                         .height(1.dp),
                     color = Color.Gray.copy(alpha = 0.5f)
                 )
-                Spacer(modifier = Modifier.height(200.dp))
+                Spacer(modifier = Modifier.height(150.dp))
                 Image(
                     painter = image,
                     contentDescription = "Icono de confirmación",

@@ -84,9 +84,8 @@ fun BotonServicios(
             Text(
                 text = title,
                 fontFamily = manropeBold,
-                fontSize = 15.sp,
+                fontSize = 12.sp,
                 color = DarkPurple,
-                modifier = Modifier.padding(4.dp)
             )
         }
     }
@@ -95,20 +94,23 @@ fun BotonServicios(
 @Preview
 @Composable
 fun BotonServiciosPreview(){
-    BotonServicios(
-        title = stringResource(id = R.string.services_btn_charge),
-        image = painterResource(id = R.drawable.recarga_sube_icon_big)
-    )
-    BotonServicios(
-        title = stringResource(id = R.string.services_btn_phone),
-        image = painterResource(id = R.drawable.recarga_celu_icon_big),
-    )
-    BotonServicios(
-        title = stringResource(id = R.string.services_btn_pay),
-        image = painterResource(id = R.drawable.pago_servicio_icon_big)
-    )
-    BotonServicios(
-        title = stringResource(id = R.string.services_btn_tv),
-        image = painterResource(id = R.drawable.direct_tv_icon_big)
-    )
+    Column {
+        BotonServicios(
+            title = stringResource(id = R.string.services_btn_charge),
+            image = painterResource(id = R.drawable.recarga_sube_icon_big)
+        )
+        BotonServicios(
+            title = stringResource(id = R.string.services_btn_phone),
+            image = painterResource(id = R.drawable.recarga_celu_icon_big),
+        )
+        BotonServicios(
+            title = stringResource(id = R.string.services_btn_pay),
+            image = painterResource(id = R.drawable.pago_servicio_icon_big)
+        )
+        BotonServicios(
+            title = stringResource(id = R.string.services_btn_tv),
+            image = painterResource(id = R.drawable.direct_tv_icon_big)
+        )
+    }
+
 }
