@@ -55,6 +55,7 @@ import com.example.parcial.R
 import com.example.parcial.shared.infraestructure.RetrofitModule
 import com.example.parcial.ui.components.ClickableLink
 import com.example.parcial.ui.theme.BackgroundScreens
+import com.example.parcial.ui.theme.Red900
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -101,6 +102,45 @@ fun LoginScreen(
             loginViewModel,
             snackbarHostState
         )
+
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom,
+                modifier = Modifier
+                    .padding(bottom = 60.dp)
+            ) {
+                SnackbarHost(
+                    hostState = snackbarHostState,
+                    snackbar = { snackbarData ->
+                        val backgroundColor = when {
+                            snackbarData.visuals.message.contains("successful", ignoreCase = true) -> Green800
+                            snackbarData.visuals.message.contains("failed", ignoreCase = true) -> Red900
+                            else -> Color.Gray
+                        }
+                        Box(
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .background(
+                                    color = backgroundColor,
+                                    shape = RoundedCornerShape(8.dp)
+                                )
+                                .padding(horizontal = 16.dp, vertical = 16.dp)
+                        ) {
+                            Text(
+                                text = snackbarData.visuals.message,
+                                color = Color.White,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                            )
+                        }
+                    }
+                )
+            }
+        }
     }
 }
 
@@ -116,7 +156,6 @@ fun LoginBox(
     val rememberMe = remember {mutableStateOf(false)}
 
     val loginResult by loginViewModel.loginResult.collectAsState()
-//    val snackbarHostState = remember { SnackbarHostState() }
 
     val coroutineScope = rememberCoroutineScope()
 
