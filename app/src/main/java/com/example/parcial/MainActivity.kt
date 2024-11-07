@@ -19,13 +19,24 @@ import androidx.navigation.compose.rememberNavController
 import com.example.parcial.navigation.RootScreen
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.parcial.navigation.LeafScreen
+import com.example.parcial.screens.login.LoginViewModel
 import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.BottomNavItem
+import com.example.parcial.shared.infraestructure.Auth.AuthRepository
 import com.google.firebase.FirebaseApp
+import com.example.parcial.screens.login.LoginViewModelFactory
+import com.example.parcial.shared.infraestructure.RetrofitModule
+import androidx.activity.viewModels
 
 class MainActivity : ComponentActivity() {
 
 //    private val viewModel: MainActivityViewModel by viewModels { MainActivityViewModel.Factory }
+
+    private lateinit var authRepository: AuthRepository
+
+    private val loginViewModel: LoginViewModel by viewModels {
+        LoginViewModelFactory(RetrofitModule.authServices)  // Use authServices here
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // para usar la splash screen nativa
@@ -42,12 +53,6 @@ class MainActivity : ComponentActivity() {
             val navigationActions = remember(navController) {
                 MainNavActions(navController, scope, drawerState)
             }
-/*           MainNavGraph(
-               startDestination = RootScreen.Splash.route,
-               navController = navController,
-               navigationActions = navigationActions
-            )
-*/
             ScaffoldContent(navController, navigationActions)
         }
     }
