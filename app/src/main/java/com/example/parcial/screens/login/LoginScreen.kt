@@ -164,7 +164,8 @@ fun LoginBox(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
-//        SnackbarHost(hostState = snackbarHostState)
+        SnackbarHost(hostState = snackbarHostState)
+
         AnimatedVisibility(
             visible = isVisible,
             enter = slideInVertically(initialOffsetY = { it / 2 }) + fadeIn(),
