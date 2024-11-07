@@ -1,5 +1,6 @@
 package com.example.parcial.screens.home
 
+import com.example.parcial.model.model.user.UserViewModelFactory
 import VisualizadorSaldo
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -9,6 +10,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -17,16 +21,28 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.parcial.R
+import com.example.parcial.shared.infraestructure.RetrofitModule
+import com.example.parcial.shared.infraestructure.users.UserRepository
 import com.example.parcial.ui.components.BotonClick
 import com.example.parcial.ui.components.GridDeBotonesInicio
 import com.example.parcial.ui.components.TarjetaConBoton
 import com.example.parcial.ui.theme.DarkPurple
+import com.example.parcial.model.model.user.UserViewModel
 
 @Preview(showBackground = true)
 @Composable
 fun HomeScreen() {
+    val userRepository = UserRepository(RetrofitModule.userServices)
+    val factory = UserViewModelFactory(userRepository)
+    val userViewModel: UserViewModel = viewModel(factory = factory)
 
+    val userName by userViewModel.userName.collectAsState()
+
+    LaunchedEffect(Unit) {
+        userViewModel.fetchUser(2)
+    }
     LazyColumn(
         modifier = Modifier
             .padding(16.dp),
@@ -41,7 +57,7 @@ fun HomeScreen() {
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
-                    text = "\uD83D\uDC4B Hola Mariana",
+                    text = if (userName != null) "\uD83D\uDC4B Hola $userName" else "Loading...",
                     fontSize = 18.sp,
                     fontFamily = manropeBold,
                     color = DarkPurple

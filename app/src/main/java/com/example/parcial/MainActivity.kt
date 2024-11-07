@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Scaffold
@@ -20,25 +19,14 @@ import androidx.navigation.compose.rememberNavController
 import com.example.parcial.navigation.LeafScreen
 import com.example.parcial.navigation.MainNavGraph
 import com.example.parcial.navigation.RootScreen
-import com.example.parcial.screens.login.LoginViewModel
-import com.example.parcial.screens.login.LoginViewModelFactory
 import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.BottomNavItem
-import com.example.parcial.shared.infraestructure.Auth.AuthRepository
-import com.example.parcial.shared.infraestructure.RetrofitModule
 import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
 
-
-    private lateinit var authRepository: AuthRepository
-
-    private val loginViewModel: LoginViewModel by viewModels {
-        LoginViewModelFactory(RetrofitModule.authServices)
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
+        installSplashScreen()
         FirebaseApp.initializeApp(this)
 
         super.onCreate(savedInstanceState)

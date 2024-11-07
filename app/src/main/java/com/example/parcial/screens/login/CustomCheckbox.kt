@@ -21,74 +21,30 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.parcial.R
 
-//@Preview
 @Composable
 fun RoundCheckbox(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit
-){
-    var isFocused by remember { mutableStateOf(false) }
-//    var checked = true
-//    fun onCheckedChange(checked: Boolean){}
-
+) {
     Box(
         modifier = Modifier
-            .focusable()
-            .onFocusChanged { focusState -> isFocused = focusState.isFocused }
             .clickable { onCheckedChange(!checked) }
-            .size(30.dp) // Size of the round checkbox
+            .size(30.dp)
             .background(
-                Color.Transparent,
-//                if (checked) Color.Transparent else Color.White,
+                color = if (checked) Color.Green else Color.Transparent,
                 shape = CircleShape
             )
             .border(
-                2.dp,
-                when {
-                    checked -> Color.Transparent
-                    isFocused -> Color.Transparent
-//                    else -> Color.Gray
-                    else -> Color.Transparent
-                },
+                width = 2.dp,
+                color = if (checked) Color.Green else Color.Gray,
                 shape = CircleShape
             ),
-//            .clip(CircleShape), // Makes the box round
-//            .background(if (checked) Color(0xFF00D563) else Color.Gray), // Checked color
         contentAlignment = Alignment.Center,
-    ){
-        FocusableCheckedIcon(iconFocus = R.drawable.checkbox_checked, iconChecked = R.drawable.checkbox_unchecked, null)
-//        if (checked) {
-//            FocusableCheckedIcon(iconFocus = R.drawable.checkbox_checked, iconChecked = R.drawable.checkbox_unchecked, null)
-//        }
-    }
-}
-
-@Composable
-fun FocusableCheckedIcon(iconFocus: Int, iconChecked: Int, iconDefault: Int? ) {
-    var isChecked by remember { mutableStateOf(false) }
-    var isFocused by remember { mutableStateOf(false) }
-
-    Box(
-        modifier = Modifier
-            .focusable()
-            .onFocusChanged { focusState ->
-                isFocused = focusState.isFocused
-            }
-            .clickable { isChecked = !isChecked } // Toggle checked state
     ) {
-        val iconId = when {
-            isChecked && isFocused -> iconChecked
-            isChecked -> iconChecked
-            isFocused -> iconChecked
-            else -> null // Default icon
-        }
-
-        iconId?.let {
-            Icon(
-                painter = painterResource(id = it),
-                contentDescription = null,
-                tint = Color.White
-            )
-        }
+        Icon(
+            painter = painterResource(id = if (checked) R.drawable.checkbox_checked else R.drawable.checkbox_unchecked),
+            contentDescription = null,
+            tint = Color.Unspecified,
+        )
     }
 }
