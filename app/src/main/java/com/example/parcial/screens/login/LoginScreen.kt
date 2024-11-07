@@ -138,7 +138,7 @@ fun LoginBox(
             }
             if (result.contains("successful")) {
                 snackbarHostState.showSnackbar("Login successful!")
-                delay(2000) // Wait before navigating
+//                delay(800) // Wait before navigating
                 navigationActions.navigateToHome()
             } else if (result.contains("failed") || result.contains("error")) {
                 snackbarHostState.showSnackbar(result)
@@ -273,17 +273,16 @@ fun LoginBox(
                         Text((stringResource(id = R.string.sign_remember))
                         )
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
-                    loginResult?.let {
-                        Spacer(modifier = Modifier.height(8.dp))
+                    Spacer(modifier = Modifier.height(18.dp))
+                    loginResult?.let { result ->
                         Text(
-                            text = it,
-                            color = if (it.contains("successful")) Color.Green else Color.Red,
+                            text = if (result.contains("successful", ignoreCase = true)) "Login Successful" else "Login Failed",
+                            color = if (result.contains("successful", ignoreCase = true)) Color.Green else Color.Red,
                             fontSize = 14.sp,
                             fontWeight = FontWeight.SemiBold
                         )
                     }
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.weight(1f))
                     Button(
                         modifier = Modifier
                             .fillMaxWidth(),
