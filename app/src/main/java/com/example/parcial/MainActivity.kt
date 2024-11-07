@@ -26,7 +26,7 @@ import com.google.firebase.FirebaseApp
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+//        installSplashScreen()
         FirebaseApp.initializeApp(this)
 
         super.onCreate(savedInstanceState)

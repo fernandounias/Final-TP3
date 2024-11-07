@@ -77,4 +77,8 @@
     <string name="burgermenu_dark">Dark Mode</string>
     <string name="burgermenu_dark_es">Modo Noche</string>
 
+    <!-- string message snackbar: login -->
+    <string name="snackbar_complete_fields">Por favor complete los campos</string>
+    <string name="snackbar_forgot_pasword">Un mail será enviado al e-mail asociado</string>
+    <string name="snackbar_login_success">Log-in Successful!</string>
 </resources>
