@@ -9,11 +9,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -25,20 +25,24 @@ import androidx.compose.ui.unit.sp
 import com.example.parcial.R
 import com.example.parcial.ui.theme.DarkPurple
 import com.example.parcial.ui.theme.Green900
+import com.example.parcial.ui.theme.LightGray
 import com.example.parcial.ui.theme.Red900
 
 @Composable
 fun DetalleFila (
-    fecha: String, descripcion: String, monto: Double, autorizacion: String, modifier: Modifier
+    fecha: String, descripcion: String, monto: Double, autorizacion: String, type: String, modifier: Modifier
 ) {
 
 // @TODO AUGUSTO: cambiar el font family.
-    val textColor = if (monto > 0) Green900 else Red900
-    val formattedMonto = if (monto > 0) "+$%.2f".format(monto) else "$%.2f".format(monto)
+    val textColor = if (type == "credit") Green900 else Red900
+    val formattedMonto = if (type == "credit") "+$%.2f".format(monto) else "-$%.2f".format(monto)
     val manropeBold = FontFamily(
         Font(R.font.manrope_bold)
     )
-
+    fun invertirFecha(fecha: String): String {
+        val partes = fecha.split("-")
+        return "${partes[2]}-${partes[1]}-${partes[0]}"
+    }
     val customTextStyle = TextStyle(
         fontFamily = FontFamily.SansSerif,
         fontSize = 14.sp,
@@ -52,15 +56,10 @@ fun DetalleFila (
             .fillMaxWidth()
             .height(IntrinsicSize.Min)
             .sizeIn(minWidth = 360.dp, minHeight = 56.dp)
-            .border(
-                width = 1.dp,
-                color = Color.Gray.copy(alpha = 0.1f),
-                shape = RoundedCornerShape(1.dp)
-            )
-            .padding(top = 8.dp, end = 12.dp, bottom = 8.dp, start = 12.dp),
+            .padding(top = 2.dp, end = 12.dp, bottom = 2.dp),
     ) {
         Text(
-            text = fecha, style = customTextStyle, color = DarkPurple, fontFamily = manropeBold
+            text = invertirFecha(fecha), style = customTextStyle, color = DarkPurple, fontFamily = manropeBold
         )
         Spacer(modifier = Modifier.weight(0.05f))
         Column {
@@ -68,10 +67,11 @@ fun DetalleFila (
                 text = descripcion,
                 style = customTextStyle,
                 color = DarkPurple,
-                fontFamily = manropeBold
+                fontFamily = manropeBold,
+                modifier = Modifier.width(180.dp)
             )
             Text(
-                text = autorizacion,
+                text = "Aut. $autorizacion",
                 style = customTextStyle,
                 color = DarkPurple,
                 fontFamily = manropeBold
@@ -85,6 +85,11 @@ fun DetalleFila (
             fontFamily = manropeBold
         )
     }
+    HorizontalDivider(
+        modifier = Modifier,
+        color = LightGray
+    )
+
 }
 
 @Preview(showBackground = true)
@@ -95,6 +100,7 @@ fun DetalleFilaPreview() {
         descripcion = "Transferencia",
         monto = 20000.00,
         autorizacion = "Aut. 399954",
+        type = "credit",
         modifier = Modifier.padding(8.dp)
     )
 }

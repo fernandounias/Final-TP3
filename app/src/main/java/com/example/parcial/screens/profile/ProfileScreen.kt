@@ -1,12 +1,15 @@
 package com.example.parcial.screens.profile
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -17,29 +20,40 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.parcial.R
+import com.example.parcial.navigation.RootScreen
 import com.example.parcial.ui.components.GridBotonesClickProfile
 import com.example.parcial.ui.theme.BackgroundScreens
 import com.example.parcial.ui.theme.DarkPurple
 import kotlinx.coroutines.delay
 
 @Composable
-fun ProfileScreen() {
+fun ProfileScreen(onCloseProfile: () -> Unit) {
     var isVisible by remember { mutableStateOf(false) }
+    var isExiting by remember { mutableStateOf(false) }
 
     LaunchedEffect(Unit) {
         delay(200)
         isVisible = true
     }
 
+    BackHandler(enabled = true) {
+        isExiting = true
+    }
+
     AnimatedVisibility(
-        visible = isVisible,
+        visible = isVisible && !isExiting,
         enter = slideInHorizontally(
             initialOffsetX = { -it },
             animationSpec = tween(durationMillis = 200)
+        ),
+        exit = slideOutHorizontally(
+            targetOffsetX = { it },
+            animationSpec = tween(durationMillis = 200)
         )
     ) {
-        LazyColumn( // Cambié a LazyColumn para permitir desplazamiento
+        LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
                 .background(BackgroundScreens)
@@ -79,8 +93,15 @@ fun ProfileScreen() {
             }
             item { Spacer(modifier = Modifier.height(24.dp)) }
             item {
-                GridBotonesClickProfile() // Asegúrate de que este contenido también permita scroll si es necesario
+                GridBotonesClickProfile()
             }
+        }
+    }
+
+    LaunchedEffect(isExiting) {
+        if (isExiting) {
+            delay(100)
+            onCloseProfile()
         }
     }
 }

@@ -4,14 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.parcial.ui.theme.ParcialTheme
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.parcial.navigation.MainNavGraph
 import androidx.compose.material3.DrawerValue
@@ -23,28 +19,18 @@ import androidx.navigation.compose.rememberNavController
 import com.example.parcial.navigation.RootScreen
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.parcial.navigation.LeafScreen
-import com.example.parcial.screens.login.LoginViewModel
-import com.example.parcial.screens.login.LoginViewModelFactory
 import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.BottomNavItem
-import com.example.parcial.shared.infraestructure.Auth.AuthRepository
-import com.example.parcial.shared.infraestructure.Auth.AuthServices
-import com.example.parcial.shared.infraestructure.RetrofitModule
+import com.google.firebase.FirebaseApp
 
 class MainActivity : ComponentActivity() {
 
 //    private val viewModel: MainActivityViewModel by viewModels { MainActivityViewModel.Factory }
 
-    private lateinit var authRepository: AuthRepository
-
-    private val loginViewModel: LoginViewModel by viewModels {
-        LoginViewModelFactory(RetrofitModule.authServices)  // Use authServices here
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         // para usar la splash screen nativa
         val splashScreen = installSplashScreen()
-        authRepository = AuthRepository(RetrofitModule.authServices)
+        FirebaseApp.initializeApp(this)
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -62,7 +48,7 @@ class MainActivity : ComponentActivity() {
                navigationActions = navigationActions
             )
 */
-            ScaffoldContent(navController, navigationActions, authRepository)
+            ScaffoldContent(navController, navigationActions)
         }
     }
 }
@@ -70,8 +56,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ScaffoldContent(
     navController: NavHostController,
-    navigationActions: MainNavActions,
-    authRepository: AuthRepository
+    navigationActions: MainNavActions
 ) {
     Scaffold(
         bottomBar = {
