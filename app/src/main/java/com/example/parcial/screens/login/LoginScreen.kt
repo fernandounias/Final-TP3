@@ -1,5 +1,6 @@
 package com.example.parcial.screens.login
 
+import android.content.Context
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
@@ -39,6 +40,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -53,6 +55,7 @@ import com.example.parcial.R
 import com.example.parcial.shared.infraestructure.RetrofitModule
 import com.example.parcial.ui.components.ClickableLink
 import com.example.parcial.ui.theme.BackgroundScreens
+import com.example.parcial.ui.theme.Red900
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -67,6 +70,8 @@ fun LoginScreen(
 
     val factory = LoginViewModelFactory(authServices)
     val loginViewModel: LoginViewModel = viewModel(factory = factory)
+
+    val snackbarHostState = remember { SnackbarHostState() }
 
     LaunchedEffect(Unit) {
         delay(3000)
@@ -91,8 +96,51 @@ fun LoginScreen(
             )
         }
 
-        LoginBox(isVisible, navigationActions, loginViewModel)
+        LoginBox(
+            isVisible,
+            navigationActions,
+            loginViewModel,
+            snackbarHostState
+        )
 
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.BottomCenter
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Bottom,
+                modifier = Modifier
+                    .padding(bottom = 60.dp)
+            ) {
+                SnackbarHost(
+                    hostState = snackbarHostState,
+                    snackbar = { snackbarData ->
+                        val backgroundColor = when {
+                            snackbarData.visuals.message.contains("successful", ignoreCase = true) -> Green800
+                            snackbarData.visuals.message.contains("failed", ignoreCase = true) -> Red900
+                            else -> Color.Gray
+                        }
+                        Box(
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .background(
+                                    color = backgroundColor,
+                                    shape = RoundedCornerShape(8.dp)
+                                )
+                                .padding(horizontal = 16.dp, vertical = 16.dp)
+                        ) {
+                            Text(
+                                text = snackbarData.visuals.message,
+                                color = Color.White,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                            )
+                        }
+                    }
+                )
+            }
+        }
     }
 }
 
@@ -100,23 +148,50 @@ fun LoginScreen(
 fun LoginBox(
     isVisible: Boolean,
     navigationActions : MainNavActions,
-    loginViewModel: LoginViewModel
+    loginViewModel: LoginViewModel,
+    snackbarHostState: SnackbarHostState
 ) {
     val username = remember { mutableStateOf("") }
     val password = remember { mutableStateOf("") }
     val rememberMe = remember {mutableStateOf(false)}
+
     val loginResult by loginViewModel.loginResult.collectAsState()
-    val snackbarHostState = remember { SnackbarHostState() }
+
     val coroutineScope = rememberCoroutineScope()
+
+    val snackbarCompleteFieldsMessage = stringResource(id = R.string.snackbar_complete_fields)
+    val snackbarForgotPasword = stringResource(id = R.string.snackbar_forgot_pasword)
+    val snackbarLoginSuccessMessage = stringResource(id = R.string.snackbar_forgot_pasword)
 
     var isUsernameError by remember { mutableStateOf(false) }
     var isPasswordError by remember { mutableStateOf(false) }
 
+    ///Checks if the username & password should be pre-filled
+    val sharedPreferences = LocalContext.current.getSharedPreferences("login_preferences", Context.MODE_PRIVATE)
+    val savedUsername = sharedPreferences.getString("username", "")
+    val savedPassword = sharedPreferences.getString("password", "")
+
+    // Prefill values if available
+    if (savedUsername != null && savedUsername.isNotEmpty()) {
+        username.value = savedUsername
+        rememberMe.value = true
+    }
+    if (savedPassword != null && savedPassword.isNotEmpty()) {
+        password.value = savedPassword
+    }
+
     LaunchedEffect(loginResult) {
         loginResult?.let { result ->
             val message = if (result.contains("successful")) {
+                ///saves username and password when remember checkbox is checked
+                if (rememberMe.value) {
+                    sharedPreferences.edit()
+                        .putString("username", username.value)
+                        .putString("password", password.value)
+                        .apply()
+                }
                 navigationActions.navigateToHome()
-                "Login successful!"
+                snackbarLoginSuccessMessage
             } else {
                 result
             }
@@ -128,6 +203,8 @@ fun LoginBox(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.BottomCenter
     ) {
+        SnackbarHost(hostState = snackbarHostState)
+
         AnimatedVisibility(
             visible = isVisible,
             enter = slideInVertically(initialOffsetY = { it / 2 }) + fadeIn(),
@@ -157,79 +234,37 @@ fun LoginBox(
                         fontWeight = FontWeight.Black
                     )
                     Spacer(modifier = Modifier.height(18.dp))
-
-                    TextField(
-                        modifier = Modifier
-                            .border(
-                                BorderStroke(
-                                    1.dp,
-                                    if (isUsernameError) Color(0xFFFFA500) else Color.LightGray
-                                ),
-                                shape = RoundedCornerShape(3.dp)
-                            )
-                            .fillMaxWidth(),
+                    UsernameTextField(
                         value = username.value,
-                        singleLine = true,
                         onValueChange = {
                             username.value = it
                             isUsernameError = it.isBlank()
                         },
-                        label = {
-                            Text(
-                                text = stringResource(id = R.string.sign_f_label_u),
-                                color = if (isUsernameError) Color(0xFFFFA500) else Color.Gray
-                            )
-                        },
-                        textStyle = TextStyle(color = Color.Black, fontSize = 16.sp),
-                        colors = TextFieldDefaults.colors(
-                            focusedTextColor = Color.Black,
-                            unfocusedTextColor = Color.Black,
-                            focusedContainerColor = Color.White,
-                            unfocusedContainerColor = Color.White,
-                            cursorColor = Color.Black,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent
-                        ),
-                        shape = RoundedCornerShape(8.dp),
+                        label = stringResource(id = R.string.sign_f_label_u),
+                        isUsernameError
                     )
-                    Spacer(modifier = Modifier.height(18.dp))
 
-                    TextField(
-                        modifier = Modifier
-                            .border(
-                                BorderStroke(
-                                    1.dp,
-                                    if (isPasswordError) Color(0xFFFFA500) else Color.LightGray
-                                ),
-                                shape = RoundedCornerShape(3.dp)
-                            )
-                            .background(Color.White, shape = RoundedCornerShape(8.dp))
-                            .fillMaxWidth(),
+                    Spacer(modifier = Modifier.height(18.dp))
+                    PasswordTextField(
                         value = password.value,
                         onValueChange = {
                             password.value = it
                             isPasswordError = it.isBlank()
                         },
-                        label = {
-                            Text(
-                                text = stringResource(id = R.string.sign_f_label_p),
-                                color = if (isPasswordError) Color(0xFFFFA500) else Color.Gray
-                            )
-                        },
-                        textStyle = TextStyle(color = Color.Black, fontSize = 16.sp),
-                        colors = TextFieldDefaults.colors(
-                            focusedTextColor = Color.Black,
-                            unfocusedTextColor = Color.Black,
-                            focusedContainerColor = Color.White,
-                            unfocusedContainerColor = Color.White,
-                            cursorColor = Color.Black,
-                            focusedIndicatorColor = Color.Transparent,
-                            unfocusedIndicatorColor = Color.Transparent
-                        ),
-                        shape = RoundedCornerShape(8.dp),
-                        visualTransformation = PasswordVisualTransformation()
+                        label = stringResource(id = R.string.sign_f_label_p),
+                        isPasswordError
                     )
-                    ClickableLink(text = stringResource((R.string.sign_reset_p)), align = "right", { })
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                    ){
+                        ClickableLink(
+                            text = stringResource((R.string.sign_reset_p)),
+                            align = "right",
+                            message = snackbarForgotPasword,
+                            snackbarHostState
+                        )
+                    }
                     Spacer(modifier = Modifier.height(18.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
@@ -237,13 +272,27 @@ fun LoginBox(
                     ) {
                         RoundCheckbox(
                             checked = rememberMe.value,
-                            onCheckedChange = { rememberMe.value = it }
+                            onCheckedChange = { isChecked ->
+                                rememberMe.value = isChecked
+                                /// Save or remove username & password based on the checkbox state
+                                if (isChecked) {
+                                    sharedPreferences.edit()
+                                        .putString("username", username.value)
+                                        .putString("password", password.value)
+                                        .apply()
+                                } else {
+                                    sharedPreferences.edit()
+                                        .remove("username")
+                                        .remove("password")
+                                        .apply()
+                                }
+                            }
                         )
-                        Spacer(modifier = Modifier.width(4.dp))
+                        Spacer(modifier = Modifier.width(14.dp))
                         Text((stringResource(id = R.string.sign_remember))
                         )
                     }
-                    Spacer(modifier = Modifier.height(18.dp))
+                    Spacer(modifier = Modifier.weight(1f))
                     Button(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = {
@@ -251,19 +300,19 @@ fun LoginBox(
                             isPasswordError = password.value.isBlank()
 
                             coroutineScope.launch {
-                                if (!isUsernameError && !isPasswordError) {
+                                if(username.value.isBlank() || password.value.isBlank()){
+                                    snackbarHostState.showSnackbar(message = snackbarCompleteFieldsMessage)
+                                }else if (username.value.isNotBlank() && password.value.isNotBlank()) {
                                     loginViewModel.login(username.value, password.value)
-                                } else {
-                                    snackbarHostState.showSnackbar("Por favor complete los campos requeridos")
                                 }
                             }
                         }
                     ) {
                         Text(stringResource(id = R.string.sign_in_btn))
                     }
-                    SnackbarHost(
-                        hostState = snackbarHostState
-                    )
+//                    SnackbarHost(
+//                        hostState = snackbarHostState
+//                    )
                 }
             }
         }

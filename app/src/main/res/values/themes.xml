@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--<resources xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools">-->
 <resources>
+<!--    <style name="Theme.MyApp" parent="Theme.Material3.DayNight.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your theme &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/your_primary_color</item>-->
+<!--        <item name="colorPrimaryVariant">@color/your_primary_variant</item>-->
+<!--        <item name="colorOnPrimary">@color/your_on_primary_color</item>-->
+<!--    </style>-->
 
+    <style name="Theme.Parcial" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:colorPrimary">@color/black</item>
+        <item name="android:colorAccent">@color/green_800</item>
+        <item name="android:colorBackground">@color/white</item>
+    </style>
     <style name="Theme.Parcial" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:colorPrimary">@color/black</item>
         <item name="android:colorAccent">@color/green_800</item>
