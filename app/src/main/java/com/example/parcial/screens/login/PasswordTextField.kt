@@ -24,6 +24,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.parcial.R
+import com.example.parcial.ui.theme.Red900
 
 @Composable
 fun PasswordTextField(
@@ -39,7 +40,7 @@ fun PasswordTextField(
             .border(
                 BorderStroke(
                     1.dp,
-                    if (isPasswordError) Color(0xFFFFA500) else Color.LightGray
+                    if (isPasswordError) Red900 else Color.LightGray
                 ),
                 shape = RoundedCornerShape(3.dp)
             )

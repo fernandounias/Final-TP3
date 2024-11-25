@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.parcial.MainNavActions
 import com.example.parcial.R
+import com.example.parcial.ui.theme.Green800
 
 @Composable
 fun BottomNavBar(
@@ -51,13 +52,14 @@ fun BottomNavBar(
             containerColor = Color.White,
             modifier = Modifier
                 .fillMaxWidth()
-                .height(80.dp)
+                .height(94.dp)
         ) {
 
             items.forEach { item ->
                 val icon =
                     if (selectedItem == item.label) item.selectedIcon else item.unselectedIcon
                 val isSelected = selectedItem == item.label
+
                 NavigationBarItem(
                     modifier = Modifier.fillMaxWidth(),
                     icon = {
@@ -76,19 +78,15 @@ fun BottomNavBar(
                                         modifier = Modifier
                                             .width(70.dp)
                                             .height(2.dp)
-                                            .background(Color(0xFF00D563))
+                                            .background(Green800)
                                     )
+
                                 } else {
-                                    Spacer(
-                                        modifier = Modifier
-                                            .width(50.dp)
-                                            .height(3.dp)
-                                    )
+                                    Spacer(modifier = Modifier.height(2.dp))
                                 }
-                                Spacer(
-                                    modifier = Modifier
-                                        .weight(1f)
-                                )
+
+                                Spacer(modifier = Modifier.height(6.dp))
+
                                 Icon(
                                     painter = painterResource(id = icon),
                                     contentDescription = item.label,
@@ -97,7 +95,7 @@ fun BottomNavBar(
                                         .size(28.dp)
                                         .padding(top = 6.dp)
                                 )
-                                Spacer(modifier = Modifier.weight(1f))
+                                Spacer(modifier = Modifier.height(6.dp))
                             }
                         }
                     },
@@ -123,13 +121,14 @@ fun BottomNavBar(
 }
 
 sealed class BottomNavItem(val label: String, val unselectedIcon: Int, val selectedIcon: Int) {
-    object Home : BottomNavItem("Home", R.drawable.home, R.drawable.home_selected)
+    object Home :
+        BottomNavItem("Home", R.drawable.home, R.drawable.home_selected)
     object Account :
         BottomNavItem("Account", R.drawable.movimientos, R.drawable.movimientos_selected)
-
     object Card :
         BottomNavItem("Card", R.drawable.tarjeta_credito, R.drawable.tarjeta_credito_selected)
-
-    object Services : BottomNavItem("Services", R.drawable.wallet, R.drawable.wallet_selected)
-    object Menu : BottomNavItem("Menu", R.drawable.menu, R.drawable.menu_selected)
+    object Services :
+        BottomNavItem("Services", R.drawable.wallet, R.drawable.wallet_selected)
+    object Menu :
+        BottomNavItem("Menu", R.drawable.menu, R.drawable.menu_selected)
 }

@@ -19,6 +19,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.parcial.R
+import com.example.parcial.ui.theme.Red900
 
 @Composable
 fun UsernameTextField(
@@ -33,7 +34,7 @@ fun UsernameTextField(
             .border(
                 BorderStroke(
                     1.dp,
-                    if (isUsernameError) Color(0xFFFFA500) else Color.LightGray
+                    if (isUsernameError) Red900 else Color.LightGray
                     ),
                 shape = RoundedCornerShape(3.dp)
             )
@@ -44,7 +45,7 @@ fun UsernameTextField(
         label = {
             Text(
                 label,
-                color = if (isUsernameError) Color(0xFFFFA500) else Color.Gray
+                color = if (isUsernameError) Red900 else Color.Gray
             )
         },
         textStyle = TextStyle(color = Color.Black, fontSize = 16.sp),

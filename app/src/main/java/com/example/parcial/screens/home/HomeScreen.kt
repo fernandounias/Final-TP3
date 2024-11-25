@@ -45,7 +45,7 @@ fun HomeScreen() {
     }
     LazyColumn(
         modifier = Modifier
-            .padding(16.dp),
+        .padding(start = 16.dp, end = 16.dp, top = 16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
