@@ -1,5 +1,6 @@
 package com.example.parcial.screens.profile
 
+import android.content.SharedPreferences
 import com.example.parcial.model.model.user.UserViewModelFactory
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
@@ -20,6 +21,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,7 +44,10 @@ import com.example.parcial.model.model.user.UserViewModel
 import kotlinx.coroutines.delay
 
 @Composable
-fun ProfileScreen(onCloseProfile: () -> Unit
+fun ProfileScreen(
+    sharedPreferences: SharedPreferences,
+    isDarkModeState: MutableState<Boolean>,
+    onCloseProfile: () -> Unit
 ) {
     val userRepository = UserRepository(RetrofitModule.userServices)
     val factory = UserViewModelFactory(userRepository)
@@ -113,7 +118,13 @@ fun ProfileScreen(onCloseProfile: () -> Unit
             }
             item { Spacer(modifier = Modifier.height(24.dp)) }
             item {
-                GridBotonesClickProfile()
+                GridBotonesClickProfile(
+                    isDarkMode = isDarkModeState.value,
+                    onThemeChange = { isDark ->
+                        isDarkModeState.value = isDark
+                        sharedPreferences.edit().putBoolean("dark_mode", isDark).apply()
+                    }
+                )
             }
         }
     }

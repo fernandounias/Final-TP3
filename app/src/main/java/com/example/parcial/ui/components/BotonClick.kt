@@ -1,5 +1,7 @@
 package com.example.parcial.ui.components
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.compose.material3.Typography
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.background
@@ -22,6 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -42,7 +45,8 @@ fun BotonClick(
     subtitulo: String? = null,
     mostrarSwitch: Boolean = false,
     onSwitchChanged: (Boolean) -> Unit = {},
-    isWarning: Boolean= false
+    isWarning: Boolean= false,
+    isSwitchChecked: Boolean = false
 ) {
     val manropeBold = FontFamily(
         Font(R.font.manrope_bold)
@@ -56,9 +60,7 @@ fun BotonClick(
             color = Color(0xFF333333)
         )
     )
-
-    var isSwitchChecked by remember { mutableStateOf(false) }
-
+    
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -93,9 +95,8 @@ fun BotonClick(
         if (mostrarSwitch) {
             Switch(
                 checked = isSwitchChecked,
-                onCheckedChange = {
-                    isSwitchChecked = it
-                    onSwitchChanged(it)
+                onCheckedChange = { isChecked ->
+                    onSwitchChanged(isChecked)
                 },
                 colors = SwitchDefaults.colors(
                     checkedThumbColor = colorResource(id = R.color.green_800),
@@ -155,9 +156,27 @@ fun GridBotonesClickTarjeta(){
 
     }
 }
-@Preview(showBackground = true)
+//@Preview(showBackground = true)
 @Composable
-fun GridBotonesClickProfile() {
+fun GridBotonesClickProfile(
+    isDarkMode: Boolean,
+    onThemeChange: (Boolean) -> Unit
+) {
+
+    var isSwitchChecked by remember { mutableStateOf(isDarkMode) }
+
+//    val context = LocalContext.current
+//
+//    val initialSwitchState = sharedPreferences.getBoolean("dark_mode", false)
+//    var isSwitchChecked by remember { mutableStateOf(initialSwitchState) }
+
+//    var currentIsDarkMode by remember { mutableStateOf(isDarkMode) }
+
+//    val context = LocalContext.current
+//    val sharedPreferences = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+//    val isDarkMode = sharedPreferences.getBoolean("dark_mode", false)
+
+    //AppTheme(darkTheme = isDarkMode) {}
     val opciones = listOf(
         stringResource(id = R.string.burgermenu_data),
         stringResource(id = R.string.burgermenu_id),
@@ -200,9 +219,17 @@ fun GridBotonesClickProfile() {
             )
             .background(Color.White, shape = RoundedCornerShape(10.dp))
         ){
-        BotonClick(stringResource(id = R.string.burgermenu_dark), mostrarSwitch = true)
+        BotonClick(
+            stringResource(id = R.string.burgermenu_dark),
+            mostrarSwitch = true,
+            isSwitchChecked = isSwitchChecked,
+            onSwitchChanged = { isChecked ->
+                // Update mutableState and sharedPreferences
+                isSwitchChecked = isChecked
+//                currentIsDarkMode = isChecked
+//                sharedPreferences.edit().putBoolean("dark_mode", isChecked).apply()
+                // Notify parent to change theme
+                onThemeChange(isChecked)
+            })
     }
 }
-
-
-

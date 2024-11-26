@@ -1,6 +1,8 @@
 package com.example.parcial.navigation
 
+import android.content.SharedPreferences
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -21,6 +23,9 @@ fun MainNavGraph(
     navController: NavHostController,
     startDestination: String = RootScreen.Splash.route,
     navigationActions: MainNavActions,
+    sharedPreferences: SharedPreferences,
+    isDarkModeState: MutableState<Boolean>,
+
 ) {
     NavHost(
         navController = navController,
@@ -33,7 +38,7 @@ fun MainNavGraph(
         addAccountRoute()
         addCardRoute()
         addServicesRoutes()
-        addPerfilRoute(navController)
+        addPerfilRoute(sharedPreferences, isDarkModeState, navController)
     }
 
 }
@@ -72,9 +77,15 @@ fun NavGraphBuilder.addCardRoute() {
     }
 }
 
-fun NavGraphBuilder.addPerfilRoute(navController: NavHostController) {
+fun NavGraphBuilder.addPerfilRoute(
+    sharedPreferences: SharedPreferences,
+    isDarkModeState: MutableState<Boolean>,
+    navController: NavHostController
+) {
     composable(RootScreen.Profile.route) {
         ProfileScreen(
+            sharedPreferences = sharedPreferences,
+            isDarkModeState = isDarkModeState,
             onCloseProfile = { navController.popBackStack()}
         )
     }

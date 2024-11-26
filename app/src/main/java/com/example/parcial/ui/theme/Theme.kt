@@ -14,20 +14,24 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
-)
-
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40,
+val DarkColorScheme = darkColorScheme(
+    primary = Green800,
+    onPrimary = Color.White,
+    secondary = ButtonDisabled,
+    onSecondary = Color.Black,
 
     surface = Color.White,
     onSurface = Color.Black
-    // Customize additional colors as needed
+)
+
+val LightColorScheme = lightColorScheme(
+    primary = Purple900,
+    onPrimary = Color.White,
+    secondary = Color(0xFF03DAC6),
+    onSecondary = Color.White,
+
+    surface = Color.White,
+    onSurface = Color.White
 
 )
 
