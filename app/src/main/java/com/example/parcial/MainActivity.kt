@@ -26,11 +26,12 @@ import com.example.parcial.shared.BottomNavBar
 import com.example.parcial.shared.BottomNavItem
 import com.example.parcial.ui.AppTheme
 import com.google.firebase.FirebaseApp
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        FirebaseApp.initializeApp(this)
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

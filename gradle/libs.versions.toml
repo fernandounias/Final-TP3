@@ -22,6 +22,7 @@ lifecycleRuntimeCompose = "2.8.7"
 xfirebaseFirestore = " 24.11.8"
 animationAndroid = "1.7.2"
 runtimeLivedata = "1.7.5"
+hiltAndroidGradlePlugin = "2.52"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -52,8 +53,10 @@ androidx-lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lif
 xfirebase-firestore = { module = "com.google.firebase: firebase-firestore", version.ref = "xfirebaseFirestore" }
 androidx-animation-android = { group = "androidx.compose.animation", name = "animation-android", version.ref = "animationAndroid" }
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroidGradlePlugin" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltAndroidGradlePlugin" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-
+hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hiltAndroidGradlePlugin" }
