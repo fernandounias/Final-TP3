@@ -23,6 +23,7 @@ xfirebaseFirestore = " 24.11.8"
 animationAndroid = "1.7.2"
 runtimeLivedata = "1.7.5"
 hiltAndroidGradlePlugin = "2.52"
+hilt_navigation_compose = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -55,6 +56,7 @@ androidx-animation-android = { group = "androidx.compose.animation", name = "ani
 androidx-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "runtimeLivedata" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroidGradlePlugin" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltAndroidGradlePlugin" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt_navigation_compose" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

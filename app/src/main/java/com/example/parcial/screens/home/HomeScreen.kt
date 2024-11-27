@@ -30,13 +30,16 @@ import com.example.parcial.ui.components.GridDeBotonesInicio
 import com.example.parcial.ui.components.TarjetaConBoton
 import com.example.parcial.ui.theme.DarkPurple
 import com.example.parcial.model.model.user.UserViewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 
 @Preview(showBackground = true)
 @Composable
 fun HomeScreen() {
-    val userRepository = UserRepository(RetrofitModule.userServices)
-    val factory = UserViewModelFactory(userRepository)
-    val userViewModel: UserViewModel = viewModel(factory = factory)
+//    val userRepository = UserRepository(RetrofitModule.userServices)
+//    val factory = UserViewModelFactory(userRepository)
+//    val userViewModel: UserViewModel = viewModel(factory = factory)
+
+    val userViewModel: UserViewModel = hiltViewModel()
 
     val userName by userViewModel.userName.collectAsState()
 
