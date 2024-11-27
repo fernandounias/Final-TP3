@@ -3,10 +3,12 @@ package com.example.parcial.model.model.user
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.parcial.shared.infraestructure.users.UserRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+@HiltViewModel
 class UserViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     private val _userName = MutableStateFlow<String?>(null)
