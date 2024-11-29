@@ -2,8 +2,10 @@ package com.example.parcial.shared.infraestructure.Auth
 
 import android.util.Log
 import com.example.parcial.shared.infraestructure.RetrofitModule
-import jakarta.inject.Inject
-import jakarta.inject.Singleton
+//import jakarta.inject.Inject
+//import jakarta.inject.Singleton
+import javax.inject.Inject
+import javax.inject.Singleton
 
 @Singleton
 //class AuthRepository(private val authServices: AuthServices = RetrofitModule.authServices) {

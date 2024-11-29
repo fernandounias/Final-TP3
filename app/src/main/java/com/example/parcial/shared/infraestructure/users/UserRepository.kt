@@ -2,8 +2,10 @@ package com.example.parcial.shared.infraestructure.users
 
 import com.example.parcial.shared.infraestructure.RetrofitModule
 import UserResponse
-import jakarta.inject.Inject
-import jakarta.inject.Singleton
+//import jakarta.inject.Inject
+//import jakarta.inject.Singleton
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Response

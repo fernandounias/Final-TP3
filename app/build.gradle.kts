@@ -1,12 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-//    id("com.google.dagger.hilt.android")
-    id("com.google.dagger.hilt.android") version libs.versions.hiltAndroidGradlePlugin.get()
+    id("com.google.dagger.hilt.android")
+//    id("com.google.dagger.hilt.android") version libs.versions.hiltAndroidGradlePlugin.get()
     id("com.google.gms.google-services")
-//    id("kotlin-kapt")
+    id("kotlin-kapt")
 //    id("com.google.devtools.ksp")
-    id("com.google.devtools.ksp") version libs.versions.comGoogleDevtoolsKspGradlePlugin.get()
+//    id("com.google.devtools.ksp") version libs.versions.comGoogleDevtoolsKspGradlePlugin.get()
 //    id("com.google.devtools.ksp") version "1.9.10"
 //    id("com.google.devtools.ksp") version libs.versions.ksp.get()
 }
@@ -38,18 +38,18 @@ android {
         }
     }
     compileOptions {
-//        sourceCompatibility = JavaVersion.VERSION_1_8
-//        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
 //        sourceCompatibility = JavaVersion.VERSION_17
 //        targetCompatibility = JavaVersion.VERSION_17
 //        sourceCompatibility = JavaVersion.VERSION_11
 //        targetCompatibility = JavaVersion.VERSION_11
-        sourceCompatibility = JavaVersion.VERSION_21  // Use JDK 21
-        targetCompatibility = JavaVersion.VERSION_21  // Use JDK 21
+//        sourceCompatibility = JavaVersion.VERSION_21  // Use JDK 21
+//        targetCompatibility = JavaVersion.VERSION_21  // Use JDK 21
     }
     kotlinOptions {
-//        jvmTarget = "1.8"
-        jvmTarget = "21"  // Set Kotlin to target JDK 21
+        jvmTarget = "1.8"
+//        jvmTarget = "21"  // Set Kotlin to target JDK 21
 //        jvmTarget = "17"
 //        jvmTarget = "11"
 //        freeCompilerArgs += "--add-exports=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED"
@@ -58,7 +58,8 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+//        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.12"
     }
     packaging {
         resources {
@@ -66,13 +67,13 @@ android {
         }
     }
     kotlin {
-        jvmToolchain(17)
+//        jvmToolchain(17)
     }
 }
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+//        languageVersion = JavaLanguageVersion.of(21)
 //        languageVersion = JavaLanguageVersion.of(17)
 //        languageVersion = JavaLanguageVersion.of(11)
     }
@@ -114,6 +115,7 @@ dependencies {
 //    implementation(libs.hilt.lifecycle.viewmodel)
 //    kapt(libs.hilt.lifecycle.compiler)
 //    ksp(libs.hilt.lifecycle.compiler)
+    kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 
     //KSP NOT WORKING...
 //    ksp(libs.hilt.compiler)
@@ -136,4 +138,7 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+}
+kapt {
+    correctErrorTypes = true
 }
