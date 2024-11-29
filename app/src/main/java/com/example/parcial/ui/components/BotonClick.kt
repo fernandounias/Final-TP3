@@ -1,7 +1,5 @@
 package com.example.parcial.ui.components
 
-import android.content.Context
-import android.content.SharedPreferences
 import androidx.compose.material3.Typography
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.background
@@ -24,7 +22,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -34,8 +31,8 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.parcial.R
+import com.example.parcial.ui.LocalColors
 import com.example.parcial.ui.theme.ButtonDisabled
-import com.example.parcial.ui.theme.DarkPurple
 import com.example.parcial.ui.theme.Warning
 
 
@@ -45,7 +42,7 @@ fun BotonClick(
     subtitulo: String? = null,
     mostrarSwitch: Boolean = false,
     onSwitchChanged: (Boolean) -> Unit = {},
-    isWarning: Boolean= false,
+    isWarning: Boolean = false,
     isSwitchChecked: Boolean = false
 ) {
     val manropeBold = FontFamily(
@@ -66,7 +63,7 @@ fun BotonClick(
             .fillMaxWidth()
             .padding(vertical = 4.dp)
             .background(
-                if (!isWarning) Color.White else Warning,
+                if (!isWarning) LocalColors.current.inputBackground else Warning,
                 shape = RoundedCornerShape(if (!isWarning) 0.dp else 10.dp)
             )
             .padding(horizontal = 16.dp, vertical = 10.dp),
@@ -78,15 +75,15 @@ fun BotonClick(
                 text = texto,
                 style = typography.bodyLarge,
                 fontSize = if (!isWarning) 20.sp else 12.sp,
-                color = if (!isWarning) DarkPurple else Color.White
+                color = if (!isWarning) LocalColors.current.textTitles else Color.White
             )
             subtitulo?.let {
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = it,
                     style = TextStyle(
-                        fontSize = if (!isWarning) 20.sp else 12.sp,
-                        color = if (!isWarning) DarkPurple else Color.White,
+                        fontSize = if (!isWarning) 16.sp else 12.sp,
+                        color = if (!isWarning) LocalColors.current.text0 else Color.White,
                         textDecoration = if (!isWarning) TextDecoration.None else TextDecoration.Underline
                     )
                 )
@@ -139,7 +136,7 @@ fun GridBotonesClickTarjeta(){
                 color = Color(0xFFE0E0E0),
                 shape = RoundedCornerShape(10.dp)
             )
-            .background(Color.White, shape = RoundedCornerShape(10.dp))
+            .background(color = LocalColors.current.inputBackground, shape = RoundedCornerShape(10.dp))
     ) {
         BotonClick(
             stringResource(id = R.string.card_btn_ask_new),
@@ -165,18 +162,6 @@ fun GridBotonesClickProfile(
 
     var isSwitchChecked by remember { mutableStateOf(isDarkMode) }
 
-//    val context = LocalContext.current
-//
-//    val initialSwitchState = sharedPreferences.getBoolean("dark_mode", false)
-//    var isSwitchChecked by remember { mutableStateOf(initialSwitchState) }
-
-//    var currentIsDarkMode by remember { mutableStateOf(isDarkMode) }
-
-//    val context = LocalContext.current
-//    val sharedPreferences = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
-//    val isDarkMode = sharedPreferences.getBoolean("dark_mode", false)
-
-    //AppTheme(darkTheme = isDarkMode) {}
     val opciones = listOf(
         stringResource(id = R.string.burgermenu_data),
         stringResource(id = R.string.burgermenu_id),
@@ -194,7 +179,7 @@ fun GridBotonesClickProfile(
                 color = Color(0xFFE0E0E0),
                 shape = RoundedCornerShape(10.dp)
             )
-            .background(Color.White, shape = RoundedCornerShape(10.dp))
+            .background(LocalColors.current.inputBackground, shape = RoundedCornerShape(10.dp))
     ) {
 
         opciones.forEachIndexed { index, texto ->
@@ -207,7 +192,7 @@ fun GridBotonesClickProfile(
             }
         }
     }
-    Spacer(modifier = Modifier.height(65.dp))
+    Spacer(modifier = Modifier.height(40.dp))
     Column (
         modifier = Modifier
             .fillMaxWidth()
@@ -217,7 +202,7 @@ fun GridBotonesClickProfile(
                 color = Color(0xFFE0E0E0),
                 shape = RoundedCornerShape(10.dp)
             )
-            .background(Color.White, shape = RoundedCornerShape(10.dp))
+            .background(LocalColors.current.inputBackground, shape = RoundedCornerShape(10.dp))
         ){
         BotonClick(
             stringResource(id = R.string.burgermenu_dark),

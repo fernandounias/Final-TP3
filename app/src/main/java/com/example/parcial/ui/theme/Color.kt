@@ -25,6 +25,8 @@ val ButtonContentColor = Color.White
 
 val BackgroundScreens = Color(0xFFF8F8F6) // Fondo Screens
 val LightGray = Color(0xFFD1D1D7) // Gris claro
+val LGray = Color(0xFF707070) // Gris custom
+val GreenL = Color(0xFFCFF6E8) //
 
 val Green800Dark = Color(0xFF0A7B5C)
 val Purple900Dark = Color(0xFF2C1A61)

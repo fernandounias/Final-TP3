@@ -13,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -24,8 +23,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.parcial.R
-import com.example.parcial.ui.theme.BackgroundScreens
-import com.example.parcial.ui.theme.DarkPurple
+import com.example.parcial.ui.LocalColors
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -43,13 +42,13 @@ fun DialogSubeVerificar(
         properties = DialogProperties(usePlatformDefaultWidth = false)
     ) {
         Surface(
-            color = Color.White,
+            color = LocalColors.current.background,
             modifier = Modifier
                 .fillMaxSize()
         ) {
             Column(
                 modifier = Modifier
-                    .background(BackgroundScreens)
+                    .background( color = LocalColors.current.background)
                     .fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -62,9 +61,9 @@ fun DialogSubeVerificar(
                             Text(
                                 text = title,
                                 style = MaterialTheme.typography.titleLarge.copy(
-                                    fontSize = 16.sp,
+                                    fontSize = 18.sp,
                                     fontFamily = FontFamily(Font(R.font.manrope_bold)),
-                                    color = DarkPurple
+                                    color = LocalColors.current.textTitles
                                 ),
                                 textAlign = TextAlign.Center
                             )
@@ -72,18 +71,26 @@ fun DialogSubeVerificar(
                     },
                     navigationIcon = {
                         IconButton(onClick = onDismiss) {
-                            Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Atrás")
+                            Icon(
+                                Icons.AutoMirrored.Filled.ArrowBack,
+                                contentDescription = "Atrás",
+                                tint = LocalColors.current.textTitles
+                            )
                         }
                     },
                     actions = {
                         IconButton(onClick = onDismiss) {
-                            Icon(Icons.Default.Close, contentDescription = "Cerrar")
+                            Icon(
+                                Icons.Default.Close,
+                                contentDescription = "Cerrar",
+                                tint = LocalColors.current.textTitles
+                            )
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color.White,
-                        titleContentColor = DarkPurple,
-                        navigationIconContentColor = DarkPurple
+                        containerColor = LocalColors.current.background,
+                        titleContentColor = LocalColors.current.textTitles,
+                        navigationIconContentColor = LocalColors.current.textTitles
                     )
                 )
                 HorizontalDivider(
@@ -101,7 +108,7 @@ fun DialogSubeVerificar(
                                 fontFamily = FontFamily(
                                     Font(R.font.manrope_extrabold)
                                 ),
-                                color = DarkPurple
+                                color = LocalColors.current.textTitles
                             )),
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
@@ -121,7 +128,7 @@ fun DialogSubeVerificar(
                             .padding(horizontal = 20.dp)
                             .padding(vertical = 20.dp),
                         shape = RoundedCornerShape(8.dp),
-                        colors =  CardDefaults.cardColors(containerColor = BackgroundScreens),
+                        colors =  CardDefaults.cardColors(containerColor = LocalColors.current.inputBackground),
                         elevation = CardDefaults.cardElevation(14.dp)
                     ) {
                         Column(
@@ -147,7 +154,7 @@ fun DialogSubeVerificar(
                                                 fontFamily = FontFamily(
                                                     Font(R.font.manrope_bold)
                                                 ),
-                                                color = Color.Gray
+                                                color = LocalColors.current.inputLabel
                                             ))
                                 )
                                 Text(
@@ -158,7 +165,7 @@ fun DialogSubeVerificar(
                                                 fontFamily = FontFamily(
                                                     Font(R.font.manrope_bold)
                                                 ),
-                                                color = DarkPurple
+                                                color = LocalColors.current.textTitles
                                             ))
 
                                 )

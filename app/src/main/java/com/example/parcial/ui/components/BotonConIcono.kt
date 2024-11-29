@@ -3,6 +3,7 @@ package com.example.parcial.ui.components
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -22,12 +23,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.parcial.R
+import com.example.parcial.ui.LocalColors
 
 @Composable
 fun BotonConIcono(
@@ -38,30 +39,34 @@ fun BotonConIcono(
     val manropeBold = FontFamily(
         Font(R.font.manrope_bold)
     )
-    Column(
+    Box(
         modifier = Modifier
-            .background(Color.White, shape = shape)
-            .border(1.dp, Color.LightGray, shape = shape)
-            .padding(8.dp)
-            .width(112.dp)
-            .height(96.dp),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Icon(
-            painter = painterResource(id = iconoResId),
-            contentDescription = texto,
-            tint = colorResource(R.color.green_800),
-            modifier = Modifier.size(30.dp)
-        )
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = texto,
-            fontSize = 16.sp,
-            fontFamily = manropeBold,
-            color = colorResource(R.color.purple_dark),
-            textAlign = TextAlign.Center
-        )
+            .width(118.dp)
+            .height(98.dp)
+    ){
+        Column(
+            modifier = Modifier
+                .background(color = LocalColors.current.inputBackground, shape = shape)
+                .border(1.dp, color = LocalColors.current.inputBorder, shape = shape)
+                .padding(10.dp),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(
+                painter = painterResource(id = iconoResId),
+                contentDescription = texto,
+                tint = colorResource(R.color.green_800),
+                modifier = Modifier.size(30.dp)
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = texto,
+                fontSize = 16.sp,
+                fontFamily = manropeBold,
+                color = LocalColors.current.text,
+                textAlign = TextAlign.Center
+            )
+        }
     }
 }
 

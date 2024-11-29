@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.parcial.MainNavActions
 import com.example.parcial.R
+import com.example.parcial.ui.LocalColors
 import com.example.parcial.ui.theme.Green800
 
 @Composable
@@ -46,10 +47,11 @@ fun BottomNavBar(
             .fillMaxWidth(),
         shadowElevation = 24.dp,
         tonalElevation = 24.dp,
-        color = Color.White
+        color = LocalColors.current.background,
+        contentColor = LocalColors.current.background
     ) {
         NavigationBar(
-            containerColor = Color.White,
+            containerColor = LocalColors.current.inputBackground,
             modifier = Modifier
                 .fillMaxWidth()
                 .height(94.dp)
@@ -90,7 +92,7 @@ fun BottomNavBar(
                                 Icon(
                                     painter = painterResource(id = icon),
                                     contentDescription = item.label,
-                                    tint = Color.Unspecified,
+                                    tint = if (!isSelected) LocalColors.current.tintW else Color.Unspecified,
                                     modifier = Modifier
                                         .size(28.dp)
                                         .padding(top = 6.dp)

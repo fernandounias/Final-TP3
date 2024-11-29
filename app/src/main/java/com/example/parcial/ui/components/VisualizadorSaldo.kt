@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.parcial.R
+import com.example.parcial.ui.LocalColors
 import com.example.parcial.ui.theme.DarkPurple
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -50,7 +51,7 @@ fun VisualizadorSaldo(
             modifier = Modifier.fillMaxWidth(),
             style = TextStyle(
                 fontFamily = manropeBold,
-                color = DarkPurple,
+                color = LocalColors.current.textTitles,
                 fontSize = saldoSize.sp,
                 fontWeight = FontWeight.W700,
                 lineHeight = 14.4.sp,
@@ -62,7 +63,7 @@ fun VisualizadorSaldo(
             modifier = Modifier.fillMaxWidth(),
             style = TextStyle(
                 fontFamily = manropeBold,
-                color = DarkPurple,
+                color = LocalColors.current.textTitles,
                 fontSize = textoSize.sp,
                 fontWeight = FontWeight.W700,
                 lineHeight = 35.2.sp,

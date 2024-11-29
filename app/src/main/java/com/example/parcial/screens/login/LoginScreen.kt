@@ -6,10 +6,8 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -24,11 +22,10 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -45,7 +42,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import com.example.parcial.ui.theme.Green800
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -53,8 +49,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.parcial.MainNavActions
 import com.example.parcial.R
 import com.example.parcial.shared.infraestructure.RetrofitModule
+import com.example.parcial.ui.LocalColors
 import com.example.parcial.ui.components.ClickableLink
-import com.example.parcial.ui.theme.BackgroundScreens
 import com.example.parcial.ui.theme.Red900
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -215,7 +211,7 @@ fun LoginBox(
                     .fillMaxWidth()
                     .height(400.dp)
                     .background(
-                        BackgroundScreens,
+                        color = LocalColors.current.background,
                         shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp)
                     )
                     .padding(16.dp)
@@ -231,7 +227,8 @@ fun LoginBox(
                         modifier = Modifier.fillMaxWidth(),
                         text = stringResource(id = R.string.sign_f_title),
                         style = TextStyle(fontSize = 18.sp),
-                        fontWeight = FontWeight.Black
+                        fontWeight = FontWeight.Black,
+                        color = LocalColors.current.textTitles
                     )
                     Spacer(modifier = Modifier.height(18.dp))
                     UsernameTextField(
@@ -254,8 +251,10 @@ fun LoginBox(
                         label = stringResource(id = R.string.sign_f_label_p),
                         isPasswordError
                     )
+                    Spacer(modifier = Modifier.height(4.dp))
                     Box(
                         modifier = Modifier
+                            .padding(4.dp)
                             .fillMaxWidth(),
                     ){
                         ClickableLink(
@@ -265,7 +264,7 @@ fun LoginBox(
                             snackbarHostState
                         )
                     }
-                    Spacer(modifier = Modifier.height(18.dp))
+                    Spacer(modifier = Modifier.height(10.dp))
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
@@ -289,12 +288,19 @@ fun LoginBox(
                             }
                         )
                         Spacer(modifier = Modifier.width(14.dp))
-                        Text((stringResource(id = R.string.sign_remember))
+                        Text(
+                            color = LocalColors.current.textSubTitles,
+                            text = stringResource(id = R.string.sign_remember)
                         )
                     }
                     Spacer(modifier = Modifier.weight(1f))
                     Button(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = LocalColors.current.buttonColor,
+                            contentColor = Color.White
+                        ),
                         onClick = {
                             isUsernameError = username.value.isBlank()
                             isPasswordError = password.value.isBlank()
@@ -308,7 +314,10 @@ fun LoginBox(
                             }
                         }
                     ) {
-                        Text(stringResource(id = R.string.sign_in_btn))
+                        Text(
+                            color = Color.White,
+                            text = stringResource(id = R.string.sign_in_btn)
+                        )
                     }
 //                    SnackbarHost(
 //                        hostState = snackbarHostState

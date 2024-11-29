@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.example.parcial.R
+import com.example.parcial.ui.LocalColors
 import com.example.parcial.ui.theme.DarkPurple
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -50,7 +51,7 @@ fun DialogSubeConfirmacion(
         properties = DialogProperties(usePlatformDefaultWidth = false)
     ) {
         Surface(
-            color = Color.White,
+            color = LocalColors.current.background,
             modifier = Modifier
                 .fillMaxSize()
         ) {
@@ -67,9 +68,9 @@ fun DialogSubeConfirmacion(
                         Text(
                             text = title,
                             style = MaterialTheme.typography.titleLarge.copy(
-                                fontSize = 16.sp,
+                                fontSize = 18.sp,
                                 fontFamily = FontFamily(Font(R.font.manrope_bold)),
-                                color = DarkPurple
+                                color = LocalColors.current.textTitles
                             ),
                             textAlign = TextAlign.Center
                         )
@@ -81,9 +82,9 @@ fun DialogSubeConfirmacion(
                         }
                     },
                     colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color.White,
-                        titleContentColor = DarkPurple,
-                        navigationIconContentColor = DarkPurple
+                        containerColor = LocalColors.current.background,
+                        titleContentColor = LocalColors.current.textTitles,
+                        navigationIconContentColor = LocalColors.current.text0
                     )
                 )
                 HorizontalDivider(
@@ -122,7 +123,7 @@ fun DialogSubeConfirmacion(
                                 style = MaterialTheme.typography.titleLarge.copy(
                                     fontSize = 20.sp,
                                     fontFamily = FontFamily(Font(R.font.manrope_bold)),
-                                    color = DarkPurple
+                                    color = LocalColors.current.textTitles
                                 ),
                                 textAlign = TextAlign.Center,
                                 modifier = Modifier

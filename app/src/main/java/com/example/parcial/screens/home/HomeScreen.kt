@@ -1,7 +1,7 @@
 package com.example.parcial.screens.home
 
-import com.example.parcial.model.model.user.UserViewModelFactory
 import VisualizadorSaldo
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,16 +21,13 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.parcial.R
-import com.example.parcial.shared.infraestructure.RetrofitModule
-import com.example.parcial.shared.infraestructure.users.UserRepository
 import com.example.parcial.ui.components.BotonClick
 import com.example.parcial.ui.components.GridDeBotonesInicio
 import com.example.parcial.ui.components.TarjetaConBoton
-import com.example.parcial.ui.theme.DarkPurple
 import com.example.parcial.model.model.user.UserViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.parcial.ui.LocalColors
 
 @Preview(showBackground = true)
 @Composable
@@ -48,9 +45,11 @@ fun HomeScreen() {
     }
     LazyColumn(
         modifier = Modifier
-        .padding(start = 16.dp, end = 16.dp, top = 16.dp),
+            .background(LocalColors.current.background)
+            .padding(start = 16.dp, end = 16.dp, top = 16.dp),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
+
     ) {
         item {
             Column(
@@ -63,13 +62,13 @@ fun HomeScreen() {
                     text = if (userName != null) "\uD83D\uDC4B Hola $userName" else "Loading...",
                     fontSize = 18.sp,
                     fontFamily = manropeBold,
-                    color = DarkPurple
+                    color = LocalColors.current.textTitles
                 )
                 Text(
                     text = "Último acceso: Mar 01, 2020 4:55 PM",
                     fontSize = 14.sp,
                     fontFamily = manropeRegular,
-                    color = DarkPurple
+                    color = LocalColors.current.text0
                 )
             }
         }
@@ -106,6 +105,7 @@ fun HomeScreen() {
         item {
             GridDeBotonesInicio()
         }
+        item { Spacer(modifier = Modifier.padding(12.dp)) }
     }
 }
 
@@ -116,5 +116,3 @@ val manropeBold = FontFamily(
 val manropeRegular = FontFamily(
     Font(R.font.manrope_regular)
 )
-
-

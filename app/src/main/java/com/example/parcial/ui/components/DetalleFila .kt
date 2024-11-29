@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.parcial.R
+import com.example.parcial.ui.LocalColors
 import com.example.parcial.ui.theme.DarkPurple
 import com.example.parcial.ui.theme.Green900
 import com.example.parcial.ui.theme.LightGray
@@ -58,21 +59,21 @@ fun DetalleFila (
             .padding(top = 2.dp, end = 12.dp, bottom = 2.dp),
     ) {
         Text(
-            text = invertirFecha(fecha), style = customTextStyle, color = DarkPurple, fontFamily = manropeBold
+            text = invertirFecha(fecha), style = customTextStyle, color = LocalColors.current.textTitles, fontFamily = manropeBold
         )
         Spacer(modifier = Modifier.weight(0.05f))
         Column {
             Text(
                 text = descripcion,
                 style = customTextStyle,
-                color = DarkPurple,
+                color = LocalColors.current.textTitles,
                 fontFamily = manropeBold,
                 modifier = Modifier.width(180.dp)
             )
             Text(
                 text = "Aut. $autorizacion",
                 style = customTextStyle,
-                color = DarkPurple,
+                color = LocalColors.current.textTitles,
                 fontFamily = manropeBold
             )
         }

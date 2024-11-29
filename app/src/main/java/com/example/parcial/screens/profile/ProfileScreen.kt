@@ -38,9 +38,8 @@ import com.example.parcial.R
 import com.example.parcial.shared.infraestructure.RetrofitModule
 import com.example.parcial.shared.infraestructure.users.UserRepository
 import com.example.parcial.ui.components.GridBotonesClickProfile
-import com.example.parcial.ui.theme.BackgroundScreens
-import com.example.parcial.ui.theme.DarkPurple
 import com.example.parcial.model.model.user.UserViewModel
+import com.example.parcial.ui.LocalColors
 import kotlinx.coroutines.delay
 
 @Composable
@@ -81,7 +80,7 @@ fun ProfileScreen(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(BackgroundScreens)
+                .background(LocalColors.current.background)
                 .padding(horizontal = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
@@ -91,8 +90,9 @@ fun ProfileScreen(
                     text = "Mi Perfil",
                     style = MaterialTheme.typography.titleSmall,
                     fontSize = 22.sp,
-                    color = DarkPurple,
-                    modifier = Modifier.padding(bottom = 22.dp)
+                    color = LocalColors.current.textTitles,
+                    modifier = Modifier
+                        .padding(top = 14.dp ,bottom = 22.dp)
                 )
             }
             item {
@@ -110,13 +110,13 @@ fun ProfileScreen(
                 Text(
                     text = if (userName != null) "\uD83D\uDC4B Hola $userName" else "Loading...",
                     style = MaterialTheme.typography.titleSmall,
-                    color = DarkPurple,
+                    color = LocalColors.current.textTitles,
                     fontSize = 22.sp,
                     modifier = Modifier
                         .padding(10.dp)
                 )
             }
-            item { Spacer(modifier = Modifier.height(24.dp)) }
+            item { Spacer(modifier = Modifier.height(16.dp)) }
             item {
                 GridBotonesClickProfile(
                     isDarkMode = isDarkModeState.value,
@@ -126,6 +126,7 @@ fun ProfileScreen(
                     }
                 )
             }
+            item { Spacer(modifier = Modifier.height(16.dp)) }
         }
     }
     LaunchedEffect(isExiting) {

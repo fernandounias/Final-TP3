@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -23,8 +24,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.parcial.R
+import com.example.parcial.ui.LocalColors
 import com.example.parcial.ui.theme.BackgroundScreens
 import com.example.parcial.ui.theme.DarkPurple
+import com.example.parcial.ui.theme.Green800
 
 @Composable
 fun BotonServicios(
@@ -58,19 +61,22 @@ fun BotonServicios(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .background( color = LocalColors.current.inputBackground)
                 .padding(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
             Box(
                 modifier = Modifier
+                    .background( color = LocalColors.current.inputBackground)
                     .size(110.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.edge_icon_big_services),
                     contentDescription = "Circulo",
-                    modifier = Modifier.size(100.dp)
+                    modifier = Modifier.size(100.dp),
+                    colorFilter = ColorFilter.tint(LocalColors.current.shadowIconG)
                 )
                 Image(
                     painter = image,
@@ -85,7 +91,7 @@ fun BotonServicios(
                 text = title,
                 fontFamily = manropeBold,
                 fontSize = 12.sp,
-                color = DarkPurple,
+                color = LocalColors.current.text,
             )
         }
     }

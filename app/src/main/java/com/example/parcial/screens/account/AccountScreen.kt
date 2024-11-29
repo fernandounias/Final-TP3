@@ -17,8 +17,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -30,9 +28,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.parcial.R
+import com.example.parcial.ui.LocalColors
 import com.example.parcial.ui.components.GridDeBotonesMiCuenta
 import com.example.parcial.ui.components.TransactionsSection
-import com.example.parcial.ui.theme.BackgroundScreens
 
 @Composable
 fun AccountScreen() {
@@ -50,15 +48,15 @@ fun AccountScreen() {
 
     Column(
         modifier = Modifier
-            .background(BackgroundScreens)
+            .background(LocalColors.current.background)
             .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = stringResource(id = R.string.account_title),
             fontFamily = manropeBold,
-            color = colorResource(id = R.color.purple_dark),
-            fontSize = 18.sp,
+            color = LocalColors.current.textTitles,
+            fontSize = 20.sp,
             modifier = Modifier
                 .padding(top = 16.dp)
         )
@@ -69,10 +67,10 @@ fun AccountScreen() {
             modifier = Modifier
                 .border(
                     width = 1.dp,
-                    color = colorResource(id = R.color.light_gray),
+                    color = LocalColors.current.inputBorder,
                     shape = androidx.compose.foundation.shape.RoundedCornerShape(8.dp)
                 )
-                .background(Color.White)
+                .background(color = LocalColors.current.background)
                 .padding(16.dp)
                 .fillMaxWidth(0.93f)
                 .height(153.dp),
@@ -94,7 +92,7 @@ fun AccountScreen() {
                 modifier = Modifier
                     .fillMaxWidth(0.97f)
                     .height(1.dp)
-                    .background(Color.Gray)
+                    .background(color = LocalColors.current.inputBorder)
             )
 
             Spacer(modifier = Modifier.padding(10.dp))
@@ -115,14 +113,14 @@ fun AccountScreen() {
                         .padding(start = 4.dp, bottom = 10.dp)
                         .weight(1f),
                     textAlign = TextAlign.Left,
-                    color = colorResource(id = R.color.purple_dark),
+                    color = LocalColors.current.text0,
                     fontSize = 16.sp
                 )
 
                 Text(
                     text = stringResource(id = R.string.acc_id_copy),
                     fontFamily = manropeBold,
-                    color = colorResource(id = R.color.purple_dark),
+                    color = LocalColors.current.inputBorder,
                     modifier = Modifier
                         .height(25.dp)
                         .padding(end = 5.dp),

@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import com.example.parcial.ui.LocalColors
 import com.example.parcial.ui.theme.ButtonContentColor
 import com.example.parcial.ui.theme.ButtonDisabled
 import com.example.parcial.ui.theme.ButtonHover
@@ -62,7 +63,7 @@ fun Boton(
         !isEnabled -> ButtonDisabled
         isPressed -> ButtonPressed
         isHovered -> ButtonHover
-        else -> Purple900
+        else -> LocalColors.current.buttonColor
     }
 
     val focusBorderColor = Color(56, 45, 113, 50)

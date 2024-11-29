@@ -38,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.parcial.R
+import com.example.parcial.ui.LocalColors
 import com.example.parcial.ui.theme.Purple900
 
 
@@ -67,12 +68,12 @@ fun TarjetaConBoton(
                 ),
                 contentDescription = null,
                 modifier = Modifier.size(20.dp),
-                tint = Purple900
+                tint = LocalColors.current.iconColor
             )
             Spacer(modifier = Modifier.width(8.dp))
             Text(
                 text = if (mostrarDatos) stringResource(id = R.string.start_hide) else stringResource(id = R.string.start_show),
-                color = Purple900,
+                color = LocalColors.current.iconColor,
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 fontFamily = manropeBold
